@@ -119,12 +119,13 @@
     "errorMessage": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
   },
   "projects": {
-    "title": "Unsere Projekte",
-    "subtitle": "Erfolgsgeschichten",
+    "title": "Unsere Projektgalerie",
+    "subtitle": "Sehen Sie sich einige unserer erfolgreich abgeschlossenen Solarprojekte an",
     "viewAll": "Alle Projekte anzeigen",
+    "hideAll": "Projekte ausblenden",
     "details": {
       "power": "Leistung",
-      "panels": "Module",
+      "panels": "Paneele",
       "savings": "Einsparung",
       "completed": "Fertiggestellt",
       "yearlyOutput": "Jährliche Produktion"
@@ -202,7 +203,8 @@
         "title": "Marina in Umag",
         "description": "60kW-System für eine Marina"
       }
-    }
+    },
+    "closeModal": "Schließen"
   },
   "footer": {
     "navigation": {

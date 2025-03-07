@@ -1,64 +1,81 @@
 ---
-import { t } from 'i18next';
-import i18next from '../i18n/config';
+import { t } from "i18next";
+import i18next from "../i18n/config";
 
-const { lang = 'hr' } = Astro.params;
+const { lang = "hr" } = Astro.params;
 
 // Change language before rendering
 if (lang) {
-  await i18next.changeLanguage(lang);
+    await i18next.changeLanguage(lang);
 }
 ---
 
 <section class="relative min-h-screen flex items-center">
-  <div 
-    class="absolute inset-0 bg-center bg-cover bg-no-repeat"
-    style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674348c40a9312c2e86d2098.png');"
-  >
-  </div>
-  <div class="absolute inset-0 bg-black/50"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <div class="text-center">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-        <span class="block text-white mb-2">{t('hero.title')}</span>
-        <span class="block text-secondary">{t('hero.subtitle')}</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-light">
-        {t('hero.description')}
-      </p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a
-          href="#calculator"
-          class="inline-block bg-secondary hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
-          data-nav-link="section"
-        >
-          Izračunajte Vašu Uštedu
-        </a>
-      </div>
+    <div
+        class="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp'); background-size: cover; background-position: center center;"
+        data-priority="high">
     </div>
-  </div>
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="text-center">
+            <h1
+                class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
+                <span class="block text-white mb-2">{t("hero.title")}</span>
+                <span class="block text-secondary">{t("hero.subtitle")}</span>
+            </h1>
+            <p
+                class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-light">
+                {t("hero.description")}
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a
+                    href="#calculator"
+                    class="inline-block bg-secondary hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
+                    data-nav-link="section">
+                    Izračunajte Vašu Uštedu
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
-  // Handle smooth scrolling for the calculator link
-  document.querySelectorAll('[data-nav-link="section"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = (link as HTMLAnchorElement).getAttribute('href');
-      
-      if (href) {
-        const target = document.getElementById(href.substring(1));
-        if (target) {
-          const navHeight = document.querySelector('nav')?.offsetHeight || 0;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = targetPosition - navHeight;
+    // Handle smooth scrolling for the calculator link
+    document.querySelectorAll('[data-nav-link="section"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const href = (link as HTMLAnchorElement).getAttribute("href");
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
+            if (href) {
+                const target = document.getElementById(href.substring(1));
+                if (target) {
+                    const navHeight =
+                        document.querySelector("nav")?.offsetHeight || 0;
+                    const targetPosition =
+                        target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - navHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+                }
+            }
+        });
     });
-  });
 </script>
+
+<style>
+    section {
+        min-height: 100vh;
+        height: 100vh; /* Force full viewport height */
+    }
+
+    @media (max-width: 768px) {
+        section {
+            height: 100vh; /* Ensure full height on mobile */
+            min-height: 100vh;
+        }
+    }
+</style>

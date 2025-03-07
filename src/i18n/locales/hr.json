@@ -119,9 +119,10 @@
     "errorMessage": "Došlo je do greške. Molimo pokušajte ponovno."
   },
   "projects": {
-    "title": "Naši Projekti",
-    "subtitle": "Uspješne Priče",
+    "title": "Galerija Naših Projekata",
+    "subtitle": "Pogledajte neke od naših uspješno realiziranih solarnih projekata",
     "viewAll": "Pogledajte Sve Projekte",
+    "hideAll": "Sakrij Projekte",
     "details": {
       "power": "Snaga",
       "panels": "Paneli",
@@ -202,7 +203,8 @@
         "title": "Marina Umag",
         "description": "60kW sustav za marinu"
       }
-    }
+    },
+    "closeModal": "Zatvori"
   },
   "footer": {
     "navigation": {

@@ -119,9 +119,10 @@
     "errorMessage": "Si è verificato un errore. Per favore riprova."
   },
   "projects": {
-    "title": "I Nostri Progetti",
-    "subtitle": "Storie di Successo",
+    "title": "Galleria dei Nostri Progetti",
+    "subtitle": "Dai un'occhiata ad alcuni dei nostri progetti solari completati con successo",
     "viewAll": "Visualizza Tutti i Progetti",
+    "hideAll": "Nascondi Progetti",
     "details": {
       "power": "Potenza",
       "panels": "Pannelli",
@@ -202,7 +203,8 @@
         "title": "Marina a Umago",
         "description": "Sistema da 60kW per una marina"
       }
-    }
+    },
+    "closeModal": "Chiudi"
   },
   "footer": {
     "navigation": {

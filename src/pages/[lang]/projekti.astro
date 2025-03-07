@@ -31,6 +31,53 @@ const pageTitle = `Solar Fusion - ${t("nav.projects")}`;
     <main>
         <ProjectHero />
         <Projects />
-        <ProjectGallery />
+
+        <!-- Gallery Toggle Button -->
+        <div class="text-center py-12 bg-gray-50">
+            <button
+                id="toggleGalleryBtn"
+                class="inline-flex items-center px-8 py-4 border border-transparent rounded-lg shadow-md text-lg font-medium text-white bg-secondary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors">
+                {t("projects.viewAll")}
+            </button>
+        </div>
+
+        <!-- Hidden Gallery Section -->
+        <div id="projectGalleryContainer" class="hidden">
+            <ProjectGallery />
+        </div>
     </main>
 </Layout>
+
+<script
+    define:vars={{
+        viewAllText: t("projects.viewAll"),
+        hideAllText: t("projects.hideAll") ?? "Sakrij Projekte",
+    }}
+>
+    // Toggle gallery visibility when button is clicked
+    document.addEventListener("astro:page-load", () => {
+        const toggleBtn = document.getElementById("toggleGalleryBtn");
+        const galleryContainer = document.getElementById(
+            "projectGalleryContainer"
+        );
+
+        if (toggleBtn && galleryContainer) {
+            toggleBtn.addEventListener("click", () => {
+                // Toggle visibility
+                galleryContainer.classList.toggle("hidden");
+
+                // Change button text based on current state
+                if (galleryContainer.classList.contains("hidden")) {
+                    toggleBtn.textContent = viewAllText;
+                } else {
+                    toggleBtn.textContent = hideAllText;
+                }
+
+                // Scroll to gallery if becoming visible
+                if (!galleryContainer.classList.contains("hidden")) {
+                    galleryContainer.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        }
+    });
+</script>

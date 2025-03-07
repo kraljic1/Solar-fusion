@@ -119,9 +119,10 @@
     "errorMessage": "Hiba történt. Kérjük, próbálja újra."
   },
   "projects": {
-    "title": "Projektjeink",
-    "subtitle": "Sikertörténetek",
+    "title": "Projektjeink Galériája",
+    "subtitle": "Nézze meg néhány sikeresen befejezett napelemes projektünket",
     "viewAll": "Összes Projekt Megtekintése",
+    "hideAll": "Projektek elrejtése",
     "details": {
       "power": "Teljesítmény",
       "panels": "Panelek",
@@ -202,7 +203,8 @@
         "title": "Marina Umagban",
         "description": "60kW-os rendszer kikötő számára"
       }
-    }
+    },
+    "closeModal": "Bezárás"
   },
   "footer": {
     "navigation": {

@@ -86,11 +86,13 @@ const menuItems = [
             <!-- Logo -->
             <a
                 href={`/${lang}/`}
-                class="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:opacity-90">
+                class="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:opacity-90 flex-1 mr-4">
                 <img
                     src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/6743423985656fbf56e9f314.png"
                     alt="Solar Fusion Logo"
-                    class="h-12 w-auto max-w-[148px] transform-gpu"
+                    width="2176"
+                    height="216"
+                    class="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] sm:max-w-[180px] md:max-w-full aspect-[10.07/1] transform-gpu"
                     loading="eager"
                     decoding="async"
                     fetchpriority="high"
@@ -138,7 +140,7 @@ const menuItems = [
             </div>
 
             <!-- Mobile Navigation Button -->
-            <div class="md:hidden flex items-center space-x-4">
+            <div class="md:hidden flex items-center space-x-2">
                 <div style="position: relative; z-index: 9999;">
                     <LanguageSelector />
                 </div>

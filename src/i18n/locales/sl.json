@@ -119,9 +119,10 @@
     "errorMessage": "Prišlo je do napake. Prosimo, poskusite znova."
   },
   "projects": {
-    "title": "Naši Projekti",
-    "subtitle": "Uspešne Zgodbe",
+    "title": "Galerija Naših Projektov",
+    "subtitle": "Oglejte si nekatere naše uspešno zaključene solarne projekte",
     "viewAll": "Oglejte si vse projekte",
+    "hideAll": "Skrij projekte",
     "details": {
       "power": "Moč",
       "panels": "Paneli",
@@ -202,7 +203,8 @@
         "title": "Marina Portorož",
         "description": "60 kW sistem za marino"
       }
-    }
+    },
+    "closeModal": "Zapri"
   },
   "footer": {
     "navigation": {
