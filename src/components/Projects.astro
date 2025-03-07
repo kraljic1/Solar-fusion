@@ -13,7 +13,11 @@ const projects = [
     {
         title: tFunc("projects.gallery.project1.title"),
         description: tFunc("projects.gallery.project1.description"),
-        image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+        images: [
+            "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+            "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        ],
         details: {
             power: "10kW",
             panels: "25",
@@ -24,7 +28,11 @@ const projects = [
     {
         title: tFunc("projects.gallery.project2.title"),
         description: tFunc("projects.gallery.project2.description"),
-        image: "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        ],
         details: {
             power: "50kW",
             panels: "125",
@@ -35,7 +43,11 @@ const projects = [
     {
         title: tFunc("projects.gallery.project3.title"),
         description: tFunc("projects.gallery.project3.description"),
-        image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1592833138865-985873910d33?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        ],
         details: {
             power: "25kW",
             panels: "60",
@@ -46,7 +58,11 @@ const projects = [
     {
         title: tFunc("projects.gallery.project4.title"),
         description: tFunc("projects.gallery.project4.description"),
-        image: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+            "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        ],
         details: {
             power: "75kW",
             panels: "180",
@@ -222,12 +238,86 @@ const t = translations[lang as keyof typeof translations] || translations.hr;
                         </div>
 
                         <div class={index % 2 === 1 ? "md:col-start-1" : ""}>
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                class="w-full h-[400px] object-cover rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
-                                loading="lazy"
-                            />
+                            <div class="project-carousel relative rounded-lg shadow-xl overflow-hidden">
+                                <div
+                                    class="carousel-container h-[400px]"
+                                    data-project-id={index}>
+                                    {project.images.map((image, imgIndex) => (
+                                        <div
+                                            class={`carousel-slide absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${imgIndex === 0 ? "opacity-100" : "opacity-0"}`}
+                                            data-slide-index={imgIndex}>
+                                            <picture>
+                                                <source
+                                                    media="(max-width: 768px)"
+                                                    srcset={`${image}?width=640&quality=80`}
+                                                />
+                                                <source
+                                                    media="(min-width: 769px)"
+                                                    srcset={image}
+                                                />
+                                                <img
+                                                    src={image}
+                                                    alt={`${project.title} - Image ${imgIndex + 1}`}
+                                                    class="w-full h-full object-cover"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    width="1074"
+                                                    height="400"
+                                                />
+                                            </picture>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div class="carousel-controls absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
+                                    {project.images.map((_, imgIndex) => (
+                                        <button
+                                            class={`carousel-dot w-6 h-6 p-4 rounded-full bg-white opacity-50 transition-opacity ${imgIndex === 0 ? "opacity-100" : ""}`}
+                                            data-project-id={index}
+                                            data-slide-index={imgIndex}
+                                            aria-label={`Show image ${imgIndex + 1}`}
+                                        />
+                                    ))}
+                                </div>
+
+                                <button
+                                    class="carousel-prev absolute left-3 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 text-white w-12 h-12 rounded-full flex items-center justify-center focus:outline-none hover:bg-opacity-50"
+                                    data-project-id={index}
+                                    aria-label="Previous image">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        class="w-8 h-8">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 19l-7-7 7-7"
+                                        />
+                                    </svg>
+                                </button>
+
+                                <button
+                                    class="carousel-next absolute right-3 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 text-white w-12 h-12 rounded-full flex items-center justify-center focus:outline-none hover:bg-opacity-50"
+                                    data-project-id={index}
+                                    aria-label="Next image">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        class="w-8 h-8">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5l7 7-7 7"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))
@@ -257,8 +347,8 @@ const t = translations[lang as keyof typeof translations] || translations.hr;
                             const offsetPosition = targetPosition - navHeight;
 
                             window.scrollTo({
-                                behavior: "smooth",
                                 top: offsetPosition,
+                                behavior: "smooth",
                             });
 
                             // Update URL without scrolling
@@ -306,11 +396,83 @@ const t = translations[lang as keyof typeof translations] || translations.hr;
         });
     }
 
-    // Initialize on page load
-    initializeProjectNavigation();
+    function initializeProjectCarousels() {
+        const carousels = document.querySelectorAll(".project-carousel");
 
-    // Handle Astro page transitions
+        carousels.forEach((carousel) => {
+            const projectId = carousel
+                .querySelector(".carousel-container")
+                ?.getAttribute("data-project-id");
+            if (!projectId) return;
+
+            const slides = carousel.querySelectorAll(".carousel-slide");
+            const dots = carousel.querySelectorAll(".carousel-dot");
+            const prevBtn = carousel.querySelector(".carousel-prev");
+            const nextBtn = carousel.querySelector(".carousel-next");
+
+            let currentSlide = 0;
+            const slideCount = slides.length;
+
+            // Function to show a specific slide
+            const showSlide = (index: number) => {
+                // Hide all slides
+                slides.forEach((slide) => {
+                    (slide as HTMLElement).classList.remove("opacity-100");
+                    (slide as HTMLElement).classList.add("opacity-0");
+                });
+
+                // Show the selected slide
+                (slides[index] as HTMLElement).classList.remove("opacity-0");
+                (slides[index] as HTMLElement).classList.add("opacity-100");
+
+                // Update dots
+                dots.forEach((dot) => {
+                    dot.classList.remove("opacity-100");
+                    dot.classList.add("opacity-50");
+                });
+
+                (dots[index] as HTMLElement).classList.remove("opacity-50");
+                (dots[index] as HTMLElement).classList.add("opacity-100");
+
+                // Update current slide index
+                currentSlide = index;
+            };
+
+            // Event listener for previous button
+            prevBtn?.addEventListener("click", () => {
+                let newIndex = currentSlide - 1;
+                if (newIndex < 0) newIndex = slideCount - 1;
+                showSlide(newIndex);
+            });
+
+            // Event listener for next button
+            nextBtn?.addEventListener("click", () => {
+                let newIndex = currentSlide + 1;
+                if (newIndex >= slideCount) newIndex = 0;
+                showSlide(newIndex);
+            });
+
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                });
+            });
+
+            // Initialize first slide
+            showSlide(0);
+        });
+    }
+
+    // Run initialization when the DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        initializeProjectNavigation();
+        initializeProjectCarousels();
+    });
+
+    // Re-initialize on Astro page transitions
     document.addEventListener("astro:page-load", () => {
         initializeProjectNavigation();
+        initializeProjectCarousels();
     });
 </script>

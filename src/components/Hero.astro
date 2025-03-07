@@ -13,91 +13,190 @@ if (lang) {
 const title = t("hero.title");
 const subtitle = t("hero.subtitle");
 const description = t("hero.description");
+
+// Define image paths for different screen sizes - set directly without query params
+const mobileBgImage =
+    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
+const desktopBgImage =
+    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
 ---
 
-<section class="relative min-h-screen flex items-center">
-    <div
-        class="absolute inset-0 bg-center bg-cover bg-no-repeat"
-        style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp'); background-size: cover; background-position: center center;"
-        data-priority="high"
-        aria-hidden="true">
-    </div>
-    <div class="absolute inset-0 bg-black/50" aria-hidden="true"></div>
-    <div
-        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 content-visibility-auto">
-        <div class="text-center">
-            <h1
-                class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 will-change-auto">
-                <span class="block text-white mb-2">{title}</span>
-                <span
-                    class="block text-secondary hero-subtitle"
-                    data-astro-cid-bbe6dxrz="">{subtitle}</span
-                >
-            </h1>
-            <p
-                class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-light">
-                {description}
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a
-                    href="#calculator"
-                    class="inline-block bg-secondary hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
-                    data-nav-link="section">
-                    Izračunajte Vašu Uštedu
-                </a>
-            </div>
+<section class="hero-section">
+    <!-- Preload critical hero image for better performance -->
+    <link
+        rel="preload"
+        as="image"
+        href={mobileBgImage}
+        media="(max-width: 768px)"
+        fetchpriority="high"
+    />
+    <link
+        rel="preload"
+        as="image"
+        href={desktopBgImage}
+        media="(min-width: 769px)"
+        fetchpriority="high"
+    />
+
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #1a202c;
+            background-image: url("https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp");
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-title {
+            display: block;
+            color: white;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtitle {
+            display: block;
+            color: #f59e0b;
+            font-size: 2.25rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-description {
+            color: #e5e7eb; /* Gray-200 */
+            font-size: 1.25rem;
+            max-width: 48rem;
+            margin: 0 auto 3rem auto;
+            font-weight: 300;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #f59e0b; /* Secondary color */
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: rgba(245, 158, 11, 0.9);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-image: url("https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp");
+            }
+        }
+    </style>
+
+    <!-- Optimized background structure -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content container -->
+    <div class="hero-content">
+        <h1 class="hero-heading">
+            <span class="hero-title">{title}</span>
+            <span class="hero-subtitle" data-astro-cid-bbe6dxrz=""
+                >{subtitle}</span
+            >
+        </h1>
+        <p class="hero-description">{description}</p>
+        <div class="hero-cta">
+            <a href="#calculator" class="cta-button" data-nav-link="section">
+                Izračunajte Vašu Uštedu
+            </a>
         </div>
     </div>
 </section>
 
 <script>
     // Handle smooth scrolling for the calculator link
-    document.querySelectorAll('[data-nav-link="section"]').forEach((link) => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const href = (link as HTMLAnchorElement).getAttribute("href");
+    document.addEventListener("DOMContentLoaded", function () {
+        document
+            .querySelectorAll('[data-nav-link="section"]')
+            .forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute("href");
 
-            if (href) {
-                const target = document.getElementById(href.substring(1));
-                if (target) {
-                    const navHeight =
-                        document.querySelector("nav")?.offsetHeight || 0;
-                    const targetPosition =
-                        target.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = targetPosition - navHeight;
+                    if (href) {
+                        const target = document.getElementById(
+                            href.substring(1)
+                        );
+                        if (target) {
+                            const navHeight =
+                                document.querySelector("nav")?.offsetHeight ||
+                                0;
+                            const targetPosition =
+                                target.getBoundingClientRect().top +
+                                window.pageYOffset;
+                            const offsetPosition = targetPosition - navHeight;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth",
-                    });
-                }
-            }
-        });
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth",
+                            });
+                        }
+                    }
+                });
+            });
     });
 </script>
 
 <style>
-    section {
-        min-height: 100vh;
-        height: 100vh; /* Force full viewport height */
-        content-visibility: auto;
-        contain: paint layout style;
+    /* Responsive adjustments */
+    @media (min-width: 640px) {
+        .hero-title,
+        .hero-subtitle {
+            font-size: 3rem;
+        }
     }
 
-    .hero-subtitle {
-        font-display: swap;
-    }
-
-    @media (max-width: 768px) {
-        section {
-            height: 100vh; /* Ensure full height on mobile */
-            min-height: 100vh;
+    @media (min-width: 768px) {
+        .hero-title,
+        .hero-subtitle {
+            font-size: 3.75rem;
         }
 
-        h1 {
-            /* Reduce font size on mobile for faster rendering */
-            font-size: 2.5rem;
-            line-height: 1.2;
+        .hero-description {
+            font-size: 1.5rem;
         }
     }
 </style>

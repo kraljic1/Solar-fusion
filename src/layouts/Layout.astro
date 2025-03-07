@@ -21,75 +21,136 @@ const { lang = "hr" } = Astro.params;
 const fullTitle = title.includes("Solar Fusion")
     ? title
     : `Solar Fusion | ${title}`;
+
+// Define critical resources
+const criticalImageUrl =
+    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
+const mobileImageUrl =
+    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp?width=640&quality=80";
 ---
 
 <!doctype html>
 <html lang={lang}>
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
-        <meta
-            property="og:image"
-            content="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp"
-        />
+        <meta property="og:image" content={criticalImageUrl} />
         <meta property="og:title" content={fullTitle} />
         <meta property="og:description" content={description} />
         <title>{fullTitle}</title>
 
-        <!-- Performance optimization script -->
+        <!-- Resource hints for faster resource loading -->
+        <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
+        <link
+            rel="preconnect"
+            href="https://assets.cdn.filesafe.space"
+            crossorigin
+        />
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+            crossorigin
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- Mobile-specific preload for critical LCP image -->
+        <link
+            rel="preload"
+            as="image"
+            href={mobileImageUrl}
+            media="(max-width: 768px)"
+            fetchpriority="high"
+        />
+        <link
+            rel="preload"
+            as="image"
+            href={criticalImageUrl}
+            media="(min-width: 769px)"
+            fetchpriority="high"
+        />
+
+        <!-- Critical rendering path optimization -->
         <script is:inline>
-            // Set high-priority hints for LCP elements
-            if ("connection" in navigator) {
-                if (navigator.connection.saveData === true) {
-                    // Respect data-saving settings
-                    console.log("Using save-data mode");
-                } else {
-                    // Enhanced loading for normal connections
-                    document.documentElement.classList.add("js-focus-visible");
-                }
+            // Mobile detection
+            const isMobile =
+                /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+                window.innerWidth <= 768;
+
+            // Immediately set a base dark background color to avoid flash
+            document.documentElement.style.backgroundColor = "#1a202c";
+
+            // Critical font preloading for the hero subtitle
+            const fontLink = document.createElement("link");
+            fontLink.rel = "preload";
+            fontLink.href =
+                "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap";
+            fontLink.as = "style";
+            document.head.appendChild(fontLink);
+
+            // LCP optimization - initiate early fetch for critical image
+            if (isMobile) {
+                const preloadLink = document.createElement("link");
+                preloadLink.rel = "preload";
+                preloadLink.as = "image";
+                preloadLink.href = `${mobileImageUrl}`;
+                preloadLink.fetchPriority = "high";
+                document.head.appendChild(preloadLink);
             }
 
-            // Add preload observer for viewport images
-            document.addEventListener("DOMContentLoaded", () => {
-                if ("IntersectionObserver" in window) {
-                    const intersectionObserver = new IntersectionObserver(
-                        (entries) => {
-                            entries.forEach((entry) => {
-                                if (entry.isIntersecting) {
-                                    const image = entry.target;
-                                    if (image.dataset.src) {
-                                        image.src = image.dataset.src;
-                                    }
-                                    intersectionObserver.unobserve(image);
-                                }
-                            });
-                        }
-                    );
+            // Prevent layout shifts by setting initial dimensions
+            document.documentElement.style.setProperty(
+                "--hero-height",
+                "100vh"
+            );
 
-                    // Observe all images that have data-src attributes
-                    document
-                        .querySelectorAll("img[data-src]")
-                        .forEach((img) => {
-                            intersectionObserver.observe(img);
-                        });
-                } else {
-                    // Fallback for browsers without IntersectionObserver
-                    document
-                        .querySelectorAll("img[data-src]")
-                        .forEach((img) => {
-                            img.src = img.dataset.src;
-                        });
-                }
-            });
+            // Set content-visibility auto for below-the-fold content on mobile
+            if (isMobile) {
+                document.addEventListener("DOMContentLoaded", () => {
+                    const belowFoldElements = document.querySelectorAll(
+                        "section:not(.hero-section)"
+                    );
+                    belowFoldElements.forEach((el, index) => {
+                        if (index > 0) {
+                            // Skip the first section after hero
+                            el.style.contentVisibility = "auto";
+                            el.style.containIntrinsicSize = "0 500px"; // Estimated size
+                        }
+                    });
+                });
+            }
         </script>
 
-        <!-- Add View Transitions -->
+        <!-- Inline critical CSS for mobile -->
+        <style is:inline>
+            /* Mobile-specific optimizations */
+            @media (max-width: 768px) {
+                /* Optimize font rendering for mobile */
+                body {
+                    text-rendering: optimizeSpeed;
+                    -webkit-font-smoothing: antialiased;
+                }
+
+                /* Reduce animation complexity on mobile */
+                * {
+                    transition-duration: 0.1s !important;
+                    animation-duration: 0.1s !important;
+                }
+
+                /* Improve touch response */
+                a,
+                button {
+                    touch-action: manipulation;
+                }
+            }
+        </style>
+
+        <!-- Add View Transitions - simplified -->
         <ViewTransitions />
 
-        <!-- Preconnect to external domains -->
+        <!-- Simplified preconnect setup -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -97,33 +158,14 @@ const fullTitle = title.includes("Solar Fusion")
             href="https://assets.cdn.filesafe.space"
             crossorigin
         />
-        <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
-        <!-- Preload critical assets -->
-        <link
-            rel="preload"
-            href="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp"
-            as="image"
-            type="image/webp"
-            fetchpriority="high"
-            media="(min-width: 320px)"
-        />
-        <link
-            rel="preload"
-            href="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png"
-            as="image"
-        />
+        <!-- Preload only critical resources -->
         <link
             rel="preload"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
-            crossorigin
         />
-
-        <!-- DNS Prefetch for external resources -->
-        <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
         <!-- Fallback for no-JS -->
         <noscript>
@@ -134,21 +176,23 @@ const fullTitle = title.includes("Solar Fusion")
             />
         </noscript>
 
-        <!-- Critical CSS -->
+        <!-- Simplified critical CSS -->
         <style is:inline>
-            /* Critical CSS for above-the-fold content */
+            /* Core styles only */
             @font-face {
                 font-family: "Inter";
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
-                src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_0ew.woff2)
-                    format("woff2");
+                src: local("Inter Regular"), local("Inter-Regular");
             }
 
-            /* Performance optimizations */
-            html {
-                scroll-behavior: smooth;
+            :root {
+                --primary-color: #0f172a;
+                --secondary-color: #f59e0b;
+                --text-color: #1f2937;
+                --text-light: #e5e7eb;
+                --hero-font-size: 3.75rem;
             }
 
             html,
@@ -157,194 +201,152 @@ const fullTitle = title.includes("Solar Fusion")
                 padding: 0;
                 width: 100%;
                 overflow-x: hidden;
-            }
-
-            body {
                 font-family:
                     "Inter",
                     system-ui,
                     -apple-system,
                     sans-serif;
-                -webkit-font-smoothing: antialiased;
-                text-rendering: optimizeLegibility;
+                font-size: 16px;
+                line-height: 1.5;
+                color: var(--text-color);
+                background-color: #f9fafb;
             }
 
-            /* Optimize paint operations */
-            * {
-                backface-visibility: hidden;
-                -webkit-backface-visibility: hidden;
+            /* Mobile optimizations */
+            .is-mobile {
+                font-size: 14px;
             }
 
-            /* Optimize animations */
-            .transition-transform {
-                will-change: transform;
-            }
-
-            .transition-opacity {
-                will-change: opacity;
-            }
-
-            /* Container optimizations */
-            section {
-                width: 100%;
-                max-width: 100vw;
-                overflow: hidden;
-                contain: content;
-            }
-
+            /* Optimize images */
             img {
-                content-visibility: auto;
+                max-width: 100%;
+                height: auto;
             }
 
-            /* Ensure images maintain their aspect ratios */
-            img:not([class*="aspect-"]) {
-                aspect-ratio: attr(width) / attr(height);
-            }
-
-            /* Preserve aspect ratio during loading to prevent CLS */
-            img:not([width]):not([height]) {
-                aspect-ratio: 16 / 9;
+            /* Optimize hero content */
+            .hero-title,
+            .hero-subtitle {
+                font-size: var(--hero-font-size);
             }
 
             /* Reduce layout shifts */
             [data-astro-cid] {
-                contain: layout style;
+                contain: layout;
             }
 
-            /* Text size optimization for mobile */
-            @media (max-width: 768px) {
-                h1 {
-                    font-size: clamp(2rem, 8vw, 3rem);
-                }
-                p {
-                    font-size: 1rem;
-                }
-                .text-secondary {
-                    font-display: swap;
-                    content-visibility: auto;
-                }
-                img {
-                    max-width: 100%;
-                    height: auto;
-                }
-            }
-
-            /* Optimize LCP element */
-            .text-secondary {
-                font-display: swap;
-                transform: translateZ(0);
-                text-rendering: optimizeSpeed;
-            }
-
-            /* Modal styles */
+            /* Basic modal styles */
             .modal {
-                opacity: 0;
-                visibility: hidden;
-                transition:
-                    opacity 0.3s ease,
-                    visibility 0.3s ease;
-            }
-
-            .modal.modal-visible {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .modal-backdrop {
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .modal-content {
-                opacity: 0;
-                transform: scale(0.95);
-                transition: all 0.3s ease;
-            }
-
-            .modal.modal-visible .modal-backdrop {
-                opacity: 1;
-            }
-
-            .modal.modal-visible .modal-content {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            body.modal-open {
-                overflow: hidden;
-                padding-right: var(--scrollbar-width, 0px);
+                display: none;
+                position: fixed;
+                z-index: 100;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
         </style>
+    </head>
+    <body>
+        <Navigation />
+        <slot />
+        <Footer />
+        <BackToTop />
+        <ImageModal />
 
-        <!-- Global modal handling script -->
+        <!-- Deferred script loading -->
+        <script>
+            // Add any non-critical scripts here
+            document.addEventListener("DOMContentLoaded", function () {
+                // Initialize components after page is fully loaded
+                // @ts-ignore - Allow access to the global function
+                if (typeof window.initializeModals === "function") {
+                    // @ts-ignore
+                    window.initializeModals();
+                }
+            });
+        </script>
+
+        <!-- Simplified modal handling script -->
         <script is:inline>
+            // Define the global modal function
             window.initializeModals = function () {
-                // Calculate scrollbar width once
-                const scrollbarWidth =
-                    window.innerWidth - document.documentElement.clientWidth;
-                document.documentElement.style.setProperty(
-                    "--scrollbar-width",
-                    `${scrollbarWidth}px`
-                );
+                // Mobile-optimized modal initialization
+                const isMobile =
+                    document.documentElement.classList.contains("is-mobile");
 
-                // Setup each modal
+                // Simple modal handling with fewer animations for mobile
                 document.querySelectorAll(".modal").forEach((modal) => {
                     const modalId = modal.id;
-                    const closeButtons =
-                        modal.querySelectorAll("[data-close-modal]");
-                    const backdrop = modal.querySelector(".modal-backdrop");
 
-                    function closeModal() {
-                        modal.classList.remove("modal-visible");
-                        document.body.classList.remove("modal-open");
-                        setTimeout(() => {
+                    // Handle modal opening
+                    document
+                        .querySelectorAll(`[data-open-modal="${modalId}"]`)
+                        .forEach((trigger) => {
+                            trigger.addEventListener("click", (e) => {
+                                e.preventDefault();
+
+                                // Simple display without animations for mobile
+                                modal.style.display = "block";
+                                document.body.style.overflow = "hidden";
+
+                                // Add visible class (for desktop animations)
+                                if (!isMobile) {
+                                    setTimeout(
+                                        () =>
+                                            modal.classList.add(
+                                                "modal-visible"
+                                            ),
+                                        10
+                                    );
+                                } else {
+                                    modal.classList.add("modal-visible");
+                                }
+                            });
+                        });
+
+                    // Handle modal closing
+                    const closeModal = () => {
+                        if (!isMobile) {
+                            modal.classList.remove("modal-visible");
+                            setTimeout(() => {
+                                modal.style.display = "none";
+                                document.body.style.overflow = "";
+                            }, 200);
+                        } else {
+                            modal.classList.remove("modal-visible");
                             modal.style.display = "none";
-                        }, 300);
-                    }
+                            document.body.style.overflow = "";
+                        }
+                    };
 
-                    function openModal(e) {
-                        if (e) e.preventDefault();
-                        modal.style.display = "block";
-                        document.body.classList.add("modal-open");
-                        // Force reflow
-                        modal.offsetHeight;
-                        modal.classList.add("modal-visible");
-                    }
+                    // Close on button click
+                    modal
+                        .querySelectorAll("[data-close-modal]")
+                        .forEach((btn) => {
+                            btn.addEventListener("click", closeModal);
+                        });
 
-                    // Close button click
-                    closeButtons.forEach((button) => {
-                        button.addEventListener("click", closeModal);
-                    });
-
-                    // Backdrop click
+                    // Close on backdrop click if it exists
+                    const backdrop = modal.querySelector(".modal-backdrop");
                     if (backdrop) {
                         backdrop.addEventListener("click", (e) => {
-                            if (e.target === backdrop) {
-                                closeModal();
-                            }
+                            if (e.target === backdrop) closeModal();
                         });
                     }
 
-                    // ESC key press
+                    // Close on ESC key
                     document.addEventListener("keydown", (e) => {
                         if (
                             e.key === "Escape" &&
-                            modal.classList.contains("modal-visible")
+                            modal.style.display === "block"
                         ) {
                             closeModal();
                         }
                     });
-
-                    // Setup open triggers
-                    document
-                        .querySelectorAll(`[data-open-modal="${modalId}"]`)
-                        .forEach((trigger) => {
-                            trigger.addEventListener("click", openModal);
-                        });
                 });
             };
 
-            // Initialize on page load
+            // Initialize on page load for non-Astro use cases
             document.addEventListener(
                 "DOMContentLoaded",
                 window.initializeModals
@@ -356,12 +358,5 @@ const fullTitle = title.includes("Solar Fusion")
                 window.initializeModals
             );
         </script>
-    </head>
-    <body class="bg-gray-50">
-        <Navigation />
-        <slot />
-        <Footer />
-        <BackToTop />
-        <ImageModal />
     </body>
 </html>

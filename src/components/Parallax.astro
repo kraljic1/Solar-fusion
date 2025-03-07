@@ -18,29 +18,25 @@ const services = [
         title: tFunc("services.project1.title"),
         description: tFunc("services.project1.description"),
         image: "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2aaa22de3ab45eb9d0b31.png",
-        smallImage:
-            "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2aaa22de3ab45eb9d0b31.png?w=480",
+        alt: "INSTALACIJA SOLARNE ENERGIJE",
     },
     {
         title: tFunc("services.project2.title"),
         description: tFunc("services.project2.description"),
-        image: "https://cdn.pixabay.com/photo/2020/10/24/07/29/man-5680696_960_720.jpg",
-        smallImage:
-            "https://cdn.pixabay.com/photo/2020/10/24/07/29/man-5680696_480_360.jpg",
+        image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800",
+        alt: "Solarna energija za poslovanje",
     },
     {
         title: tFunc("services.project3.title"),
         description: tFunc("services.project3.description"),
-        image: "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        smallImage:
-            "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=60",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800",
+        alt: "Servis solarnih panela",
     },
     {
         title: tFunc("services.project4.title"),
         description: tFunc("services.project4.description"),
-        image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
-        smallImage:
-            "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png?w=480",
+        image: "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+        alt: "Solarna rješenja za vaš krov",
     },
 ];
 ---
@@ -49,22 +45,9 @@ const services = [
     <!-- Parallax Header Section -->
     <div class="relative h-[60vh] overflow-hidden">
         <!-- Background container with image -->
-        <div class="absolute inset-0">
-            <picture>
-                <!-- Mobile-optimized image -->
-                <source
-                    media="(max-width: 768px)"
-                    srcset="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png?w=640"
-                />
-                <!-- Desktop image -->
-                <img
-                    src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png"
-                    alt="Background"
-                    class="w-full h-full object-cover fixed-bg"
-                    aria-hidden="true"
-                    fetchpriority="low"
-                />
-            </picture>
+        <div
+            class="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-bg"
+            style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png');">
         </div>
         <div
             class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80">
@@ -94,22 +77,13 @@ const services = [
                     services.map((service, index) => (
                         <div class="grid md:grid-cols-2 gap-12 items-center">
                             <div
-                                class={`relative ${index % 2 === 1 ? "md:order-2" : ""}`}>
-                                <picture>
-                                    <source
-                                        media="(max-width: 768px)"
-                                        srcset={service.smallImage}
-                                    />
-                                    <img
-                                        src={service.image}
-                                        alt={service.title}
-                                        width="800"
-                                        height="600"
-                                        class="w-full h-auto rounded-lg shadow-xl cursor-zoom-in transition-transform hover:scale-[1.02] object-cover"
-                                        data-zoomable
-                                        loading={index <= 1 ? "eager" : "lazy"}
-                                    />
-                                </picture>
+                                class={`${index % 2 === 1 ? "md:order-2" : ""}`}>
+                                <img
+                                    src={service.image}
+                                    alt={service.alt}
+                                    class="w-full h-auto rounded-lg shadow-xl hover:scale-[1.02] transition-transform"
+                                    loading={index <= 1 ? "eager" : "lazy"}
+                                />
                             </div>
                             <div class={index % 2 === 1 ? "md:order-1" : ""}>
                                 <h3 class="text-3xl font-bold text-primary mb-4">
@@ -128,13 +102,12 @@ const services = [
 </section>
 
 <style>
-    .fixed-bg {
+    .parallax-bg {
         background-attachment: fixed;
     }
 
     @media (max-width: 768px) {
-        .fixed-bg {
-            /* Disable fixed background on mobile as it causes performance issues */
+        .parallax-bg {
             background-attachment: scroll;
         }
 
