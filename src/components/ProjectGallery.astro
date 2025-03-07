@@ -1,0 +1,417 @@
+---
+const projects = [
+  {
+    id: 1,
+    title: "Solarna Farma Poreč",
+    image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+    description: "50kW solarna elektrana za komercijalnu upotrebu",
+    gallery: [
+      "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "50kW",
+      panels: "125",
+      yearlyOutput: "75,000 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Industrijska Zona Pazin",
+    description: "100kW solarna elektrana za industrijsku zonu",
+    gallery: [
+      "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
+      "https://images.unsplash.com/photo-1628206554201-41ebb06ef313"
+    ],
+    details: {
+      power: "100kW",
+      panels: "250",
+      yearlyOutput: "150,000 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1628206554201-41ebb06ef313?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Apartmani Rovinj",
+    description: "15kW sustav za turističke apartmane",
+    gallery: [
+      "https://images.unsplash.com/photo-1628206554201-41ebb06ef313?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "15kW",
+      panels: "38",
+      yearlyOutput: "22,500 kWh",
+      completed: "2024"
+    }
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Farma Svetvinčenat",
+    description: "30kW sustav za poljoprivrednu farmu",
+    gallery: [
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1628206554201-41ebb06ef313"
+    ],
+    details: {
+      power: "30kW",
+      panels: "75",
+      yearlyOutput: "45,000 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 5,
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Hotel Marina",
+    description: "75kW sustav za hotelski kompleks",
+    gallery: [
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "75kW",
+      panels: "188",
+      yearlyOutput: "112,500 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 6,
+    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Škola Pula",
+    description: "25kW sustav za obrazovnu ustanovu",
+    gallery: [
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
+      "https://images.unsplash.com/photo-1628206554201-41ebb06ef313"
+    ],
+    details: {
+      power: "25kW",
+      panels: "63",
+      yearlyOutput: "37,500 kWh",
+      completed: "2024"
+    }
+  },
+  {
+    id: 7,
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Sportski Centar",
+    description: "40kW sustav za sportski kompleks",
+    gallery: [
+      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "40kW",
+      panels: "100",
+      yearlyOutput: "60,000 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 8,
+    image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Trgovački Centar",
+    description: "120kW sustav za trgovački centar",
+    gallery: [
+      "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "120kW",
+      panels: "300",
+      yearlyOutput: "180,000 kWh",
+      completed: "2024"
+    }
+  },
+  {
+    id: 9,
+    image: "https://images.unsplash.com/photo-1592833159155-c62df1b65634?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Vinarija Motovun",
+    description: "35kW sustav za vinariju",
+    gallery: [
+      "https://images.unsplash.com/photo-1592833159155-c62df1b65634?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "35kW",
+      panels: "88",
+      yearlyOutput: "52,500 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 10,
+    image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Skladište Rijeka",
+    description: "90kW sustav za skladišni prostor",
+    gallery: [
+      "https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "90kW",
+      panels: "225",
+      yearlyOutput: "135,000 kWh",
+      completed: "2024"
+    }
+  },
+  {
+    id: 11,
+    image: "https://images.unsplash.com/photo-1553451191-1f1f13c1c0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Uredska Zgrada",
+    description: "45kW sustav za poslovnu zgradu",
+    gallery: [
+      "https://images.unsplash.com/photo-1553451191-1f1f13c1c0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "45kW",
+      panels: "113",
+      yearlyOutput: "67,500 kWh",
+      completed: "2023"
+    }
+  },
+  {
+    id: 12,
+    image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    title: "Marina Umag",
+    description: "60kW sustav za marinu",
+    gallery: [
+      "https://images.unsplash.com/photo-1559302504-64aae6ca6b6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
+      "https://images.unsplash.com/photo-1613665813446-82a78c468a1d"
+    ],
+    details: {
+      power: "60kW",
+      panels: "150",
+      yearlyOutput: "90,000 kWh",
+      completed: "2024"
+    }
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-primary mb-4">Galerija Projekata</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Pregledajte našu kolekciju uspješno realiziranih solarnih projekata diljem Hrvatske
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {projects.map((project) => (
+        <div 
+          class="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-[1.02]"
+          data-project={JSON.stringify(project)}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            class="h-64 w-full object-cover transition-transform group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="absolute bottom-0 p-4 text-white">
+              <h3 class="text-lg font-semibold">{project.title}</h3>
+              <p class="text-sm opacity-90">{project.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="projectModal" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
+  <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div class="relative bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <button 
+        id="closeModal" 
+        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="p-6">
+        <!-- Swiper Gallery -->
+        <div class="swiper-container mb-6 aspect-video">
+          <div class="swiper-wrapper">
+            <!-- Slides will be inserted here by JavaScript -->
+          </div>
+          <!-- Navigation buttons -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <!-- Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+        
+        <h2 id="modalTitle" class="text-3xl font-bold text-primary mb-2"></h2>
+        <p id="modalDescription" class="text-gray-600 text-lg mb-6"></p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div id="modalPower" class="text-2xl font-bold text-secondary"></div>
+            <div class="text-gray-600">Snaga sustava</div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div id="modalPanels" class="text-2xl font-bold text-secondary"></div>
+            <div class="text-gray-600">Broj panela</div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div id="modalOutput" class="text-2xl font-bold text-secondary"></div>
+            <div class="text-gray-600">Godišnja proizvodnja</div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div id="modalYear" class="text-2xl font-bold text-secondary"></div>
+            <div class="text-gray-600">Godina izgradnje</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  let swiper;
+  const modal = document.getElementById('projectModal');
+  const closeButton = document.getElementById('closeModal');
+  const projectElements = document.querySelectorAll('[data-project]');
+  
+  // Modal elements
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalPower = document.getElementById('modalPower');
+  const modalPanels = document.getElementById('modalPanels');
+  const modalOutput = document.getElementById('modalOutput');
+  const modalYear = document.getElementById('modalYear');
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+  projectElements.forEach(element => {
+    element.addEventListener('click', () => {
+      const project = JSON.parse(element.getAttribute('data-project') || '{}');
+      
+      // Clear previous slides
+      if (swiperWrapper) {
+        swiperWrapper.innerHTML = '';
+        
+        // Add new slides
+        project.gallery?.forEach(imageUrl => {
+          const slide = document.createElement('div');
+          slide.className = 'swiper-slide';
+          slide.innerHTML = `
+            <img 
+              src="${imageUrl}" 
+              alt="${project.title}"
+              class="w-full h-full object-cover"
+            />
+          `;
+          swiperWrapper.appendChild(slide);
+        });
+      }
+
+      // Initialize or update Swiper
+      if (swiper) {
+        swiper.destroy();
+      }
+      
+      swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        }
+      });
+
+      if (modalTitle) modalTitle.textContent = project.title;
+      if (modalDescription) modalDescription.textContent = project.description;
+      if (modalPower) modalPower.textContent = project.details.power;
+      if (modalPanels) modalPanels.textContent = project.details.panels;
+      if (modalOutput) modalOutput.textContent = project.details.yearlyOutput;
+      if (modalYear) modalYear.textContent = project.details.completed;
+      
+      modal?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closeButton?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (swiper) {
+      swiper.destroy();
+    }
+  }
+</script>
+
+<style>
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #fbb034 !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #fbb034 !important;
+  }
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+</style>

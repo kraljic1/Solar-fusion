@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "calculator": "Calculator",
+    "projects": "Projects",
+    "contact": "Contact",
+    "call": "Call Us"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Your partner for solar future",
+    "description": "Reduce your electricity bills and join the green revolution",
+    "cta": "Calculate Savings"
+  },
+  "features": {
+    "title": "GENERATE YOUR OWN ENERGY",
+    "subtitle": "WITH SOLAR FUSION!",
+    "subheading": "Your solar energy solutions tailored to your needs with a turnkey system",
+    "experience": "Years of Experience",
+    "energySavings": {
+      "title": "ENERGY AND MONEY SAVINGS",
+      "description": "By installing solar panels, you can significantly reduce or even eliminate your electricity bills, resulting in significant long-term financial savings."
+    },
+    "installation": {
+      "title": "PROFESSIONAL INSTALLATION AND SUPPORT",
+      "description": "Professional installers provide detailed analysis of your energy needs and customize the system to ensure maximum efficiency and cost-effectiveness."
+    },
+    "ecological": {
+      "title": "ECOLOGICAL APPROACH",
+      "description": "By using solar panels, you produce clean energy without harmful emissions, actively contributing to the fight against climate change."
+    }
+  },
+  "parallax": {
+    "title": "SOLAR ENERGY IS THE FUTURE",
+    "description": "Solar energy represents a sustainable and economical solution for your home. Our advanced solar systems allow you to produce your own electricity."
+  },
+  "services": {
+    "project1": {
+      "title": "SOLAR PANELS",
+      "description": "Premium solar panels with the highest efficiency in the market. Designed for maximum energy production and longevity."
+    },
+    "project2": {
+      "title": "SOLAR ENERGY INSTALLATION",
+      "description": "Professional installation by certified experts. Quick and efficient installation with minimal disruption."
+    },
+    "project3": {
+      "title": "PANEL SERVICE",
+      "description": "Regular maintenance and service for optimal performance of your solar system. Extend lifespan and maintain maximum efficiency."
+    },
+    "project4": {
+      "title": "CUSTOMIZED FOR YOUR ROOF",
+      "description": "Tailored solutions for every roof type. Optimal positioning for maximum energy production."
+    }
+  },
+  "common": {
+    "freeQuote": "Learn More"
+  },
+  "stats": {
+    "installations": "Installations",
+    "satisfied": "Satisfied Clients",
+    "savings": "Client Savings",
+    "warranty": "Warranty"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Request a Quote",
+      "description": "Find out how much you can save with solar energy! Fill out a short questionnaire and receive a personalized offer tailored to your needs.",
+      "start": "Request quote →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "What type of property do you plan to work on?",
+        "options": {
+          "residential": "Residential Property",
+          "commercial": "Commercial Property",
+          "industrial": "Industrial Property"
+        }
+      },
+      "connectionPhase": {
+        "title": "Select the phase type of the connection",
+        "options": {
+          "single": "Single Phase",
+          "three": "Three Phase"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "What is your monthly consumption in kWh?",
+        "description": "You can find this information on your electricity bill"
+      },
+      "powerOutput": {
+        "title": "What power output do you want for your solar system?"
+      },
+      "roofType": {
+        "title": "What type of roof do you have?",
+        "options": {
+          "flat": "Flat Roof",
+          "sloped": "Sloped Roof",
+          "mixed": "Mixed/Complex Roof"
+        }
+      }
+    },
+    "contact": {
+      "title": "Almost there!",
+      "description": "Please provide your contact information to receive your personalized solar solution proposal.",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "submit": "Get My Solar Proposal"
+    },
+    "thanks": {
+      "title": "Thank You!",
+      "description": "We have received your information and will contact you shortly with a detailed proposal for your solar system."
+    },
+    "navigation": {
+      "back": "← Back",
+      "next": "Next →"
+    }
+  }
+}

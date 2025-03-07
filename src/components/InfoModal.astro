@@ -1,0 +1,113 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  features?: string[];
+  benefits?: string[];
+  specifications?: {
+    label: string;
+    value: string;
+  }[];
+}
+
+const { id, title, description, image, features, benefits, specifications } = Astro.props;
+---
+
+<div 
+  id={id}
+  class="modal fixed inset-0 z-50"
+  style="display: none;"
+  role="dialog"
+  aria-labelledby={`${id}-title`}
+  aria-modal="true"
+>
+  <div class="modal-backdrop fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+  
+  <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div 
+      class="modal-content relative bg-white rounded-xl max-w-4xl w-full"
+    >
+      <!-- Close Button -->
+      <button 
+        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors z-10"
+        aria-label="Close modal"
+        data-close-modal
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Content -->
+      <div class="max-h-[90vh] overflow-y-auto p-6 md:p-8">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Left Column - Image -->
+          {image && (
+            <div class="relative aspect-video">
+              <img 
+                src={image} 
+                alt={title}
+                class="w-full h-full object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
+          )}
+
+          <!-- Right Column - Content -->
+          <div class="space-y-6">
+            <h2 id={`${id}-title`} class="text-3xl font-bold text-primary">{title}</h2>
+            <p class="text-gray-600 leading-relaxed">{description}</p>
+
+            {features && features.length > 0 && (
+              <div>
+                <h3 class="text-xl font-semibold text-primary mb-3">Značajke</h3>
+                <ul class="space-y-2">
+                  {features.map(feature => (
+                    <li class="flex items-start space-x-2">
+                      <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {benefits && benefits.length > 0 && (
+              <div>
+                <h3 class="text-xl font-semibold text-primary mb-3">Prednosti</h3>
+                <ul class="space-y-2">
+                  {benefits.map(benefit => (
+                    <li class="flex items-start space-x-2">
+                      <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {specifications && specifications.length > 0 && (
+              <div>
+                <h3 class="text-xl font-semibold text-primary mb-3">Specifikacije</h3>
+                <dl class="grid grid-cols-2 gap-4">
+                  {specifications.map(spec => (
+                    <>
+                      <dt class="font-medium text-gray-600">{spec.label}</dt>
+                      <dd class="text-gray-900">{spec.value}</dd>
+                    </>
+                  ))}
+                </dl>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

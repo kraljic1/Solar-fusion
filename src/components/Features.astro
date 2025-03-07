@@ -1,0 +1,71 @@
+---
+import { t } from 'i18next';
+import i18next from '../i18n/config';
+
+const { lang = 'hr' } = Astro.params;
+
+// Change language before rendering
+if (lang) {
+  await i18next.changeLanguage(lang);
+}
+
+const features = [
+  {
+    title: t('features.energySavings.title'),
+    description: t('features.energySavings.description'),
+    icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674351531ded77a8bff32950.png"
+  },
+  {
+    title: t('features.installation.title'),
+    description: t('features.installation.description'),
+    icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/6743515343a84722194ce62f.png"
+  },
+  {
+    title: t('features.ecological.title'),
+    description: t('features.ecological.description'),
+    icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674351534df7985305f5e14d.png"
+  }
+];
+---
+
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <img 
+          src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png" 
+          alt="Solar panels in nature" 
+          class="rounded-lg shadow-xl w-full"
+        />
+        <div class="absolute -bottom-10 -right-10 bg-white p-8 rounded-lg shadow-lg">
+          <div class="text-6xl font-bold text-primary">03<span class="text-secondary">+</span></div>
+          <div class="text-lg font-medium text-gray-600">{t('features.experience')}</div>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+          {t('features.title')} <span class="underline decoration-secondary decoration-4">{t('features.subtitle')}</span>
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">{t('features.subheading')}</p>
+        
+        <div class="space-y-8">
+          {features.map(feature => (
+            <div class="flex gap-6">
+              <div class="flex-shrink-0 w-16 h-16 bg-gray-100 rounded-lg p-3">
+                <img 
+                  src={feature.icon} 
+                  alt={feature.title}
+                  class="w-full h-full"
+                />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p class="text-gray-600">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

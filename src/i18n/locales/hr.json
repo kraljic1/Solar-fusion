@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "O nama",
+    "services": "Usluge",
+    "calculator": "Kalkulator",
+    "projects": "Projekti",
+    "contact": "Kontakt",
+    "call": "Nazovite"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Vaš partner za solarnu budućnost",
+    "description": "Smanjite svoje račune za struju i pridružite se zelenoj revoluciji",
+    "cta": "Izračunajte Uštedu"
+  },
+  "features": {
+    "title": "PROIZVODITE VLASTITU ENERGIJU",
+    "subtitle": "UZ SOLAR FUSION!",
+    "subheading": "Vaša rješenja za solarnu energiju prilagođena vašim potrebama sistemom ključu ruke",
+    "experience": "Godine Iskustva",
+    "energySavings": {
+      "title": "UŠTEDA ENERGIJE I NOVCA",
+      "description": "Ugradnjom solarnih panela možete značajno smanjiti ili čak eliminirati račune za struju, što dugoročno donosi značajne financijske uštede."
+    },
+    "installation": {
+      "title": "PROFESIONALNA INSTALACIJA I PODRŠKA",
+      "description": "Profesionalni instalateri pružaju detaljnu analizu vaših energetskih potreba i prilagođavaju sustav kako bi osigurali maksimalnu učinkovitost i isplativost."
+    },
+    "ecological": {
+      "title": "EKOLOŠKI PRISTOP",
+      "description": "Korištenjem solarnih panela proizvodite čistu energiju bez štetnih emisija, čime aktivno doprinosite borbi protiv klimatskih promjena."
+    }
+  },
+  "parallax": {
+    "title": "SOLARNA ENERGIJA JE BUDUĆNOST",
+    "description": "Solarna energija predstavlja održivo i ekonomično rješenje za vaš dom. Naši napredni solarni sustavi omogućuju vam da proizvodite vlastitu električnu energiju."
+  },
+  "services": {
+    "project1": {
+      "title": "SOLARNI PANELI",
+      "description": "Solarni paneli su uređaji koji pretvaraju sunčevu energiju u električnu pomoću fotonaponskih ćelija, čime omogućuju korištenje besplatne i obnovljive energije. Osim što smanjuju račune za struju i povećavaju energetsku neovisnost, solarni sustavi su dugoročno isplativi i ekološki prihvatljivi jer ne ispuštaju štetne emisije. Njihov vijek trajanja je 25-30 godina, što ih čini pametnim ulaganjem u održivu budućnost."
+    },
+    "project2": {
+      "title": "INSTALACIJA SOLARNE ENERGIJE",
+      "description": "Naš tim iskusnih stručnjaka osigurava profesionalnu i preciznu ugradnju solarnih panela, temeljenu na dugogodišnjem iskustvu. Jamčimo brzu i učinkovitu instalaciju uz minimalne smetnje, kako biste što prije počeli uživati u prednostima solarne energije."
+    },
+    "project3": {
+      "title": "SERVIS PANELA",
+      "description": "Osiguravamo redovito održavanje i servis solarnih sustava kako bismo vam omogućili dugotrajan i besprijekoran rad. Redovita briga i čišćenje panela ključni su za maksimalnu učinkovitost i dulji vijek trajanja vašeg sustava, osiguravajući vam stabilnu i pouzdanu proizvodnju energije."
+    },
+    "project4": {
+      "title": "PO MJERI VAŠEG KROVA",
+      "description": "Nudimo prilagođena solarna rješenja za svaki tip krova, osiguravajući maksimalnu učinkovitost i uštedu energije. Bez obzira na veličinu ili položaj vašeg krova, pažljivo optimiziramo pozicioniranje panela kako biste ostvarili najvišu moguću proizvodnju električne energije."
+    }
+  },
+  "common": {
+    "freeQuote": "Saznaj više"
+  },
+  "stats": {
+    "installations": "Instalacija",
+    "satisfied": "Zadovoljnih Klijenata",
+    "savings": "Ušteda Klijenata",
+    "warranty": "Garancija"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Zatražite Ponudu",
+      "description": "Saznajte koliko možete uštedjeti uz solarnu energiju! Ispunite kratki upitnik i primite personaliziranu ponudu prilagođenu vašim potrebama.",
+      "start": "Zatraži ponudu →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "Koju vrstu objekta planirate opremiti?",
+        "options": {
+          "residential": "Stambeni objekt",
+          "commercial": "Poslovni objekt",
+          "industrial": "Industrijski objekt"
+        }
+      },
+      "connectionPhase": {
+        "title": "Odaberite vrstu priključka",
+        "options": {
+          "single": "Jednofazni",
+          "three": "Trofazni"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "Kolika je vaša mjesečna potrošnja u kWh?",
+        "description": "Ovaj podatak možete pronaći na vašem računu za struju"
+      },
+      "powerOutput": {
+        "title": "Koju snagu solarnog sustava želite?"
+      },
+      "roofType": {
+        "title": "Kakav krov imate?",
+        "options": {
+          "flat": "Ravni krov",
+          "sloped": "Kosi krov",
+          "mixed": "Kombinirani krov"
+        }
+      }
+    },
+    "contact": {
+      "title": "Još samo malo!",
+      "description": "Molimo unesite vaše kontakt podatke kako biste dobili personaliziranu ponudu za solarni sustav.",
+      "fullName": "Ime i Prezime",
+      "email": "Email",
+      "phone": "Telefon",
+      "submit": "Zatražite Ponudu"
+    },
+    "thanks": {
+      "title": "Hvala Vam!",
+      "description": "Zaprimili smo vaše podatke i uskoro ćemo vas kontaktirati s detaljnom ponudom za vaš solarni sustav."
+    },
+    "navigation": {
+      "back": "← Natrag",
+      "next": "Dalje →"
+    }
+  }
+}

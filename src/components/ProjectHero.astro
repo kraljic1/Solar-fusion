@@ -1,0 +1,143 @@
+---
+const totalProjects = 100;
+const totalPower = 2500; // kW
+const co2Reduction = 1200; // tons per year
+---
+
+<section class="relative min-h-[60vh] flex items-center">
+  <!-- Parallax Background -->
+  <div 
+    class="absolute inset-0 bg-center bg-cover bg-no-repeat bg-fixed"
+    style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png');"
+  >
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/90"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Left Column - Text Content -->
+      <div class="text-white space-y-6">
+        <h1 class="text-5xl font-bold tracking-tight">
+          <span class="block text-white">Naši</span>
+          <span class="block text-secondary mt-2">Uspješni Projekti</span>
+        </h1>
+        <p class="text-xl text-gray-300 leading-relaxed max-w-xl">
+          Pogledajte našu kolekciju uspješno realiziranih solarnih projekata diljem Hrvatske. Svaki projekt je priča o održivoj budućnosti i energetskoj neovisnosti.
+        </p>
+      </div>
+
+      <!-- Right Column - Stats -->
+      <div class="grid grid-cols-2 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+          <div class="text-4xl font-bold text-secondary counter" data-value={totalProjects}>0</div>
+          <div class="text-white mt-2">Uspješnih Projekata</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+          <div class="text-4xl font-bold text-secondary counter" data-value={totalPower}>0</div>
+          <div class="text-white mt-2">Ukupno kW</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg col-span-2">
+          <div class="text-4xl font-bold text-secondary counter" data-value={co2Reduction}>0</div>
+          <div class="text-white mt-2">Tona CO₂ Godišnje Uštede</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg 
+        class="w-6 h-6 text-secondary"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          stroke-width="2" 
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  const ANIMATION_DURATION = 2000; // Increased duration for smoother animation
+  const FRAME_RATE = 60;
+
+  function easeOutQuart(t: number): number {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCounter(element: Element, targetValue: number) {
+    const startTime = performance.now();
+    const startValue = 0;
+    const range = targetValue - startValue;
+    
+    function update(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / ANIMATION_DURATION, 1);
+      
+      const easedProgress = easeOutQuart(progress);
+      const currentValue = Math.round(startValue + (range * easedProgress));
+      
+      element.textContent = currentValue.toString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    
+    requestAnimationFrame(update);
+  }
+
+  function initializeCounters() {
+    let hasAnimated = false;
+    const counters = document.querySelectorAll('.counter');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+          counters.forEach(counter => {
+            const targetValue = parseInt(counter.getAttribute('data-value') || '0', 10);
+            animateCounter(counter, targetValue);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
+
+    // Observe the first counter
+    const firstCounter = document.querySelector('.counter');
+    if (firstCounter) {
+      observer.observe(firstCounter);
+    }
+
+    return () => {
+      observer.disconnect();
+      hasAnimated = false;
+    };
+  }
+
+  // Initialize on page load
+  let cleanup = initializeCounters();
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    // Cleanup previous observers and state
+    if (cleanup) cleanup();
+    // Initialize new observers
+    cleanup = initializeCounters();
+  });
+
+  // Cleanup on page unload
+  document.addEventListener('astro:before-swap', () => {
+    if (cleanup) cleanup();
+  });
+</script>

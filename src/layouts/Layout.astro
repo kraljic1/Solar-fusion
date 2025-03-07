@@ -1,0 +1,232 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Solar Fusion',
+  description = "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje."
+} = Astro.props;
+
+const { lang = 'hr' } = Astro.params;
+
+// Construct the full title with the site name
+const fullTitle = title.includes('Solar Fusion') ? title : `Solar Fusion | ${title}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:image" content="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <title>{fullTitle}</title>
+    
+    <!-- Add View Transitions -->
+    <ViewTransitions />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://assets.cdn.filesafe.space" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    
+    <!-- Preload critical assets -->
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    
+    <!-- Fallback for no-JS -->
+    <noscript>
+      <link 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+        type="text/css"
+      />
+    </noscript>
+
+    <!-- Critical CSS -->
+    <style is:inline>
+      /* Critical CSS for above-the-fold content */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_0ew.woff2) format('woff2');
+      }
+      
+      /* Performance optimizations */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Optimize paint operations */
+      * {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* Optimize animations */
+      .transition-transform {
+        will-change: transform;
+      }
+
+      .transition-opacity {
+        will-change: opacity;
+      }
+
+      /* Container optimizations */
+      section {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        contain: content;
+      }
+
+      img {
+        content-visibility: auto;
+      }
+
+      /* Reduce layout shifts */
+      [data-astro-cid] {
+        contain: layout style;
+      }
+
+      /* Modal styles */
+      .modal {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .modal.modal-visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-backdrop {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-content {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.3s ease;
+      }
+
+      .modal.modal-visible .modal-backdrop {
+        opacity: 1;
+      }
+
+      .modal.modal-visible .modal-content {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      body.modal-open {
+        overflow: hidden;
+        padding-right: var(--scrollbar-width, 0px);
+      }
+    </style>
+
+    <!-- Global modal handling script -->
+    <script is:inline>
+      window.initializeModals = function() {
+        // Calculate scrollbar width once
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+        // Setup each modal
+        document.querySelectorAll('.modal').forEach(modal => {
+          const modalId = modal.id;
+          const closeButtons = modal.querySelectorAll('[data-close-modal]');
+          const backdrop = modal.querySelector('.modal-backdrop');
+          
+          function closeModal() {
+            modal.classList.remove('modal-visible');
+            document.body.classList.remove('modal-open');
+            setTimeout(() => {
+              modal.style.display = 'none';
+            }, 300);
+          }
+
+          function openModal(e) {
+            if (e) e.preventDefault();
+            modal.style.display = 'block';
+            document.body.classList.add('modal-open');
+            // Force reflow
+            modal.offsetHeight;
+            modal.classList.add('modal-visible');
+          }
+
+          // Close button click
+          closeButtons.forEach(button => {
+            button.addEventListener('click', closeModal);
+          });
+
+          // Backdrop click
+          if (backdrop) {
+            backdrop.addEventListener('click', (e) => {
+              if (e.target === backdrop) {
+                closeModal();
+              }
+            });
+          }
+
+          // ESC key press
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('modal-visible')) {
+              closeModal();
+            }
+          });
+
+          // Setup open triggers
+          document.querySelectorAll(`[data-open-modal="${modalId}"]`).forEach(trigger => {
+            trigger.addEventListener('click', openModal);
+          });
+        });
+      };
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', window.initializeModals);
+
+      // Initialize after Astro page transitions
+      document.addEventListener('astro:page-load', window.initializeModals);
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <Navigation />
+    <slot />
+    <Footer />
+    <BackToTop />
+  </body>
+</html>

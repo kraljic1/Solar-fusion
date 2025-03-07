@@ -1,0 +1,135 @@
+---
+const languages = [
+  { code: 'hr', flag: '🇭🇷' },
+  { code: 'en', flag: '🇬🇧' },
+  { code: 'sl', flag: '🇸🇮' },
+  { code: 'de', flag: '🇩🇪' },
+  { code: 'it', flag: '🇮🇹' },
+  { code: 'hu', flag: '🇭🇺' }
+];
+
+// Get current language from URL or default to 'hr'
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.split('/')[1] || 'hr';
+const currentLanguage = languages.find(lang => lang.code === currentLang) || languages[0];
+---
+
+<div class="relative" id="language-dropdown">
+  <button
+    type="button"
+    class="flex items-center space-x-2 text-white hover:text-secondary transition-colors py-2 px-3 rounded-lg"
+    id="language-button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <span class="text-xl">{currentLanguage.flag}</span>
+    <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div
+    id="language-menu"
+    class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="language-button"
+  >
+    <div class="py-1" role="none">
+      {languages.map((lang) => {
+        const segments = currentPath.split('/').filter(Boolean);
+        if (segments.length > 0 && languages.some(l => l.code === segments[0])) {
+          segments.shift();
+        }
+        const newPath = `/${lang.code}${segments.length > 0 ? '/' + segments.join('/') : ''}`;
+        
+        return (
+          <a
+            href={newPath}
+            class={`flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${
+              lang.code === currentLang ? 'text-secondary font-medium bg-gray-50' : 'text-gray-700'
+            }`}
+            role="menuitem"
+            data-lang={lang.code}
+          >
+            <span class="text-xl mr-2">{lang.flag}</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    #language-menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    #language-menu a {
+      padding: 1rem;
+      font-size: 1rem;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  function setupLanguageSelector() {
+    const button = document.getElementById('language-button');
+    const menu = document.getElementById('language-menu');
+    const arrow = button?.querySelector('svg');
+    
+    if (!button || !menu || !arrow) return;
+
+    function toggleMenu() {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      if (isExpanded) {
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+        button.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Toggle menu on button click
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target as Node) && !button.contains(e.target as Node)) {
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('block')) {
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Initialize on page load
+  setupLanguageSelector();
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', setupLanguageSelector);
+</script>

@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "Rólunk",
+    "services": "Szolgáltatások",
+    "calculator": "Kalkulátor",
+    "projects": "Projektek",
+    "contact": "Kapcsolat",
+    "call": "Hívjon minket"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Az Ön partnere a napelemes jövőhöz",
+    "description": "Csökkentse villanyszámláit és csatlakozzon a zöld forradalomhoz",
+    "cta": "Számítsa ki megtakarítását"
+  },
+  "features": {
+    "title": "TERMELJE SAJÁT ENERGIÁJÁT",
+    "subtitle": "A SOLAR FUSION-NAL!",
+    "subheading": "Napenergia megoldásaink az Ön igényeire szabva, kulcsrakész rendszerrel",
+    "experience": "Év tapasztalat",
+    "energySavings": {
+      "title": "ENERGIA- ÉS PÉNZMEGTAKARÍTÁS",
+      "description": "A napelemek telepítésével jelentősen csökkentheti vagy akár meg is szüntetheti villanyszámláit, ami jelentős hosszú távú pénzügyi megtakarítást eredményez."
+    },
+    "installation": {
+      "title": "PROFESSZIONÁLIS TELEPÍTÉS ÉS TÁMOGATÁS",
+      "description": "Szakképzett telepítőink részletes elemzést végeznek energiaigényeiről, és úgy alakítják ki a rendszert, hogy maximális hatékonyságot és költséghatékonyságot biztosítsanak."
+    },
+    "ecological": {
+      "title": "ÖKOLÓGIAI MEGKÖZELÍTÉS",
+      "description": "A napelemek használatával tiszta energiát termel káros kibocsátások nélkül, aktívan hozzájárulva az éghajlatváltozás elleni küzdelemhez."
+    }
+  },
+  "parallax": {
+    "title": "A NAPENERGIA A JÖVŐ",
+    "description": "A napenergia fenntartható és gazdaságos megoldást jelent otthona számára. Fejlett napelemes rendszereink lehetővé teszik saját villamos energia termelését."
+  },
+  "services": {
+    "project1": {
+      "title": "NAPELEMEK",
+      "description": "Prémium napelemek a piacon elérhető legmagasabb hatékonysággal. Maximális energiatermelésre és hosszú élettartamra tervezve."
+    },
+    "project2": {
+      "title": "NAPENERGIA TELEPÍTÉS",
+      "description": "Professzionális telepítés minősített szakértőktől. Gyors és hatékony telepítés minimális zavarással."
+    },
+    "project3": {
+      "title": "PANEL SZERVIZ",
+      "description": "Rendszeres karbantartás és szerviz a napelemes rendszer optimális teljesítményéért. Hosszabbítsa meg élettartamát és tartsa fenn a maximális hatékonyságot."
+    },
+    "project4": {
+      "title": "TETŐRE SZABVA",
+      "description": "Személyre szabott megoldások minden tetőtípushoz. Optimális elhelyezés a maximális energiatermelés érdekében."
+    }
+  },
+  "common": {
+    "freeQuote": "Tudjon meg többet"
+  },
+  "stats": {
+    "installations": "Telepítés",
+    "satisfied": "Elégedett Ügyfelek",
+    "savings": "Ügyfelek Megtakarítása",
+    "warranty": "Garancia"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Kérjen Ajánlatot",
+      "description": "Tudja meg, mennyit spórolhat napenergiával! Töltse ki rövid kérdőívünket és kapjon személyre szabott ajánlatot az Ön igényeire szabva.",
+      "start": "Ajánlatkérés →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "Milyen típusú ingatlant szeretne felszerelni?",
+        "options": {
+          "residential": "Lakóingatlan",
+          "commercial": "Kereskedelmi Ingatlan",
+          "industrial": "Ipari Ingatlan"
+        }
+      },
+      "connectionPhase": {
+        "title": "Válassza ki a csatlakozás típusát",
+        "options": {
+          "single": "Egyfázisú",
+          "three": "Háromfázisú"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "Mennyi az Ön havi fogyasztása kWh-ban?",
+        "description": "Ezt az információt megtalálja a villanyszámláján"
+      },
+      "powerOutput": {
+        "title": "Milyen teljesítményt szeretne a napelemes rendszerének?"
+      },
+      "roofType": {
+        "title": "Milyen tetője van?",
+        "options": {
+          "flat": "Lapos Tető",
+          "sloped": "Ferde Tető",
+          "mixed": "Vegyes Tető"
+        }
+      }
+    },
+    "contact": {
+      "title": "Már majdnem kész!",
+      "description": "Kérjük, adja meg elérhetőségeit, hogy személyre szabott ajánlatot készíthessünk napelemes rendszeréhez.",
+      "fullName": "Teljes Név",
+      "email": "Email",
+      "phone": "Telefon",
+      "submit": "Kérem az Ajánlatot"
+    },
+    "thanks": {
+      "title": "Köszönjük!",
+      "description": "Megkaptuk adatait és hamarosan kapcsolatba lépünk Önnel a napelemes rendszerére vonatkozó részletes ajánlattal."
+    },
+    "navigation": {
+      "back": "← Vissza",
+      "next": "Tovább →"
+    }
+  }
+}

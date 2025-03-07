@@ -1,0 +1,198 @@
+---
+import { t } from 'i18next';
+import i18next from '../i18n/config';
+
+const { lang = 'hr' } = Astro.params;
+
+// Change language before rendering
+if (lang) {
+  await i18next.changeLanguage(lang);
+}
+
+const translations = {
+  hr: {
+    steps: [
+      {
+        step: "1",
+        title: "Besplatna Konzultacija",
+        description: "Dogovorite poziv s našim stručnjacima"
+      },
+      {
+        step: "2",
+        title: "Prilagođeni Dizajn",
+        description: "Dobijte rješenje po mjeri za vaš dom"
+      },
+      {
+        step: "3",
+        title: "Profesionalna Instalacija",
+        description: "Naš certificirani tim instalira vaš sustav"
+      },
+      {
+        step: "4",
+        title: "Počnite Štedjeti",
+        description: "Uživajte u smanjenim računima za struju"
+      }
+    ],
+    title: "Kako Funkcionira",
+    subtitle: "Naš jednostavan proces čini prelazak na solarnu energiju lakim i bezbrižnim"
+  },
+  en: {
+    steps: [
+      {
+        step: "1",
+        title: "Free Consultation",
+        description: "Schedule a call with our experts"
+      },
+      {
+        step: "2",
+        title: "Custom Design",
+        description: "Get a tailored solution for your home"
+      },
+      {
+        step: "3",
+        title: "Professional Installation",
+        description: "Our certified team installs your system"
+      },
+      {
+        step: "4",
+        title: "Start Saving",
+        description: "Enjoy reduced electricity bills"
+      }
+    ],
+    title: "How It Works",
+    subtitle: "Our simple process makes switching to solar energy easy and worry-free"
+  },
+  sl: {
+    steps: [
+      {
+        step: "1",
+        title: "Brezplačno Svetovanje",
+        description: "Dogovorite klic z našimi strokovnjaki"
+      },
+      {
+        step: "2",
+        title: "Prilagojena Zasnova",
+        description: "Pridobite rešitev po meri za vaš dom"
+      },
+      {
+        step: "3",
+        title: "Strokovna Namestitev",
+        description: "Naša certificirana ekipa namesti vaš sistem"
+      },
+      {
+        step: "4",
+        title: "Začnite Varčevati",
+        description: "Uživajte v znižanih računih za elektriko"
+      }
+    ],
+    title: "Kako Deluje",
+    subtitle: "Naš preprost postopek naredi prehod na sončno energijo enostaven in brezskrben"
+  },
+  de: {
+    steps: [
+      {
+        step: "1",
+        title: "Kostenlose Beratung",
+        description: "Vereinbaren Sie einen Termin mit unseren Experten"
+      },
+      {
+        step: "2",
+        title: "Individuelles Design",
+        description: "Erhalten Sie eine maßgeschneiderte Lösung für Ihr Zuhause"
+      },
+      {
+        step: "3",
+        title: "Professionelle Installation",
+        description: "Unser zertifiziertes Team installiert Ihr System"
+      },
+      {
+        step: "4",
+        title: "Beginnen Sie zu Sparen",
+        description: "Profitieren Sie von reduzierten Stromrechnungen"
+      }
+    ],
+    title: "So Funktioniert's",
+    subtitle: "Unser einfacher Prozess macht den Umstieg auf Solarenergie leicht und sorgenfrei"
+  },
+  it: {
+    steps: [
+      {
+        step: "1",
+        title: "Consulenza Gratuita",
+        description: "Programma una chiamata con i nostri esperti"
+      },
+      {
+        step: "2",
+        title: "Design Personalizzato",
+        description: "Ottieni una soluzione su misura per la tua casa"
+      },
+      {
+        step: "3",
+        title: "Installazione Professionale",
+        description: "Il nostro team certificato installa il tuo sistema"
+      },
+      {
+        step: "4",
+        title: "Inizia a Risparmiare",
+        description: "Goditi bollette elettriche ridotte"
+      }
+    ],
+    title: "Come Funziona",
+    subtitle: "Il nostro semplice processo rende il passaggio all'energia solare facile e senza preoccupazioni"
+  },
+  hu: {
+    steps: [
+      {
+        step: "1",
+        title: "Ingyenes Konzultáció",
+        description: "Egyeztessen időpontot szakértőinkkel"
+      },
+      {
+        step: "2",
+        title: "Egyedi Tervezés",
+        description: "Kapjon személyre szabott megoldást otthonára"
+      },
+      {
+        step: "3",
+        title: "Professzionális Telepítés",
+        description: "Minősített csapatunk telepíti rendszerét"
+      },
+      {
+        step: "4",
+        title: "Kezdje el a Megtakarítást",
+        description: "Élvezze a csökkentett villanyszámlákat"
+      }
+    ],
+    title: "Hogyan Működik",
+    subtitle: "Egyszerű folyamatunk könnyűvé és gondtalanná teszi a napenergiára való átállást"
+  }
+};
+
+const content = translations[lang] || translations.hr;
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+        {content.title}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {content.subtitle}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      {content.steps.map((process) => (
+        <div class="relative p-6 bg-white rounded-xl text-center shadow-lg">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+            {process.step}
+          </div>
+          <h3 class="text-xl font-semibold text-primary mb-3">
+            {process.title}
+          </h3>
+          <p class="text-gray-600">{process.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

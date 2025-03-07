@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "calculator": "Calcolatore",
+    "projects": "Progetti",
+    "contact": "Contatti",
+    "call": "Chiamaci"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Il tuo partner per il futuro solare",
+    "description": "Riduci le tue bollette elettriche e unisciti alla rivoluzione verde",
+    "cta": "Calcola il risparmio"
+  },
+  "features": {
+    "title": "GENERA LA TUA ENERGIA",
+    "subtitle": "CON SOLAR FUSION!",
+    "subheading": "Le tue soluzioni di energia solare su misura per le tue esigenze con un sistema chiavi in mano",
+    "experience": "Anni di esperienza",
+    "energySavings": {
+      "title": "RISPARMIO ENERGETICO ED ECONOMICO",
+      "description": "Installando i pannelli solari, puoi ridurre significativamente o eliminare le bollette elettriche, ottenendo importanti risparmi finanziari a lungo termine."
+    },
+    "installation": {
+      "title": "INSTALLAZIONE E SUPPORTO PROFESSIONALE",
+      "description": "Gli installatori professionisti forniscono un'analisi dettagliata delle tue esigenze energetiche e personalizzano il sistema per garantire la massima efficienza e convenienza."
+    },
+    "ecological": {
+      "title": "APPROCCIO ECOLOGICO",
+      "description": "Utilizzando i pannelli solari, produci energia pulita senza emissioni nocive, contribuendo attivamente alla lotta contro il cambiamento climatico."
+    }
+  },
+  "parallax": {
+    "title": "L'ENERGIA SOLARE È IL FUTURO",
+    "description": "L'energia solare rappresenta una soluzione sostenibile ed economica per la tua casa. I nostri sistemi solari avanzati ti permettono di produrre la tua elettricità."
+  },
+  "services": {
+    "project1": {
+      "title": "PANNELLI SOLARI",
+      "description": "Pannelli solari premium con la più alta efficienza sul mercato. Progettati per la massima produzione di energia e longevità."
+    },
+    "project2": {
+      "title": "INSTALLAZIONE ENERGIA SOLARE",
+      "description": "Installazione professionale da parte di esperti certificati. Installazione rapida ed efficiente con minimo disturbo."
+    },
+    "project3": {
+      "title": "MANUTENZIONE PANNELLI",
+      "description": "Manutenzione e assistenza regolare per prestazioni ottimali del tuo sistema solare. Prolunga la durata e mantieni la massima efficienza."
+    },
+    "project4": {
+      "title": "SU MISURA PER IL TUO TETTO",
+      "description": "Soluzioni personalizzate per ogni tipo di tetto. Posizionamento ottimale per la massima produzione di energia."
+    }
+  },
+  "common": {
+    "freeQuote": "Scopri di più"
+  },
+  "stats": {
+    "installations": "Installazioni",
+    "satisfied": "Clienti Soddisfatti",
+    "savings": "Risparmi dei Clienti",
+    "warranty": "Garanzia"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Richiedi un Preventivo",
+      "description": "Scopri quanto puoi risparmiare con l'energia solare! Compila un breve questionario e ricevi un'offerta personalizzata in base alle tue esigenze.",
+      "start": "Richiedi preventivo →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "Che tipo di proprietà intendi equipaggiare?",
+        "options": {
+          "residential": "Proprietà Residenziale",
+          "commercial": "Proprietà Commerciale",
+          "industrial": "Proprietà Industriale"
+        }
+      },
+      "connectionPhase": {
+        "title": "Seleziona il tipo di connessione",
+        "options": {
+          "single": "Monofase",
+          "three": "Trifase"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "Qual è il tuo consumo mensile in kWh?",
+        "description": "Puoi trovare questa informazione sulla tua bolletta elettrica"
+      },
+      "powerOutput": {
+        "title": "Che potenza desideri per il tuo sistema solare?"
+      },
+      "roofType": {
+        "title": "Che tipo di tetto hai?",
+        "options": {
+          "flat": "Tetto Piano",
+          "sloped": "Tetto Inclinato",
+          "mixed": "Tetto Misto"
+        }
+      }
+    },
+    "contact": {
+      "title": "Quasi fatto!",
+      "description": "Inserisci i tuoi dati di contatto per ricevere una proposta personalizzata per il tuo sistema solare.",
+      "fullName": "Nome e Cognome",
+      "email": "Email",
+      "phone": "Telefono",
+      "submit": "Richiedi Preventivo"
+    },
+    "thanks": {
+      "title": "Grazie!",
+      "description": "Abbiamo ricevuto le tue informazioni e ti contatteremo presto con una proposta dettagliata per il tuo sistema solare."
+    },
+    "navigation": {
+      "back": "← Indietro",
+      "next": "Avanti →"
+    }
+  }
+}

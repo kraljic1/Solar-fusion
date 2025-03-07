@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "Über uns",
+    "services": "Leistungen",
+    "calculator": "Rechner",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "call": "Rufen Sie uns an"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Ihr Partner für Solarenergie",
+    "description": "Reduzieren Sie Ihre Stromrechnungen und schließen Sie sich der grünen Revolution an",
+    "cta": "Einsparungen berechnen"
+  },
+  "features": {
+    "title": "ERZEUGEN SIE IHRE EIGENE ENERGIE",
+    "subtitle": "MIT SOLAR FUSION!",
+    "subheading": "Ihre Solarenergielösungen maßgeschneidert auf Ihre Bedürfnisse mit Schlüsselfertigsystem",
+    "experience": "Jahre Erfahrung",
+    "energySavings": {
+      "title": "ENERGIE- UND GELDERSPARNIS",
+      "description": "Durch die Installation von Solarmodulen können Sie Ihre Stromrechnungen deutlich reduzieren oder sogar eliminieren, was zu erheblichen langfristigen finanziellen Einsparungen führt."
+    },
+    "installation": {
+      "title": "PROFESSIONELLE INSTALLATION UND UNTERSTÜTZUNG",
+      "description": "Professionelle Installateure führen eine detaillierte Analyse Ihres Energiebedarfs durch und passen das System an, um maximale Effizienz und Wirtschaftlichkeit zu gewährleisten."
+    },
+    "ecological": {
+      "title": "ÖKOLOGISCHER ANSATZ",
+      "description": "Durch die Nutzung von Solarmodulen produzieren Sie saubere Energie ohne schädliche Emissionen und tragen aktiv zum Kampf gegen den Klimawandel bei."
+    }
+  },
+  "parallax": {
+    "title": "SOLARENERGIE IST DIE ZUKUNFT",
+    "description": "Solarenergie stellt eine nachhaltige und wirtschaftliche Lösung für Ihr Zuhause dar. Unsere fortschrittlichen Solarsysteme ermöglichen es Ihnen, Ihren eigenen Strom zu produzieren."
+  },
+  "services": {
+    "project1": {
+      "title": "SOLARMODULE",
+      "description": "Premium-Solarmodule mit höchster Effizienz am Markt. Entwickelt für maximale Energieproduktion und Langlebigkeit."
+    },
+    "project2": {
+      "title": "SOLARENERGIE-INSTALLATION",
+      "description": "Professionelle Installation durch zertifizierte Experten. Schnelle und effiziente Installation mit minimaler Störung."
+    },
+    "project3": {
+      "title": "MODULWARTUNG",
+      "description": "Regelmäßige Wartung und Service für optimale Leistung Ihrer Solaranlage. Verlängern Sie die Lebensdauer und erhalten Sie maximale Effizienz."
+    },
+    "project4": {
+      "title": "MASSGESCHNEIDERT FÜR IHR DACH",
+      "description": "Maßgeschneiderte Lösungen für jeden Dachtyp. Optimale Positionierung für maximale Energieproduktion."
+    }
+  },
+  "common": {
+    "freeQuote": "Mehr erfahren"
+  },
+  "stats": {
+    "installations": "Installationen",
+    "satisfied": "Zufriedene Kunden",
+    "savings": "Kundenersparnis",
+    "warranty": "Garantie"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Angebot Anfordern",
+      "description": "Finden Sie heraus, wie viel Sie mit Solarenergie sparen können! Füllen Sie einen kurzen Fragebogen aus und erhalten Sie ein personalisiertes Angebot nach Ihren Bedürfnissen.",
+      "start": "Angebot anfordern →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "Welche Art von Immobilie planen Sie auszustatten?",
+        "options": {
+          "residential": "Wohnimmobilie",
+          "commercial": "Gewerbeimmobilie",
+          "industrial": "Industrieimmobilie"
+        }
+      },
+      "connectionPhase": {
+        "title": "Wählen Sie die Art des Anschlusses",
+        "options": {
+          "single": "Einphasig",
+          "three": "Dreiphasig"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "Wie hoch ist Ihr monatlicher Verbrauch in kWh?",
+        "description": "Diese Information finden Sie auf Ihrer Stromrechnung"
+      },
+      "powerOutput": {
+        "title": "Welche Leistung wünschen Sie für Ihr Solarsystem?"
+      },
+      "roofType": {
+        "title": "Welche Art von Dach haben Sie?",
+        "options": {
+          "flat": "Flachdach",
+          "sloped": "Schrägdach",
+          "mixed": "Kombiniertes Dach"
+        }
+      }
+    },
+    "contact": {
+      "title": "Fast geschafft!",
+      "description": "Bitte geben Sie Ihre Kontaktdaten ein, um ein personalisiertes Angebot für Ihre Solaranlage zu erhalten.",
+      "fullName": "Vor- und Nachname",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "submit": "Angebot Anfordern"
+    },
+    "thanks": {
+      "title": "Vielen Dank!",
+      "description": "Wir haben Ihre Informationen erhalten und werden Sie in Kürze mit einem detaillierten Angebot für Ihre Solaranlage kontaktieren."
+    },
+    "navigation": {
+      "back": "← Zurück",
+      "next": "Weiter →"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "about": "O nas",
+    "services": "Storitve",
+    "calculator": "Kalkulator",
+    "projects": "Projekti",
+    "contact": "Kontakt",
+    "call": "Pokličite nas"
+  },
+  "hero": {
+    "title": "Solar Fusion",
+    "subtitle": "Vaš partner za sončno prihodnost",
+    "description": "Zmanjšajte svoje račune za elektriko in se pridružite zeleni revoluciji",
+    "cta": "Izračunajte prihranke"
+  },
+  "features": {
+    "title": "PROIZVAJAJTE LASTNO ENERGIJO",
+    "subtitle": "S SOLAR FUSION!",
+    "subheading": "Vaše sončne energetske rešitve prilagojene vašim potrebam s sistemom na ključ",
+    "experience": "Leta izkušenj",
+    "energySavings": {
+      "title": "PRIHRANEK ENERGIJE IN DENARJA",
+      "description": "Z namestitvijo sončnih panelov lahko bistveno zmanjšate ali celo odpravite račune za elektriko, kar prinaša pomembne dolgoročne finančne prihranke."
+    },
+    "installation": {
+      "title": "PROFESIONALNA NAMESTITEV IN PODPORA",
+      "description": "Profesionalni monterji zagotavljajo podrobno analizo vaših energetskih potreb in prilagajajo sistem za zagotavljanje maksimalne učinkovitosti in stroškovne učinkovitosti."
+    },
+    "ecological": {
+      "title": "EKOLOŠKI PRISTOP",
+      "description": "Z uporabo sončnih panelov proizvajate čisto energijo brez škodljivih emisij in aktivno prispevate k boju proti podnebnim spremembam."
+    }
+  },
+  "parallax": {
+    "title": "SONČNA ENERGIJA JE PRIHODNOST",
+    "description": "Sončna energija predstavlja trajnostno in ekonomično rešitev za vaš dom. Naši napredni sončni sistemi vam omogočajo proizvodnjo lastne električne energije."
+  },
+  "services": {
+    "project1": {
+      "title": "SONČNI PANELI",
+      "description": "Premium sončni paneli z najvišjo učinkovitostjo na trgu. Zasnovani za maksimalno proizvodnjo energije in dolgotrajnost."
+    },
+    "project2": {
+      "title": "NAMESTITEV SONČNE ENERGIJE",
+      "description": "Profesionalna namestitev s strani certificiranih strokovnjakov. Hitra in učinkovita namestitev z minimalnimi motnjami."
+    },
+    "project3": {
+      "title": "SERVIS PANELOV",
+      "description": "Redno vzdrževanje in servis za optimalno delovanje vašega sončnega sistema. Podaljšajte življenjsko dobo in ohranite maksimalno učinkovitost."
+    },
+    "project4": {
+      "title": "PO MERI VAŠE STREHE",
+      "description": "Prilagojene rešitve za vsak tip strehe. Optimalna postavitev za maksimalno proizvodnjo energije."
+    }
+  },
+  "common": {
+    "freeQuote": "Več informacij"
+  },
+  "stats": {
+    "installations": "Namestitev",
+    "satisfied": "Zadovoljnih Strank",
+    "savings": "Prihranki Strank",
+    "warranty": "Garancija"
+  },
+  "calculator": {
+    "welcome": {
+      "title": "Zaprosite Ponudbo",
+      "description": "Ugotovite, koliko lahko prihranite s sončno energijo! Izpolnite kratek vprašalnik in prejmite prilagojeno ponudbo po vaši meri.",
+      "start": "Zaprosi za ponudbo →"
+    },
+    "questions": {
+      "propertyType": {
+        "title": "Kakšno vrsto objekta načrtujete opremiti?",
+        "options": {
+          "residential": "Stanovanjski objekt",
+          "commercial": "Poslovni objekt",
+          "industrial": "Industrijski objekt"
+        }
+      },
+      "connectionPhase": {
+        "title": "Izberite vrsto priključka",
+        "options": {
+          "single": "Enofazni",
+          "three": "Trifazni"
+        }
+      },
+      "monthlyConsumption": {
+        "title": "Kakšna je vaša mesečna poraba v kWh?",
+        "description": "Ta podatek lahko najdete na vašem računu za elektriko"
+      },
+      "powerOutput": {
+        "title": "Kakšno moč sončnega sistema želite?"
+      },
+      "roofType": {
+        "title": "Kakšno streho imate?",
+        "options": {
+          "flat": "Ravna streha",
+          "sloped": "Poševna streha",
+          "mixed": "Kombinirana streha"
+        }
+      }
+    },
+    "contact": {
+      "title": "Še malo!",
+      "description": "Prosimo, vnesite vaše kontaktne podatke za prejem prilagojene ponudbe za solarni sistem.",
+      "fullName": "Ime in Priimek",
+      "email": "Email",
+      "phone": "Telefon",
+      "submit": "Pridobite Ponudbo"
+    },
+    "thanks": {
+      "title": "Hvala!",
+      "description": "Prejeli smo vaše podatke in vas bomo kmalu kontaktirali s podrobno ponudbo za vaš solarni sistem."
+    },
+    "navigation": {
+      "back": "← Nazaj",
+      "next": "Naprej →"
+    }
+  }
+}

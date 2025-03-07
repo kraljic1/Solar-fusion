@@ -1,0 +1,134 @@
+---
+---
+
+<button
+  id="back-to-top"
+  class="fixed md:bottom-8 md:right-8 bottom-4 right-4 bg-secondary text-white p-2 md:p-3 rounded-full shadow-lg opacity-0 invisible transform translate-y-4 transition-all duration-500 ease-out hover:bg-opacity-90 hover:scale-110 active:scale-95 z-50 scale-90 md:scale-100"
+  aria-label="Back to top"
+  style="will-change: transform, opacity"
+>
+  <svg 
+    class="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+  >
+    <path 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="2" 
+      d="M5 10l7-7m0 0l7 7m-7-7v18"
+    />
+  </svg>
+</button>
+
+<script>
+  function initializeBackToTop() {
+    const button = document.getElementById('back-to-top');
+    if (!button) return;
+
+    let isScrolling = false;
+    let scrollTimeout: number;
+
+    // Throttled scroll handler for better performance
+    const throttle = (func: Function, limit: number) => {
+      let inThrottle: boolean;
+      return function(this: any, ...args: any[]) {
+        if (!inThrottle) {
+          func.apply(this, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      };
+    };
+
+    // Show/hide button with transform for better performance
+    const toggleButton = throttle(() => {
+      const scrolled = window.scrollY > 200;
+      if (scrolled) {
+        button.classList.remove('invisible', 'opacity-0', 'translate-y-4');
+        button.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        button.classList.remove('opacity-100', 'translate-y-0');
+        button.classList.add('opacity-0', 'translate-y-4');
+        // Only add invisible after fade out
+        setTimeout(() => {
+          if (!scrolled) {
+            button.classList.add('invisible');
+          }
+        }, 500);
+      }
+    }, 100);
+
+    // Smooth scroll with cubic-bezier easing
+    const scrollToTop = (e: Event) => {
+      e.preventDefault();
+      if (isScrolling) return;
+      
+      isScrolling = true;
+      button.style.pointerEvents = 'none';
+
+      const duration = 1000;
+      const startPosition = window.pageYOffset;
+      const startTime = performance.now();
+
+      // Cubic bezier easing function
+      const easeOutCubic = (t: number): number => {
+        return 1 - Math.pow(1 - t, 3);
+      };
+
+      const animateScroll = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        window.scrollTo(0, startPosition * (1 - easeOutCubic(progress)));
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          isScrolling = false;
+          button.style.pointerEvents = '';
+          
+          // Reset scroll state after animation
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+          }, 100);
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
+    };
+
+    // Add event listeners with options for better performance
+    window.addEventListener('scroll', toggleButton, { passive: true });
+    button.addEventListener('click', scrollToTop);
+    button.addEventListener('touchend', scrollToTop, { passive: false });
+
+    // Add touch feedback
+    button.addEventListener('touchstart', () => {
+      button.classList.add('scale-95');
+    }, { passive: true });
+
+    button.addEventListener('touchend', () => {
+      button.classList.remove('scale-95');
+    }, { passive: true });
+
+    // Initial check
+    toggleButton();
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', toggleButton);
+      button.removeEventListener('click', scrollToTop);
+      button.removeEventListener('touchend', scrollToTop);
+      clearTimeout(scrollTimeout);
+    };
+  }
+
+  // Initialize on page load
+  initializeBackToTop();
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', initializeBackToTop);
+</script>

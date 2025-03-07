@@ -1,0 +1,232 @@
+---
+const projects = [
+  {
+    title: "Obiteljska kuća u Poreču",
+    description: "Instalacija solarnog sustava snage 10kW s baterijskim sustavom za pohranu energije.",
+    image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+    details: {
+      power: "10kW",
+      panels: "25",
+      savings: "90%",
+      completed: "2023"
+    }
+  },
+  {
+    title: "Industrijski objekt Pazin",
+    description: "Komercijalna solarna elektrana snage 50kW za proizvodnju električne energije.",
+    image: "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    details: {
+      power: "50kW",
+      panels: "125",
+      savings: "75%",
+      completed: "2023"
+    }
+  },
+  {
+    title: "Apartmani Rovinj",
+    description: "Sustav za grijanje vode i proizvodnju električne energije za turističke apartmane.",
+    image: "https://images.unsplash.com/photo-1628206554201-41ebb06ef313?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+    details: {
+      power: "15kW",
+      panels: "38",
+      savings: "85%",
+      completed: "2024"
+    }
+  }
+];
+
+// Function to create a slug from a title
+const createSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .trim();
+};
+
+// Get current language from URL
+const currentPath = Astro.url.pathname;
+const lang = currentPath.split('/')[1] || 'hr';
+
+const translations = {
+  hr: {
+    title: 'Naši Projekti',
+    description: 'Pogledajte neke od naših uspješno realiziranih projekata solarnih sustava',
+    power: 'Snaga sustava',
+    panels: 'Broj panela',
+    savings: 'Ušteda',
+    year: 'Godina'
+  },
+  en: {
+    title: 'Our Projects',
+    description: 'Take a look at some of our successfully completed solar system projects',
+    power: 'System Power',
+    panels: 'Number of Panels',
+    savings: 'Savings',
+    year: 'Year'
+  },
+  sl: {
+    title: 'Naši Projekti',
+    description: 'Oglejte si nekaj naših uspešno izvedenih projektov solarnih sistemov',
+    power: 'Moč sistema',
+    panels: 'Število panelov',
+    savings: 'Prihranek',
+    year: 'Leto'
+  },
+  de: {
+    title: 'Unsere Projekte',
+    description: 'Sehen Sie sich einige unserer erfolgreich realisierten Solarsystemprojekte an',
+    power: 'Systemleistung',
+    panels: 'Anzahl der Module',
+    savings: 'Einsparung',
+    year: 'Jahr'
+  },
+  it: {
+    title: 'I Nostri Progetti',
+    description: 'Dai uno sguardo ad alcuni dei nostri progetti di sistemi solari completati con successo',
+    power: 'Potenza Sistema',
+    panels: 'Numero Pannelli',
+    savings: 'Risparmio',
+    year: 'Anno'
+  },
+  hu: {
+    title: 'Projektjeink',
+    description: 'Tekintse meg néhány sikeresen megvalósított napelemes rendszer projektünket',
+    power: 'Rendszer Teljesítmény',
+    panels: 'Panelek Száma',
+    savings: 'Megtakarítás',
+    year: 'Év'
+  }
+};
+
+const t = translations[lang] || translations.hr;
+---
+
+<section class="pt-40 pb-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-primary mb-4">{t.title}</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {t.description}
+      </p>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="mb-16">
+      <nav class="flex flex-wrap justify-center gap-4" aria-label="Project navigation">
+        {projects.map((project) => (
+          <a
+            href={`#${createSlug(project.title)}`}
+            class="project-nav-link px-6 py-3 bg-white rounded-lg shadow-sm text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105"
+          >
+            {project.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="grid gap-24">
+      {projects.map((project, index) => (
+        <div 
+          id={createSlug(project.title)}
+          class={`grid md:grid-cols-2 gap-8 items-center scroll-mt-32 ${index % 2 === 1 ? 'md:grid-flow-dense' : ''}`}
+        >
+          <div class={`space-y-6 ${index % 2 === 1 ? 'md:col-start-2' : ''}`}>
+            <h2 class="text-3xl font-bold text-primary">{project.title}</h2>
+            <p class="text-gray-600 text-lg">{project.description}</p>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-secondary">{project.details.power}</div>
+                <div class="text-gray-600">{t.power}</div>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-secondary">{project.details.panels}</div>
+                <div class="text-gray-600">{t.panels}</div>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-secondary">{project.details.savings}</div>
+                <div class="text-gray-600">{t.savings}</div>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <div class="text-2xl font-bold text-secondary">{project.details.completed}</div>
+                <div class="text-gray-600">{t.year}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class={index % 2 === 1 ? 'md:col-start-1' : ''}>
+            <img 
+              src={project.image}
+              alt={project.title}
+              class="w-full h-[400px] object-cover rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initializeProjectNavigation() {
+    // Smooth scrolling for project navigation links
+    document.querySelectorAll('.project-nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - navHeight;
+
+            window.scrollTo({
+              behavior: 'smooth',
+              top: offsetPosition
+            });
+
+            // Update URL without scrolling
+            history.pushState(null, '', href);
+          }
+        }
+      });
+    });
+
+    // Highlight active section on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const menuItem = document.querySelector(`.project-nav-link[href="#${id}"]`);
+        
+        if (entry.isIntersecting) {
+          menuItem?.classList.add('bg-primary', 'text-white', 'scale-105');
+          menuItem?.classList.remove('bg-white', 'text-primary');
+        } else {
+          menuItem?.classList.remove('bg-primary', 'text-white', 'scale-105');
+          menuItem?.classList.add('bg-white', 'text-primary');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[id]').forEach((section) => {
+      observer.observe(section);
+    });
+  }
+
+  // Initialize on page load
+  initializeProjectNavigation();
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    initializeProjectNavigation();
+  });
+</script>
