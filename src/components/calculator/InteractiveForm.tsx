@@ -2,15 +2,40 @@ import React, { useState, useRef, useEffect } from 'react';
 import { animate, stagger } from '@motionone/dom';
 import type { FormData, Question } from './types';
 import { getQuestions } from './questions';
+import { useTranslation } from 'react-i18next';
 
-export default function InteractiveForm() {
+interface InteractiveFormProps {
+  lang?: string;
+}
+
+export default function InteractiveForm({ lang = 'hr' }: InteractiveFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Partial<FormData>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-
-  const questions = getQuestions((key: string) => key);
+  
+  const { t, i18n } = useTranslation();
+  
+  // Force language change immediately
+  if (lang && i18n.language !== lang) {
+    console.log(`Changing language from ${i18n.language} to ${lang}`);
+    i18n.changeLanguage(lang);
+  }
+  
+  // Also handle in effect for re-renders
+  useEffect(() => {
+    if (lang && i18n.language !== lang) {
+      console.log(`[Effect] Changing language from ${i18n.language} to ${lang}`);
+      i18n.changeLanguage(lang);
+    }
+  }, [lang, i18n]);
+  
+  // Log current language when rendering
+  console.log(`Current language: ${i18n.language}, prop lang: ${lang}`);
+  
+  // Get translated questions with memo to update when language changes
+  const questions = React.useMemo(() => getQuestions(t), [t, i18n.language]);
   const currentQuestion = questions[currentStep];
 
   // Reset handler
@@ -75,7 +100,7 @@ export default function InteractiveForm() {
       handleNext();
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Došlo je do greške. Molimo pokušajte ponovno.');
+      alert(t('calculator.errorMessage') || 'An error occurred. Please try again.');
     }
   };
 
@@ -90,7 +115,7 @@ export default function InteractiveForm() {
               onClick={handleNext}
               className="bg-secondary text-white px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
             >
-              Zatraži ponudu →
+              {t('calculator.welcome.start')}
             </button>
           </div>
         );
@@ -172,7 +197,7 @@ export default function InteractiveForm() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Ime i Prezime
+                  {t('calculator.contact.fullName')}
                 </label>
                 <input
                   type="text"
@@ -184,7 +209,7 @@ export default function InteractiveForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
+                  {t('calculator.contact.email')}
                 </label>
                 <input
                   type="email"
@@ -196,7 +221,7 @@ export default function InteractiveForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Telefon
+                  {t('calculator.contact.phone')}
                 </label>
                 <input
                   type="tel"
@@ -210,7 +235,7 @@ export default function InteractiveForm() {
                 type="submit"
                 className="w-full bg-secondary text-white py-3 rounded-lg hover:bg-opacity-90 transition-colors"
               >
-                Zatražite Ponudu
+                {t('calculator.contact.submit')}
               </button>
             </div>
           </form>
@@ -312,11 +337,9 @@ export default function InteractiveForm() {
           </div>
         </div>
 
-        {currentQuestion.type !== 'welcome' && currentQuestion.type !== 'thanks' && (
-          <div 
-            className="flex justify-between mt-8 h-[44px]"
-            style={{ opacity: 0.99 }}
-          >
+        {/* Navigation buttons */}
+        {currentStep > 0 && currentQuestion.type !== 'thanks' && (
+          <div className="flex justify-between mt-8">
             <button
               onClick={handlePrevious}
               className="text-gray-600 hover:text-gray-900 transition-all duration-300 px-4 py-2 rounded-lg"
@@ -326,7 +349,7 @@ export default function InteractiveForm() {
                 transform: `scale(${currentStep === 0 ? 0.98 : 1})`
               }}
             >
-              ← Natrag
+              {t('calculator.navigation.back')}
             </button>
             {currentQuestion.type !== 'choice' && currentQuestion.type !== 'contact' && (
               <button
@@ -338,7 +361,7 @@ export default function InteractiveForm() {
                   transform: `scale(${currentStep === questions.length - 1 ? 0.98 : 1})`
                 }}
               >
-                Dalje →
+                {t('calculator.navigation.next')}
               </button>
             )}
           </div>

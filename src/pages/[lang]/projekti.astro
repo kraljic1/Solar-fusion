@@ -1,27 +1,36 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProjectHero from '../../components/ProjectHero.astro';
-import Projects from '../../components/Projects.astro';
-import ProjectGallery from '../../components/ProjectGallery.astro';
+import Layout from "../../layouts/Layout.astro";
+import ProjectHero from "../../components/ProjectHero.astro";
+import Projects from "../../components/Projects.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+import { t } from "i18next";
+import i18next from "../../i18n/config";
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'hr' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'sl' } },
-    { params: { lang: 'de' } },
-    { params: { lang: 'it' } },
-    { params: { lang: 'hu' } }
-  ];
+    return [
+        { params: { lang: "hr" } },
+        { params: { lang: "en" } },
+        { params: { lang: "sl" } },
+        { params: { lang: "de" } },
+        { params: { lang: "it" } },
+        { params: { lang: "hu" } },
+    ];
 }
 
 const { lang } = Astro.params;
+
+// Change language before rendering
+if (lang) {
+    await i18next.changeLanguage(lang);
+}
+
+const pageTitle = `Solar Fusion - ${t("nav.projects")}`;
 ---
 
-<Layout title="Solar Fusion - Projekti">
-  <main>
-    <ProjectHero />
-    <Projects />
-    <ProjectGallery />
-  </main>
+<Layout title={pageTitle}>
+    <main>
+        <ProjectHero />
+        <Projects />
+        <ProjectGallery />
+    </main>
 </Layout>

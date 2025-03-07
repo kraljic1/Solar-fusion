@@ -1,210 +1,251 @@
 ---
-import LanguageSelector from './LanguageSelector.astro';
+import LanguageSelector from "./LanguageSelector.astro";
 
-const { lang = 'hr' } = Astro.params;
+const { lang = "hr" } = Astro.params;
+
+// Define a type for the supported languages
+type SupportedLanguage = "hr" | "en" | "sl" | "de" | "it" | "hu";
+
+// Type assertion to ensure lang is a supported language
+const safeLang = (lang || "hr") as SupportedLanguage;
 
 const translations = {
-  hr: {
-    about: 'O nama',
-    services: 'Usluge',
-    calculator: 'Kalkulator',
-    projects: 'Projekti',
-    call: 'Nazovite'
-  },
-  en: {
-    about: 'About',
-    services: 'Services',
-    calculator: 'Calculator',
-    projects: 'Projects',
-    call: 'Call Us'
-  },
-  sl: {
-    about: 'O nas',
-    services: 'Storitve',
-    calculator: 'Kalkulator',
-    projects: 'Projekti',
-    call: 'Pokličite nas'
-  },
-  de: {
-    about: 'Über uns',
-    services: 'Leistungen',
-    calculator: 'Rechner',
-    projects: 'Projekte',
-    call: 'Rufen Sie uns an'
-  },
-  it: {
-    about: 'Chi siamo',
-    services: 'Servizi',
-    calculator: 'Calcolatore',
-    projects: 'Progetti',
-    call: 'Chiamaci'
-  },
-  hu: {
-    about: 'Rólunk',
-    services: 'Szolgáltatások',
-    calculator: 'Kalkulátor',
-    projects: 'Projektek',
-    call: 'Hívjon minket'
-  }
+    hr: {
+        about: "O nama",
+        services: "Usluge",
+        calculator: "Kalkulator",
+        projects: "Projekti",
+        call: "Nazovite",
+    },
+    en: {
+        about: "About",
+        services: "Services",
+        calculator: "Calculator",
+        projects: "Projects",
+        call: "Call Us",
+    },
+    sl: {
+        about: "O nas",
+        services: "Storitve",
+        calculator: "Kalkulator",
+        projects: "Projekti",
+        call: "Pokličite nas",
+    },
+    de: {
+        about: "Über uns",
+        services: "Leistungen",
+        calculator: "Rechner",
+        projects: "Projekte",
+        call: "Rufen Sie uns an",
+    },
+    it: {
+        about: "Chi siamo",
+        services: "Servizi",
+        calculator: "Calcolatore",
+        projects: "Progetti",
+        call: "Chiamaci",
+    },
+    hu: {
+        about: "Rólunk",
+        services: "Szolgáltatások",
+        calculator: "Kalkulátor",
+        projects: "Projektek",
+        call: "Hívjon minket",
+    },
 };
 
-const t = translations[lang] || translations.hr;
+// Now TypeScript knows safeLang is a valid key
+const t = translations[safeLang];
 
 const currentPath = Astro.url.pathname;
-const isProjectPage = currentPath.includes('/projekti');
+const isProjectPage = currentPath.includes("/projekti");
 
 const menuItems = [
-  { 
-    href: isProjectPage ? `/${lang}/#about` : '#about',
-    label: t.about
-  },
-  { 
-    href: isProjectPage ? `/${lang}/#services` : '#services',
-    label: t.services
-  },
-  { 
-    href: isProjectPage ? `/${lang}/#calculator` : '#calculator',
-    label: t.calculator
-  },
-  { 
-    href: `/${lang}/projekti`, 
-    label: t.projects
-  }
+    {
+        href: isProjectPage ? `/${lang}/#about` : "#about",
+        label: t.about,
+    },
+    {
+        href: isProjectPage ? `/${lang}/#services` : "#services",
+        label: t.services,
+    },
+    {
+        href: isProjectPage ? `/${lang}/#calculator` : "#calculator",
+        label: t.calculator,
+    },
+    {
+        href: `/${lang}/projekti`,
+        label: t.projects,
+    },
 ];
 ---
 
 <nav class="fixed w-full bg-[#000000] shadow-sm z-[100]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
-      <!-- Logo -->
-      <a 
-        href={`/${lang}/`} 
-        class="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:opacity-90"
-      >
-        <img 
-          src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/6743423985656fbf56e9f314.png" 
-          alt="Solar Fusion Logo"
-          class="h-12 w-auto max-w-[148px] transform-gpu"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        {menuItems.map(item => (
-          <a
-            href={item.href}
-            class={`text-white hover:text-secondary font-medium transition-colors ${
-              currentPath === item.href ? 'text-secondary' : ''
-            }`}
-            data-nav-link={item.href.includes('#') ? 'section' : null}
-          >
-            {item.label}
-          </a>
-        ))}
-        <a
-          href="tel:+385997883851"
-          class="flex items-center space-x-2 bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
-          <span>{t.call}</span>
-        </a>
-        
-        <!-- Language Selector -->
-        <LanguageSelector />
-      </div>
-
-      <!-- Mobile Navigation Button -->
-      <div class="md:hidden flex items-center space-x-4">
-        <LanguageSelector />
-        <button 
-          type="button"
-          class="p-2 rounded-md text-white hover:text-secondary hover:bg-gray-800 transition-colors"
-          id="mobile-menu-button"
-          aria-label="Menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <svg class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path 
-              class="origin-center transition-all duration-300" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              stroke-width="2" 
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation Menu -->
-    <div 
-      id="mobile-menu"
-      class="fixed md:hidden left-0 right-0 top-[80px] bg-[#000000] border-t border-gray-800 transform transition-all duration-300 ease-in-out translate-y-[-100%] opacity-0 invisible z-[90]"
-      style="height: calc(100vh - 80px);"
-    >
-      <div class="px-4 py-6 space-y-4 flex flex-col h-full overflow-y-auto">
-        <div class="space-y-2">
-          {menuItems.map(item => (
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
             <a
-              href={item.href}
-              class={`block px-4 py-3 rounded-lg text-white hover:text-secondary hover:bg-gray-800 font-medium transition-colors ${
-                currentPath === item.href ? 'text-secondary bg-gray-800' : ''
-              }`}
-              data-nav-link={item.href.includes('#') ? 'section' : null}
-            >
-              {item.label}
+                href={`/${lang}/`}
+                class="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:opacity-90">
+                <img
+                    src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/6743423985656fbf56e9f314.png"
+                    alt="Solar Fusion Logo"
+                    class="h-12 w-auto max-w-[148px] transform-gpu"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                />
             </a>
-          ))}
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                {
+                    menuItems.map((item) => (
+                        <a
+                            href={item.href}
+                            class={`text-white hover:text-secondary font-medium transition-colors ${
+                                currentPath === item.href
+                                    ? "text-secondary"
+                                    : ""
+                            }`}
+                            data-nav-link={
+                                item.href.includes("#") ? "section" : null
+                            }>
+                            {item.label}
+                        </a>
+                    ))
+                }
+                <a
+                    href="tel:+385997883851"
+                    class="flex items-center space-x-2 bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        ></path>
+                    </svg>
+                    <span>{t.call}</span>
+                </a>
+
+                <!-- Language Selector -->
+                <LanguageSelector />
+            </div>
+
+            <!-- Mobile Navigation Button -->
+            <div class="md:hidden flex items-center space-x-4">
+                <div style="position: relative; z-index: 9999;">
+                    <LanguageSelector />
+                </div>
+                <button
+                    type="button"
+                    class="p-2 rounded-md text-white hover:text-secondary hover:bg-gray-800 transition-colors z-[90]"
+                    id="mobile-menu-button"
+                    aria-label="Menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <svg
+                        class="h-6 w-6 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            class="origin-center transition-all duration-300"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
-        
-        <a
-          href="tel:+385997883851"
-          class="mt-auto block px-4 py-3 rounded-lg bg-secondary text-white hover:bg-opacity-90 transition-colors text-center font-medium"
-        >
-          <div class="flex items-center justify-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            <span>{t.call}</span>
-          </div>
-        </a>
-      </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div
+            id="mobile-menu"
+            class="fixed md:hidden left-0 right-0 top-[80px] bg-[#000000] border-t border-gray-800 transform transition-all duration-300 ease-in-out translate-y-[-100%] opacity-0 invisible z-[80]"
+            style="height: calc(100vh - 80px);">
+            <div
+                class="px-4 py-6 space-y-4 flex flex-col h-full overflow-y-auto">
+                <div class="space-y-2">
+                    {
+                        menuItems.map((item) => (
+                            <a
+                                href={item.href}
+                                class={`block px-4 py-3 rounded-lg text-white hover:text-secondary hover:bg-gray-800 font-medium transition-colors ${
+                                    currentPath === item.href
+                                        ? "text-secondary bg-gray-800"
+                                        : ""
+                                }`}
+                                data-nav-link={
+                                    item.href.includes("#") ? "section" : null
+                                }>
+                                {item.label}
+                            </a>
+                        ))
+                    }
+                </div>
+
+                <a
+                    href="tel:+385997883851"
+                    class="mt-auto block px-4 py-3 rounded-lg bg-secondary text-white hover:bg-opacity-90 transition-colors text-center font-medium">
+                    <div class="flex items-center justify-center space-x-2">
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                            ></path>
+                        </svg>
+                        <span>{t.call}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
 <script>
-  function initializeNavigation() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = mobileMenuButton?.querySelector('svg');
+    function initializeNavigation() {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = mobileMenuButton?.querySelector("svg");
 
-    if (!mobileMenuButton || !mobileMenu || !menuIcon) return;
+        if (!mobileMenuButton || !mobileMenu || !menuIcon) return;
 
-    let isMenuOpen = false;
+        // Create non-null variables after the check
+        const safeMenuButton = mobileMenuButton;
+        const safeMenu = mobileMenu;
+        const safeMenuIcon = menuIcon;
 
-    function toggleMenu(show?: boolean) {
-      isMenuOpen = show ?? !isMenuOpen;
-      
-      // Update button state
-      mobileMenuButton.setAttribute('aria-expanded', isMenuOpen.toString());
-      
-      // Update menu visibility with smooth transition
-      if (isMenuOpen) {
-        mobileMenu.classList.remove('invisible');
-        // Force reflow
-        mobileMenu.offsetHeight;
-        mobileMenu.classList.remove('translate-y-[-100%]', 'opacity-0');
-        document.body.style.overflow = 'hidden';
-        
-        // Animate hamburger to X
-        menuIcon.innerHTML = `
+        let isMenuOpen = false;
+
+        function toggleMenu(show?: boolean) {
+            isMenuOpen = show ?? !isMenuOpen;
+
+            // Update button state
+            safeMenuButton.setAttribute("aria-expanded", isMenuOpen.toString());
+
+            // Update menu visibility with smooth transition
+            if (isMenuOpen) {
+                safeMenu.classList.remove("invisible");
+                // Force reflow
+                safeMenu.offsetHeight;
+                safeMenu.classList.remove("translate-y-[-100%]", "opacity-0");
+                document.body.style.overflow = "hidden";
+
+                // Animate hamburger to X
+                safeMenuIcon.innerHTML = `
           <path 
             class="origin-center transition-all duration-300" 
             stroke-linecap="round" 
@@ -213,12 +254,12 @@ const menuItems = [
             d="M6 18L18 6M6 6l12 12"
           />
         `;
-      } else {
-        mobileMenu.classList.add('translate-y-[-100%]', 'opacity-0');
-        document.body.style.overflow = '';
-        
-        // Animate X back to hamburger
-        menuIcon.innerHTML = `
+            } else {
+                safeMenu.classList.add("translate-y-[-100%]", "opacity-0");
+                document.body.style.overflow = "";
+
+                // Animate X back to hamburger
+                safeMenuIcon.innerHTML = `
           <path 
             class="origin-center transition-all duration-300" 
             stroke-linecap="round" 
@@ -227,95 +268,112 @@ const menuItems = [
             d="M4 6h16M4 12h16M4 18h16"
           />
         `;
-        
-        // Hide menu after transition
-        setTimeout(() => {
-          if (!isMenuOpen) {
-            mobileMenu.classList.add('invisible');
-          }
-        }, 300);
-      }
-    }
 
-    // Toggle menu on button click
-    mobileMenuButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMenu();
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileMenuButton.contains(e.target as Node) && 
-          !mobileMenu.contains(e.target as Node) && 
-          isMenuOpen) {
-        toggleMenu(false);
-      }
-    });
-
-    // Handle navigation
-    document.querySelectorAll('[data-nav-link="section"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const href = (link as HTMLAnchorElement).getAttribute('href');
-        
-        // If we're on the projects page and the link contains a hash
-        if (window.location.pathname.includes('/projekti') && href?.includes('/#')) {
-          window.location.href = href;
-          return;
+                // Hide menu after transition
+                setTimeout(() => {
+                    if (!isMenuOpen) {
+                        safeMenu.classList.add("invisible");
+                    }
+                }, 300);
+            }
         }
 
-        // If we're on the homepage, smooth scroll to section
-        const sectionId = href?.split('#')[1];
-        if (sectionId) {
-          const target = document.getElementById(sectionId);
-          
-          if (target) {
-            const navHeight = document.querySelector('nav')?.offsetHeight || 0;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = targetPosition - navHeight;
+        // Toggle menu on button click
+        safeMenuButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
 
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (
+                !safeMenuButton.contains(e.target as Node) &&
+                !safeMenu.contains(e.target as Node) &&
+                isMenuOpen
+            ) {
+                toggleMenu(false);
+            }
+        });
+
+        // Handle navigation
+        document
+            .querySelectorAll('[data-nav-link="section"]')
+            .forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const href = (link as HTMLAnchorElement).getAttribute(
+                        "href"
+                    );
+
+                    // If we're on the projects page and the link contains a hash
+                    if (
+                        window.location.pathname.includes("/projekti") &&
+                        href?.includes("/#")
+                    ) {
+                        window.location.href = href;
+                        return;
+                    }
+
+                    // If we're on the homepage, smooth scroll to section
+                    const sectionId = href?.split("#")[1];
+                    if (sectionId) {
+                        const target = document.getElementById(sectionId);
+
+                        if (target) {
+                            const navHeight =
+                                document.querySelector("nav")?.offsetHeight ||
+                                0;
+                            const targetPosition =
+                                target.getBoundingClientRect().top +
+                                window.pageYOffset;
+                            const offsetPosition = targetPosition - navHeight;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth",
+                            });
+
+                            // Close mobile menu if open
+                            if (isMenuOpen) {
+                                toggleMenu(false);
+                            }
+                        }
+                    }
+                });
             });
 
-            // Close mobile menu if open
-            if (isMenuOpen) {
-              toggleMenu(false);
+        // Close menu on escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isMenuOpen) {
+                toggleMenu(false);
             }
-          }
-        }
-      });
-    });
+        });
 
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        toggleMenu(false);
-      }
-    });
+        // Close menu on resize if mobile menu is open
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768 && isMenuOpen) {
+                toggleMenu(false);
+            }
+        });
 
-    // Close menu on resize if mobile menu is open
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
-        toggleMenu(false);
-      }
-    });
+        // Close menu on scroll
+        let lastScroll = window.scrollY;
+        window.addEventListener(
+            "scroll",
+            () => {
+                const currentScroll = window.scrollY;
+                if (Math.abs(currentScroll - lastScroll) > 50 && isMenuOpen) {
+                    toggleMenu(false);
+                }
+                lastScroll = currentScroll;
+            },
+            { passive: true }
+        );
+    }
 
-    // Close menu on scroll
-    let lastScroll = window.scrollY;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      if (Math.abs(currentScroll - lastScroll) > 50 && isMenuOpen) {
-        toggleMenu(false);
-      }
-      lastScroll = currentScroll;
-    }, { passive: true });
-  }
+    // Initialize on page load
+    initializeNavigation();
 
-  // Initialize on page load
-  initializeNavigation();
-
-  // Handle Astro page transitions
-  document.addEventListener('astro:page-load', initializeNavigation);
+    // Handle Astro page transitions
+    document.addEventListener("astro:page-load", initializeNavigation);
 </script>

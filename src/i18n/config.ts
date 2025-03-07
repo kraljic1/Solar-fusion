@@ -27,10 +27,19 @@ await i18next
     interpolation: {
       escapeValue: false
     },
+    react: {
+      useSuspense: false,
+      bindI18n: 'languageChanged loaded',
+      bindI18nStore: 'added removed',
+      nsMode: 'default'
+    },
     load: 'languageOnly',
     supportedLngs: languages,
     detection: {
-      order: ['path', 'navigator']
+      order: ['path', 'navigator', 'htmlTag'],
+      lookupFromPathIndex: 0,
+      checkWhitelist: true,
+      caches: ['localStorage'],
     }
   });
 

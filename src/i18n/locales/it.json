@@ -38,19 +38,19 @@
   "services": {
     "project1": {
       "title": "PANNELLI SOLARI",
-      "description": "Pannelli solari premium con la più alta efficienza sul mercato. Progettati per la massima produzione di energia e longevità."
+      "description": "I pannelli solari sono dispositivi che convertono l'energia solare in elettrica attraverso celle fotovoltaiche, consentendo l'utilizzo di energia gratuita e rinnovabile. Oltre a ridurre le bollette elettriche e aumentare l'indipendenza energetica, i sistemi solari sono economicamente vantaggiosi a lungo termine ed ecologici poiché non emettono emissioni nocive. La loro durata è di 25-30 anni, rendendoli un investimento intelligente per un futuro sostenibile."
     },
     "project2": {
       "title": "INSTALLAZIONE ENERGIA SOLARE",
-      "description": "Installazione professionale da parte di esperti certificati. Installazione rapida ed efficiente con minimo disturbo."
+      "description": "Il nostro team di esperti garantisce un'installazione professionale e precisa dei pannelli solari, basata su anni di esperienza. Garantiamo un'installazione rapida ed efficiente con il minimo disagio, in modo che possiate iniziare a godere dei vantaggi dell'energia solare il prima possibile."
     },
     "project3": {
       "title": "MANUTENZIONE PANNELLI",
-      "description": "Manutenzione e assistenza regolare per prestazioni ottimali del tuo sistema solare. Prolunga la durata e mantieni la massima efficienza."
+      "description": "Forniamo manutenzione e assistenza regolari dei sistemi solari per garantire un funzionamento duraturo e impeccabile. La cura e la pulizia regolari dei pannelli sono fondamentali per la massima efficienza e una maggiore durata del sistema, garantendo una produzione di energia stabile e affidabile."
     },
     "project4": {
       "title": "SU MISURA PER IL TUO TETTO",
-      "description": "Soluzioni personalizzate per ogni tipo di tetto. Posizionamento ottimale per la massima produzione di energia."
+      "description": "Offriamo soluzioni solari personalizzate per ogni tipo di tetto, garantendo la massima efficienza e risparmio energetico. Indipendentemente dalle dimensioni o dalla posizione del tuo tetto, ottimizziamo attentamente il posizionamento dei pannelli per aiutarti a raggiungere la massima produzione di elettricità possibile."
     }
   },
   "common": {
@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Indietro",
       "next": "Avanti →"
+    },
+    "errorMessage": "Si è verificato un errore. Per favore riprova."
+  },
+  "projects": {
+    "title": "I Nostri Progetti",
+    "subtitle": "Storie di Successo",
+    "viewAll": "Visualizza Tutti i Progetti",
+    "details": {
+      "power": "Potenza",
+      "panels": "Pannelli",
+      "savings": "Risparmio",
+      "completed": "Completato",
+      "yearlyOutput": "Produzione Annuale"
+    },
+    "heroHeading": {
+      "first": "I Nostri",
+      "second": "Progetti di Successo"
+    },
+    "heroDescription": "Esplora la nostra collezione di progetti solari completati con successo in tutta la Croazia. Ogni progetto è una storia di futuro sostenibile e indipendenza energetica.",
+    "stats": {
+      "projects": "Progetti di Successo",
+      "totalPower": "Totale kW",
+      "co2Savings": "Tonnellate di CO₂ Risparmiate Annualmente"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Casa Familiare a Parenzo",
+        "description": "Installazione di un sistema solare da 10kW con sistema di accumulo a batteria."
+      },
+      "project2": {
+        "title": "Edificio Industriale a Pisino",
+        "description": "Centrale solare commerciale da 50kW per la produzione di energia elettrica."
+      },
+      "project3": {
+        "title": "Condominio a Fiume",
+        "description": "Sistema solare condiviso per un edificio residenziale con 12 appartamenti."
+      },
+      "project4": {
+        "title": "Hotel ad Abbazia",
+        "description": "Sistema da 75kW per un hotel con elevato consumo energetico."
+      }
+    },
+    "projectPage": {
+      "title": "Impianto Solare Parenzo",
+      "description": "Centrale solare da 50kW per uso commerciale",
+      "residential": {
+        "title": "Casa Familiare a Parenzo",
+        "description": "Sistema da 10kW con accumulo batterie per una casa familiare"
+      },
+      "commercial": {
+        "title": "Complesso Aziendale Zagabria",
+        "description": "Sistema commerciale da 85kW per edifici per uffici"
+      },
+      "hotel": {
+        "title": "Resort a Ragusa",
+        "description": "Sistema da 120kW per un resort di lusso con 200 camere"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "Scuola a Pola",
+        "description": "Sistema da 25kW per un istituto educativo"
+      },
+      "sportsCenter": {
+        "title": "Centro Sportivo",
+        "description": "Sistema da 40kW per un complesso sportivo"
+      },
+      "shoppingCenter": {
+        "title": "Centro Commerciale",
+        "description": "Sistema da 120kW per un centro commerciale"
+      },
+      "winery": {
+        "title": "Cantina a Montona",
+        "description": "Sistema da 35kW per una cantina vinicola"
+      },
+      "warehouse": {
+        "title": "Magazzino a Fiume",
+        "description": "Sistema da 90kW per una struttura di stoccaggio"
+      },
+      "officeBuilding": {
+        "title": "Edificio per Uffici",
+        "description": "Sistema da 45kW per un edificio aziendale"
+      },
+      "marina": {
+        "title": "Marina a Umago",
+        "description": "Sistema da 60kW per una marina"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "Chi siamo",
+      "services": "I nostri servizi",
+      "projects": "Progetti"
+    },
+    "contact": {
+      "owner": "Proprietario | Solar Fusion",
+      "workingHours": "Orario di lavoro: 8-16h",
+      "designed": "Progettato da"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }

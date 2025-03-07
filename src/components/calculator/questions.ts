@@ -4,32 +4,32 @@ import type { TFunction } from 'i18next';
 export const getQuestions = (t: TFunction): Question[] => [
   {
     type: 'welcome',
-    title: 'Zatražite Ponudu',
-    description: 'Saznajte koliko možete uštedjeti uz solarnu energiju! Ispunite kratki upitnik i primite personaliziranu ponudu prilagođenu vašim potrebama.'
+    title: t('calculator.welcome.title'),
+    description: t('calculator.welcome.description')
   },
   {
     type: 'choice',
-    title: 'Koju vrstu objekta planirate opremiti?',
+    title: t('calculator.questions.propertyType.title'),
     field: 'propertyType',
     options: [
-      { value: 'residential', label: 'Stambeni objekt' },
-      { value: 'commercial', label: 'Poslovni objekt' },
-      { value: 'industrial', label: 'Industrijski objekt' }
+      { value: 'residential', label: t('calculator.questions.propertyType.options.residential') },
+      { value: 'commercial', label: t('calculator.questions.propertyType.options.commercial') },
+      { value: 'industrial', label: t('calculator.questions.propertyType.options.industrial') }
     ]
   },
   {
     type: 'choice',
-    title: 'Odaberite vrstu priključka',
+    title: t('calculator.questions.connectionPhase.title'),
     field: 'connectionPhase',
     options: [
-      { value: 'single', label: 'Jednofazni' },
-      { value: 'three', label: 'Trofazni' }
+      { value: 'single', label: t('calculator.questions.connectionPhase.options.single') },
+      { value: 'three', label: t('calculator.questions.connectionPhase.options.three') }
     ]
   },
   {
     type: 'number',
-    title: 'Kolika je vaša mjesečna potrošnja u kWh?',
-    description: 'Ovaj podatak možete pronaći na vašem računu za struju',
+    title: t('calculator.questions.monthlyConsumption.title'),
+    description: t('calculator.questions.monthlyConsumption.description'),
     field: 'monthlyConsumption',
     min: 100,
     max: 10000,
@@ -37,7 +37,7 @@ export const getQuestions = (t: TFunction): Question[] => [
   },
   {
     type: 'number',
-    title: 'Koju snagu solarnog sustava želite?',
+    title: t('calculator.questions.powerOutput.title'),
     field: 'powerOutput',
     min: 3,
     max: 100,
@@ -45,22 +45,22 @@ export const getQuestions = (t: TFunction): Question[] => [
   },
   {
     type: 'choice',
-    title: 'Kakav krov imate?',
+    title: t('calculator.questions.roofType.title'),
     field: 'roofType',
     options: [
-      { value: 'flat', label: 'Ravni krov' },
-      { value: 'sloped', label: 'Kosi krov' },
-      { value: 'mixed', label: 'Kombinirani krov' }
+      { value: 'flat', label: t('calculator.questions.roofType.options.flat') },
+      { value: 'sloped', label: t('calculator.questions.roofType.options.sloped') },
+      { value: 'mixed', label: t('calculator.questions.roofType.options.mixed') }
     ]
   },
   {
     type: 'contact',
-    title: 'Još samo malo!',
-    description: 'Molimo unesite vaše kontakt podatke kako biste dobili personaliziranu ponudu za solarni sustav.'
+    title: t('calculator.contact.title'),
+    description: t('calculator.contact.description')
   },
   {
     type: 'thanks',
-    title: 'Hvala Vam!',
-    description: 'Zaprimili smo vaše podatke i uskoro ćemo vas kontaktirati s detaljnom ponudom za vaš solarni sustav.'
+    title: t('calculator.thanks.title'),
+    description: t('calculator.thanks.description')
   }
 ];

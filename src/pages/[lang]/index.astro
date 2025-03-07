@@ -1,58 +1,71 @@
 ---
-import { t } from 'i18next';
-import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
-import Features from '../../components/Features.astro';
-import Stats from '../../components/Stats.astro';
-import Parallax from '../../components/Parallax.astro';
-import Process from '../../components/Process.astro';
-import BuildingTypes from '../../components/BuildingTypes.astro';
-import InteractiveForm from '../../components/calculator/InteractiveForm';
+import { t as tFunc } from "i18next";
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Features from "../../components/Features.astro";
+import Stats from "../../components/Stats.astro";
+import Parallax from "../../components/Parallax.astro";
+import Process from "../../components/Process.astro";
+import BuildingTypes from "../../components/BuildingTypes.astro";
+import InteractiveForm from "../../components/calculator/InteractiveForm";
+import I18nProvider from "../../components/calculator/I18nProvider";
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'hr' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'sl' } },
-    { params: { lang: 'de' } },
-    { params: { lang: 'it' } },
-    { params: { lang: 'hu' } }
-  ];
+    return [
+        { params: { lang: "hr" } },
+        { params: { lang: "en" } },
+        { params: { lang: "sl" } },
+        { params: { lang: "de" } },
+        { params: { lang: "it" } },
+        { params: { lang: "hu" } },
+    ];
 }
 
 const { lang } = Astro.params;
 
-// Get translated title based on language
-const titles = {
-  hr: 'Solar Fusion | Vaš partner za solarnu budućnost',
-  en: 'Solar Fusion | Your partner for solar future',
-  sl: 'Solar Fusion | Vaš partner za sončno prihodnost',
-  de: 'Solar Fusion | Ihr Partner für Solarenergie',
-  it: 'Solar Fusion | Il tuo partner per il futuro solare',
-  hu: 'Solar Fusion | Az Ön partnere a napelemes jövőhöz'
+interface LanguageMap {
+    hr: string;
+    en: string;
+    sl: string;
+    de: string;
+    it: string;
+    hu: string;
+    [key: string]: string;
+}
+
+const titles: LanguageMap = {
+    hr: "Solar Fusion | Vaš partner za solarnu budućnost",
+    en: "Solar Fusion | Your partner for solar future",
+    sl: "Solar Fusion | Vaš partner za sončno prihodnost",
+    de: "Solar Fusion | Ihr Partner für Solarenergie",
+    it: "Solar Fusion | Il tuo partner per il futuro solare",
+    hu: "Solar Fusion | Az Ön partnere a napelemes jövőhöz",
 };
 
-const descriptions = {
-  hr: 'Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.',
-  en: 'Solar Fusion - Leading provider of solar energy solutions. Installation of solar panels, batteries, and inverters for your home or business.',
-  sl: 'Solar Fusion - Vodilni ponudnik solarnih energetskih rešitev. Namestitev solarnih panelov, baterij in pretvornikov za vaš dom ali podjetje.',
-  de: 'Solar Fusion - Führender Anbieter von Solarenergielösungen. Installation von Solarmodulen, Batterien und Wechselrichtern für Ihr Zuhause oder Unternehmen.',
-  it: 'Solar Fusion - Fornitore leader di soluzioni di energia solare. Installazione di pannelli solari, batterie e inverter per la tua casa o attività.',
-  hu: 'Solar Fusion - Vezető napenergia-megoldások szolgáltatója. Napelemek, akkumulátorok és inverterek telepítése otthonába vagy vállalkozásába.'
+const descriptions: LanguageMap = {
+    hr: "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
+    en: "Solar Fusion - Leading provider of solar energy solutions. Installation of solar panels, batteries, and inverters for your home or business.",
+    sl: "Solar Fusion - Vodilni ponudnik solarnih energetskih rešitev. Namestitev solarnih panelov, baterij in pretvornikov za vaš dom ali podjetje.",
+    de: "Solar Fusion - Führender Anbieter von Solarenergielösungen. Installation von Solarmodulen, Batterien und Wechselrichtern für Ihr Zuhause oder Unternehmen.",
+    it: "Solar Fusion - Fornitore leader di soluzioni di energia solare. Installazione di pannelli solari, batterie e inverter per la tua casa o attività.",
+    hu: "Solar Fusion - Vezető napenergia-megoldások szolgáltatója. Napelemek, akkumulátorok és inverterek telepítése otthonába vagy vállalkozásába.",
 };
 
-const title = titles[lang] || titles.hr;
-const description = descriptions[lang] || descriptions.hr;
+const title = titles[lang as keyof typeof titles] || titles.hr;
+const description =
+    descriptions[lang as keyof typeof descriptions] || descriptions.hr;
 ---
 
 <Layout title={title} description={description}>
-  <main>
-    <Hero />
-    <Features />
-    <Stats />
-    <InteractiveForm client:only="react" />
-    <Parallax />
-    <BuildingTypes />
-    <Process />
-  </main>
+    <main>
+        <Hero />
+        <Features />
+        <Stats />
+        <I18nProvider client:only="react" lang={lang}>
+            <InteractiveForm client:only="react" lang={lang} />
+        </I18nProvider>
+        <Parallax />
+        <BuildingTypes />
+        <Process />
+    </main>
 </Layout>

@@ -38,19 +38,19 @@
   "services": {
     "project1": {
       "title": "SOLAR PANELS",
-      "description": "Premium solar panels with the highest efficiency in the market. Designed for maximum energy production and longevity."
+      "description": "Solar panels are devices that convert solar energy into electricity using photovoltaic cells, enabling the use of free and renewable energy. Besides reducing electricity bills and increasing energy independence, solar systems are cost-effective in the long term and environmentally friendly as they don't emit harmful emissions. Their lifespan is 25-30 years, making them a smart investment in a sustainable future."
     },
     "project2": {
       "title": "SOLAR ENERGY INSTALLATION",
-      "description": "Professional installation by certified experts. Quick and efficient installation with minimal disruption."
+      "description": "Our team of experienced professionals ensures professional and precise installation of solar panels, based on years of experience. We guarantee quick and efficient installation with minimal disruption, so you can start enjoying the benefits of solar energy as soon as possible."
     },
     "project3": {
       "title": "PANEL SERVICE",
-      "description": "Regular maintenance and service for optimal performance of your solar system. Extend lifespan and maintain maximum efficiency."
+      "description": "We provide regular maintenance and servicing of solar systems to ensure long-lasting and flawless operation. Regular care and cleaning of panels are key to maximum efficiency and a longer lifespan of your system, ensuring stable and reliable energy production."
     },
     "project4": {
       "title": "CUSTOMIZED FOR YOUR ROOF",
-      "description": "Tailored solutions for every roof type. Optimal positioning for maximum energy production."
+      "description": "We offer customized solar solutions for every type of roof, ensuring maximum efficiency and energy savings. Regardless of the size or position of your roof, we carefully optimize panel positioning to help you achieve the highest possible electricity production."
     }
   },
   "common": {
@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Back",
       "next": "Next →"
+    },
+    "errorMessage": "An error occurred. Please try again."
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Success Stories",
+    "viewAll": "View All Projects",
+    "details": {
+      "power": "Power",
+      "panels": "Panels",
+      "savings": "Savings",
+      "completed": "Completed",
+      "yearlyOutput": "Yearly Output"
+    },
+    "heroHeading": {
+      "first": "Our",
+      "second": "Successful Projects"
+    },
+    "heroDescription": "Explore our collection of successfully completed solar projects across the country. Each project is a story of sustainable future and energy independence.",
+    "stats": {
+      "projects": "Successful Projects",
+      "totalPower": "Total kW",
+      "co2Savings": "Tons of CO₂ Annual Savings"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Family House in Porec",
+        "description": "Installation of a 10kW solar system with a battery storage system."
+      },
+      "project2": {
+        "title": "Industrial Building in Pazin",
+        "description": "Commercial solar power plant with 50kW for electricity production."
+      },
+      "project3": {
+        "title": "Apartment Building in Rijeka",
+        "description": "Shared solar system for a residential building with 12 apartments."
+      },
+      "project4": {
+        "title": "Hotel in Opatija",
+        "description": "Large-scale 75kW system for a hotel with high energy consumption."
+      }
+    },
+    "projectPage": {
+      "title": "Solar Farm Porec",
+      "description": "50kW solar power plant for commercial use",
+      "residential": {
+        "title": "Family House in Porec",
+        "description": "10kW system with battery storage for a family home"
+      },
+      "commercial": {
+        "title": "Business Complex Zagreb",
+        "description": "85kW commercial system for office buildings"
+      },
+      "hotel": {
+        "title": "Resort in Dubrovnik",
+        "description": "120kW system for a luxury resort with 200 rooms"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "School in Pula",
+        "description": "25kW system for an educational institution"
+      },
+      "sportsCenter": {
+        "title": "Sports Center",
+        "description": "40kW system for a sports complex"
+      },
+      "shoppingCenter": {
+        "title": "Shopping Center",
+        "description": "120kW system for a shopping mall"
+      },
+      "winery": {
+        "title": "Winery in Motovun",
+        "description": "35kW system for a winery"
+      },
+      "warehouse": {
+        "title": "Warehouse in Rijeka",
+        "description": "90kW system for a storage facility"
+      },
+      "officeBuilding": {
+        "title": "Office Building",
+        "description": "45kW system for a business building"
+      },
+      "marina": {
+        "title": "Marina in Umag",
+        "description": "60kW system for a marina"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "About Us",
+      "services": "Our Services",
+      "projects": "Projects"
+    },
+    "contact": {
+      "owner": "Owner | Solar Fusion",
+      "workingHours": "Working hours: 8-16h",
+      "designed": "Designed by"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }

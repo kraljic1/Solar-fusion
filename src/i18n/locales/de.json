@@ -38,19 +38,19 @@
   "services": {
     "project1": {
       "title": "SOLARMODULE",
-      "description": "Premium-Solarmodule mit höchster Effizienz am Markt. Entwickelt für maximale Energieproduktion und Langlebigkeit."
+      "description": "Solarmodule sind Geräte, die Sonnenenergie mithilfe von Photovoltaikzellen in elektrische Energie umwandeln und so die Nutzung von kostenloser und erneuerbarer Energie ermöglichen. Neben der Senkung der Stromrechnungen und der Erhöhung der Energieunabhängigkeit sind Solarsysteme langfristig kostengünstig und umweltfreundlich, da sie keine schädlichen Emissionen ausstoßen. Ihre Lebensdauer beträgt 25-30 Jahre, was sie zu einer klugen Investition in eine nachhaltige Zukunft macht."
     },
     "project2": {
       "title": "SOLARENERGIE-INSTALLATION",
-      "description": "Professionelle Installation durch zertifizierte Experten. Schnelle und effiziente Installation mit minimaler Störung."
+      "description": "Unser Team erfahrener Fachleute sorgt für eine professionelle und präzise Installation von Solarmodulen, basierend auf langjähriger Erfahrung. Wir garantieren eine schnelle und effiziente Installation mit minimalen Störungen, damit Sie so schnell wie möglich von den Vorteilen der Solarenergie profitieren können."
     },
     "project3": {
       "title": "MODULWARTUNG",
-      "description": "Regelmäßige Wartung und Service für optimale Leistung Ihrer Solaranlage. Verlängern Sie die Lebensdauer und erhalten Sie maximale Effizienz."
+      "description": "Wir bieten regelmäßige Wartung und Service für Solarsysteme, um einen langlebigen und einwandfreien Betrieb zu gewährleisten. Regelmäßige Pflege und Reinigung der Module sind der Schlüssel für maximale Effizienz und eine längere Lebensdauer Ihres Systems, was Ihnen eine stabile und zuverlässige Energieproduktion sichert."
     },
     "project4": {
       "title": "MASSGESCHNEIDERT FÜR IHR DACH",
-      "description": "Maßgeschneiderte Lösungen für jeden Dachtyp. Optimale Positionierung für maximale Energieproduktion."
+      "description": "Wir bieten maßgeschneiderte Solarlösungen für jeden Dachtyp und gewährleisten maximale Effizienz und Energieeinsparungen. Unabhängig von Größe oder Lage Ihres Daches optimieren wir sorgfältig die Platzierung der Module, damit Sie die höchstmögliche Stromproduktion erzielen können."
     }
   },
   "common": {
@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Zurück",
       "next": "Weiter →"
+    },
+    "errorMessage": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "projects": {
+    "title": "Unsere Projekte",
+    "subtitle": "Erfolgsgeschichten",
+    "viewAll": "Alle Projekte anzeigen",
+    "details": {
+      "power": "Leistung",
+      "panels": "Module",
+      "savings": "Einsparung",
+      "completed": "Fertiggestellt",
+      "yearlyOutput": "Jährliche Produktion"
+    },
+    "heroHeading": {
+      "first": "Unsere",
+      "second": "Erfolgreichen Projekte"
+    },
+    "heroDescription": "Sehen Sie sich unsere Sammlung erfolgreich realisierter Solarprojekte in ganz Kroatien an. Jedes Projekt ist eine Geschichte über nachhaltige Zukunft und Energieunabhängigkeit.",
+    "stats": {
+      "projects": "Erfolgreiche Projekte",
+      "totalPower": "Gesamtleistung in kW",
+      "co2Savings": "Tonnen CO₂-Einsparung pro Jahr"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Einfamilienhaus in Poreč",
+        "description": "Installation eines 10kW-Solarsystems mit Batteriespeichersystem."
+      },
+      "project2": {
+        "title": "Industriegebäude in Pazin",
+        "description": "Kommerzielle Solaranlage mit 50kW zur Stromerzeugung."
+      },
+      "project3": {
+        "title": "Mehrfamilienhaus in Rijeka",
+        "description": "Gemeinsames Solarsystem für ein Wohngebäude mit 12 Wohnungen."
+      },
+      "project4": {
+        "title": "Hotel in Opatija",
+        "description": "Großes 75kW-System für ein Hotel mit hohem Energieverbrauch."
+      }
+    },
+    "projectPage": {
+      "title": "Solarpark Poreč",
+      "description": "50kW-Solaranlage für kommerzielle Nutzung",
+      "residential": {
+        "title": "Einfamilienhaus in Poreč",
+        "description": "10kW-System mit Batteriespeicher für ein Wohnhaus"
+      },
+      "commercial": {
+        "title": "Geschäftskomplex Zagreb",
+        "description": "85kW-Gewerbesystem für Bürogebäude"
+      },
+      "hotel": {
+        "title": "Resort in Dubrovnik",
+        "description": "120kW-System für ein Luxusresort mit 200 Zimmern"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "Schule in Pula",
+        "description": "25kW-System für eine Bildungseinrichtung"
+      },
+      "sportsCenter": {
+        "title": "Sportzentrum",
+        "description": "40kW-System für einen Sportkomplex"
+      },
+      "shoppingCenter": {
+        "title": "Einkaufszentrum",
+        "description": "120kW-System für ein Einkaufszentrum"
+      },
+      "winery": {
+        "title": "Weingut in Motovun",
+        "description": "35kW-System für ein Weingut"
+      },
+      "warehouse": {
+        "title": "Lagerhaus in Rijeka",
+        "description": "90kW-System für eine Lagereinrichtung"
+      },
+      "officeBuilding": {
+        "title": "Bürogebäude",
+        "description": "45kW-System für ein Geschäftsgebäude"
+      },
+      "marina": {
+        "title": "Marina in Umag",
+        "description": "60kW-System für eine Marina"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "Über uns",
+      "services": "Unsere Leistungen",
+      "projects": "Projekte"
+    },
+    "contact": {
+      "owner": "Inhaber | Solar Fusion",
+      "workingHours": "Öffnungszeiten: 8-16 Uhr",
+      "designed": "Gestaltet von"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }

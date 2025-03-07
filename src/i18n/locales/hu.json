@@ -38,19 +38,19 @@
   "services": {
     "project1": {
       "title": "NAPELEMEK",
-      "description": "Prémium napelemek a piacon elérhető legmagasabb hatékonysággal. Maximális energiatermelésre és hosszú élettartamra tervezve."
+      "description": "A napelemek olyan eszközök, amelyek a napenergiát fotovoltaikus cellák segítségével elektromos energiává alakítják, lehetővé téve az ingyenes és megújuló energia használatát. Amellett, hogy csökkentik a villanyszámlákat és növelik az energetikai függetlenséget, a napelemes rendszerek hosszú távon költséghatékonyak és környezetbarátak, mivel nem bocsátanak ki káros anyagokat. Élettartamuk 25-30 év, ami okos befektetéssé teszi őket egy fenntartható jövő érdekében."
     },
     "project2": {
       "title": "NAPENERGIA TELEPÍTÉS",
-      "description": "Professzionális telepítés minősített szakértőktől. Gyors és hatékony telepítés minimális zavarással."
+      "description": "Tapasztalt szakemberekből álló csapatunk biztosítja a napelemek professzionális és precíz telepítését, amely sokéves tapasztalaton alapul. Gyors és hatékony telepítést garantálunk minimális zavarással, hogy minél hamarabb élvezhesse a napenergia előnyeit."
     },
     "project3": {
       "title": "PANEL SZERVIZ",
-      "description": "Rendszeres karbantartás és szerviz a napelemes rendszer optimális teljesítményéért. Hosszabbítsa meg élettartamát és tartsa fenn a maximális hatékonyságot."
+      "description": "Rendszeres karbantartást és szervizt biztosítunk a napelemes rendszerekhez, hogy hosszú élettartamú és hibátlan működést biztosítsunk. A panelek rendszeres gondozása és tisztítása kulcsfontosságú a maximális hatékonyság és a rendszer hosszabb élettartama érdekében, biztosítva a stabil és megbízható energiatermelést."
     },
     "project4": {
       "title": "TETŐRE SZABVA",
-      "description": "Személyre szabott megoldások minden tetőtípushoz. Optimális elhelyezés a maximális energiatermelés érdekében."
+      "description": "Minden tetőtípushoz egyedi napelemes megoldásokat kínálunk, maximális hatékonyságot és energiamegtakarítást biztosítva. Függetlenül a tető méretétől vagy elhelyezkedésétől, gondosan optimalizáljuk a panelek elhelyezését, hogy segítsünk elérni a lehető legnagyobb villamosenergia-termelést."
     }
   },
   "common": {
@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Vissza",
       "next": "Tovább →"
+    },
+    "errorMessage": "Hiba történt. Kérjük, próbálja újra."
+  },
+  "projects": {
+    "title": "Projektjeink",
+    "subtitle": "Sikertörténetek",
+    "viewAll": "Összes Projekt Megtekintése",
+    "details": {
+      "power": "Teljesítmény",
+      "panels": "Panelek",
+      "savings": "Megtakarítás",
+      "completed": "Befejezve",
+      "yearlyOutput": "Éves Termelés"
+    },
+    "heroHeading": {
+      "first": "Sikeres",
+      "second": "Projektjeink"
+    },
+    "heroDescription": "Fedezze fel sikeresen megvalósított napelemes projektjeink gyűjteményét egész Horvátországban. Minden projekt egy történet a fenntartható jövőről és az energetikai függetlenségről.",
+    "stats": {
+      "projects": "Sikeres Projektek",
+      "totalPower": "Összes kW",
+      "co2Savings": "Tonna CO₂ Éves Megtakarítás"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Családi ház Porecben",
+        "description": "10kW-os napelemes rendszer telepítése akkumulátoros tárolórendszerrel."
+      },
+      "project2": {
+        "title": "Ipari épület Pazinban",
+        "description": "50kW-os kereskedelmi napenergia-erőmű villamosenergia-termelésre."
+      },
+      "project3": {
+        "title": "Társasház Rijekában",
+        "description": "Közös napelemes rendszer egy 12 lakásos lakóépülethez."
+      },
+      "project4": {
+        "title": "Hotel Opatijában",
+        "description": "75kW-os rendszer magas energiafogyasztású szálloda számára."
+      }
+    },
+    "projectPage": {
+      "title": "Napenergia Telep Porec",
+      "description": "50kW-os napenergia-erőmű kereskedelmi használatra",
+      "residential": {
+        "title": "Családi ház Porecben",
+        "description": "10kW-os rendszer akkumulátoros tárolóval családi házhoz"
+      },
+      "commercial": {
+        "title": "Üzleti Komplexum Zágrábban",
+        "description": "85kW-os kereskedelmi rendszer irodaépületek számára"
+      },
+      "hotel": {
+        "title": "Üdülő Dubrovnikban",
+        "description": "120kW-os rendszer 200 szobás luxus üdülőhöz"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "Iskola Pulában",
+        "description": "25kW-os rendszer oktatási intézmény számára"
+      },
+      "sportsCenter": {
+        "title": "Sportközpont",
+        "description": "40kW-os rendszer sportlétesítményhez"
+      },
+      "shoppingCenter": {
+        "title": "Bevásárlóközpont",
+        "description": "120kW-os rendszer bevásárlóközpont számára"
+      },
+      "winery": {
+        "title": "Borászat Motovunban",
+        "description": "35kW-os rendszer borászat számára"
+      },
+      "warehouse": {
+        "title": "Raktár Rijekában",
+        "description": "90kW-os rendszer raktárépülethez"
+      },
+      "officeBuilding": {
+        "title": "Irodaház",
+        "description": "45kW-os rendszer irodaépület számára"
+      },
+      "marina": {
+        "title": "Marina Umagban",
+        "description": "60kW-os rendszer kikötő számára"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "Rólunk",
+      "services": "Szolgáltatásaink",
+      "projects": "Projektek"
+    },
+    "contact": {
+      "owner": "Tulajdonos | Solar Fusion",
+      "workingHours": "Nyitvatartás: 8-16h",
+      "designed": "Tervezte"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }

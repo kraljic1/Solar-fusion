@@ -38,19 +38,19 @@
   "services": {
     "project1": {
       "title": "SONČNI PANELI",
-      "description": "Premium sončni paneli z najvišjo učinkovitostjo na trgu. Zasnovani za maksimalno proizvodnjo energije in dolgotrajnost."
+      "description": "Sončni paneli so naprave, ki s pomočjo fotovoltaičnih celic pretvarjajo sončno energijo v električno, s čimer omogočajo uporabo brezplačne in obnovljive energije. Poleg zmanjšanja računov za elektriko in povečanja energetske neodvisnosti so solarni sistemi dolgoročno stroškovno učinkoviti in okolju prijazni, saj ne oddajajo škodljivih emisij. Njihova življenjska doba je 25-30 let, kar jih naredi pametno naložbo v trajnostno prihodnost."
     },
     "project2": {
       "title": "NAMESTITEV SONČNE ENERGIJE",
-      "description": "Profesionalna namestitev s strani certificiranih strokovnjakov. Hitra in učinkovita namestitev z minimalnimi motnjami."
+      "description": "Naša ekipa izkušenih strokovnjakov zagotavlja profesionalno in natančno namestitev sončnih panelov, ki temelji na večletnih izkušnjah. Zagotavljamo hitro in učinkovito namestitev z minimalnimi motnjami, da lahko čim prej začnete uživati v prednostih sončne energije."
     },
     "project3": {
       "title": "SERVIS PANELOV",
-      "description": "Redno vzdrževanje in servis za optimalno delovanje vašega sončnega sistema. Podaljšajte življenjsko dobo in ohranite maksimalno učinkovitost."
+      "description": "Zagotavljamo redno vzdrževanje in servisiranje solarnih sistemov za dolgoročno in brezhibno delovanje. Redna nega in čiščenje panelov sta ključna za največjo učinkovitost in daljšo življenjsko dobo vašega sistema, kar vam zagotavlja stabilno in zanesljivo proizvodnjo energije."
     },
     "project4": {
       "title": "PO MERI VAŠE STREHE",
-      "description": "Prilagojene rešitve za vsak tip strehe. Optimalna postavitev za maksimalno proizvodnjo energije."
+      "description": "Ponujamo prilagojene solarne rešitve za vsak tip strehe, ki zagotavljajo največjo učinkovitost in prihranek energije. Ne glede na velikost ali položaj vaše strehe skrbno optimiziramo postavitev panelov, da dosežete najvišjo možno proizvodnjo električne energije."
     }
   },
   "common": {
@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Nazaj",
       "next": "Naprej →"
+    },
+    "errorMessage": "Prišlo je do napake. Prosimo, poskusite znova."
+  },
+  "projects": {
+    "title": "Naši Projekti",
+    "subtitle": "Uspešne Zgodbe",
+    "viewAll": "Oglejte si vse projekte",
+    "details": {
+      "power": "Moč",
+      "panels": "Paneli",
+      "savings": "Prihranek",
+      "completed": "Zaključeno",
+      "yearlyOutput": "Letna Proizvodnja"
+    },
+    "heroHeading": {
+      "first": "Naši",
+      "second": "Uspešni Projekti"
+    },
+    "heroDescription": "Oglejte si našo zbirko uspešno izvedenih solarnih projektov po vsej Sloveniji. Vsak projekt je zgodba o trajnostni prihodnosti in energetski neodvisnosti.",
+    "stats": {
+      "projects": "Uspešnih Projektov",
+      "totalPower": "Skupaj kW",
+      "co2Savings": "Ton CO₂ Letnih Prihrankov"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Družinska hiša v Piranu",
+        "description": "Namestitev solarnega sistema z močjo 10 kW s sistemom za shranjevanje baterij."
+      },
+      "project2": {
+        "title": "Industrijski objekt Koper",
+        "description": "Komercialna solarna elektrarna z močjo 50 kW za proizvodnjo električne energije."
+      },
+      "project3": {
+        "title": "Stanovanjski blok Ljubljana",
+        "description": "Skupni solarni sistem za stanovanjsko stavbo z 12 stanovanji."
+      },
+      "project4": {
+        "title": "Hotel Bled",
+        "description": "Sistem z močjo 75 kW za hotel z veliko porabo energije."
+      }
+    },
+    "projectPage": {
+      "title": "Solarna Farma Piran",
+      "description": "50 kW solarna elektrarna za komercialno uporabo",
+      "residential": {
+        "title": "Družinska hiša v Piranu",
+        "description": "10 kW sistem s hranilnikom baterij za družinsko hišo"
+      },
+      "commercial": {
+        "title": "Poslovni kompleks Ljubljana",
+        "description": "85 kW komercialni sistem za poslovne stavbe"
+      },
+      "hotel": {
+        "title": "Resort na Obali",
+        "description": "120 kW sistem za luksuzni resort z 200 sobami"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "Šola v Mariboru",
+        "description": "25 kW sistem za izobraževalno ustanovo"
+      },
+      "sportsCenter": {
+        "title": "Športni Center",
+        "description": "40 kW sistem za športni kompleks"
+      },
+      "shoppingCenter": {
+        "title": "Nakupovalni Center",
+        "description": "120 kW sistem za nakupovalno središče"
+      },
+      "winery": {
+        "title": "Vinska klet v Jeruzalemu",
+        "description": "35 kW sistem za vinsko klet"
+      },
+      "warehouse": {
+        "title": "Skladišče Koper",
+        "description": "90 kW sistem za skladiščni prostor"
+      },
+      "officeBuilding": {
+        "title": "Poslovna Stavba",
+        "description": "45 kW sistem za poslovno stavbo"
+      },
+      "marina": {
+        "title": "Marina Portorož",
+        "description": "60 kW sistem za marino"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "O nas",
+      "services": "Naše storitve",
+      "projects": "Projekti"
+    },
+    "contact": {
+      "owner": "Lastnik | Solar Fusion",
+      "workingHours": "Delovni čas: 8-16h",
+      "designed": "Oblikoval"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }

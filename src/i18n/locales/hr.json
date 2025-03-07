@@ -115,6 +115,110 @@
     "navigation": {
       "back": "← Natrag",
       "next": "Dalje →"
+    },
+    "errorMessage": "Došlo je do greške. Molimo pokušajte ponovno."
+  },
+  "projects": {
+    "title": "Naši Projekti",
+    "subtitle": "Uspješne Priče",
+    "viewAll": "Pogledajte Sve Projekte",
+    "details": {
+      "power": "Snaga",
+      "panels": "Paneli",
+      "savings": "Uštede",
+      "completed": "Završeno",
+      "yearlyOutput": "Godišnja Proizvodnja"
+    },
+    "heroHeading": {
+      "first": "Naši",
+      "second": "Uspješni Projekti"
+    },
+    "heroDescription": "Pogledajte našu kolekciju uspješno realiziranih solarnih projekata diljem Hrvatske. Svaki projekt je priča o održivoj budućnosti i energetskoj neovisnosti.",
+    "stats": {
+      "projects": "Uspješnih Projekata",
+      "totalPower": "Ukupno kW",
+      "co2Savings": "Tona CO₂ Godišnje Uštede"
+    },
+    "gallery": {
+      "project1": {
+        "title": "Obiteljska kuća u Poreču",
+        "description": "Instalacija solarnog sustava od 10kW s baterijskim sustavom za pohranu."
+      },
+      "project2": {
+        "title": "Industrijska zgrada u Pazinu",
+        "description": "Komercijalna solarna elektrana od 50kW za proizvodnju električne energije."
+      },
+      "project3": {
+        "title": "Stambena zgrada u Rijeci",
+        "description": "Zajednički solarni sustav za stambenu zgradu s 12 stanova."
+      },
+      "project4": {
+        "title": "Hotel u Opatiji",
+        "description": "Veliki sustav od 75kW za hotel s velikom potrošnjom energije."
+      }
+    },
+    "projectPage": {
+      "title": "Solarna farma Poreč",
+      "description": "50kW solarna elektrana za komercijalnu upotrebu",
+      "residential": {
+        "title": "Obiteljska kuća u Poreču",
+        "description": "10kW sustav s baterijskim skladištem za obiteljsku kuću"
+      },
+      "commercial": {
+        "title": "Poslovni kompleks Zagreb",
+        "description": "85kW komercijalni sustav za poslovne zgrade"
+      },
+      "hotel": {
+        "title": "Resort u Dubrovniku",
+        "description": "120kW sustav za luksuzni resort s 200 soba"
+      }
+    },
+    "additionalProjects": {
+      "school": {
+        "title": "Škola u Puli",
+        "description": "25kW sustav za obrazovnu ustanovu"
+      },
+      "sportsCenter": {
+        "title": "Sportski Centar",
+        "description": "40kW sustav za sportski kompleks"
+      },
+      "shoppingCenter": {
+        "title": "Trgovački Centar",
+        "description": "120kW sustav za trgovački centar"
+      },
+      "winery": {
+        "title": "Vinarija Motovun",
+        "description": "35kW sustav za vinariju"
+      },
+      "warehouse": {
+        "title": "Skladište Rijeka",
+        "description": "90kW sustav za skladišni prostor"
+      },
+      "officeBuilding": {
+        "title": "Uredska Zgrada",
+        "description": "45kW sustav za poslovnu zgradu"
+      },
+      "marina": {
+        "title": "Marina Umag",
+        "description": "60kW sustav za marinu"
+      }
+    }
+  },
+  "footer": {
+    "navigation": {
+      "about": "O nama",
+      "services": "Naše usluge",
+      "projects": "Projekti"
+    },
+    "contact": {
+      "owner": "Vlasnik | Solar Fusion",
+      "workingHours": "Radno vrijeme: 8-16h",
+      "designed": "Dizajn"
+    },
+    "company": {
+      "name": "Solar Fusion d.o.o.",
+      "registration": "OIB: 13425230760",
+      "address": "Ladrovići 13 | 52440 Poreč"
     }
   }
 }
