@@ -39,21 +39,74 @@ const fullTitle = title.includes("Solar Fusion")
         <meta property="og:description" content={description} />
         <title>{fullTitle}</title>
 
+        <!-- Performance optimization script -->
+        <script is:inline>
+            // Set high-priority hints for LCP elements
+            if ("connection" in navigator) {
+                if (navigator.connection.saveData === true) {
+                    // Respect data-saving settings
+                    console.log("Using save-data mode");
+                } else {
+                    // Enhanced loading for normal connections
+                    document.documentElement.classList.add("js-focus-visible");
+                }
+            }
+
+            // Add preload observer for viewport images
+            document.addEventListener("DOMContentLoaded", () => {
+                if ("IntersectionObserver" in window) {
+                    const intersectionObserver = new IntersectionObserver(
+                        (entries) => {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting) {
+                                    const image = entry.target;
+                                    if (image.dataset.src) {
+                                        image.src = image.dataset.src;
+                                    }
+                                    intersectionObserver.unobserve(image);
+                                }
+                            });
+                        }
+                    );
+
+                    // Observe all images that have data-src attributes
+                    document
+                        .querySelectorAll("img[data-src]")
+                        .forEach((img) => {
+                            intersectionObserver.observe(img);
+                        });
+                } else {
+                    // Fallback for browsers without IntersectionObserver
+                    document
+                        .querySelectorAll("img[data-src]")
+                        .forEach((img) => {
+                            img.src = img.dataset.src;
+                        });
+                }
+            });
+        </script>
+
         <!-- Add View Transitions -->
         <ViewTransitions />
 
         <!-- Preconnect to external domains -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preconnect" href="https://assets.cdn.filesafe.space" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link
+            rel="preconnect"
+            href="https://assets.cdn.filesafe.space"
+            crossorigin
+        />
+        <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
         <!-- Preload critical assets -->
         <link
             rel="preload"
             href="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp"
             as="image"
+            type="image/webp"
             fetchpriority="high"
+            media="(min-width: 320px)"
         />
         <link
             rel="preload"
@@ -65,7 +118,12 @@ const fullTitle = title.includes("Solar Fusion")
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
+            crossorigin
         />
+
+        <!-- DNS Prefetch for external resources -->
+        <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
         <!-- Fallback for no-JS -->
         <noscript>
@@ -75,14 +133,6 @@ const fullTitle = title.includes("Solar Fusion")
                 type="text/css"
             />
         </noscript>
-
-        <!-- Preload critical images -->
-        <link
-            rel="preload"
-            as="image"
-            href="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp"
-            fetchpriority="high"
-        />
 
         <!-- Critical CSS -->
         <style is:inline>
@@ -159,6 +209,31 @@ const fullTitle = title.includes("Solar Fusion")
             /* Reduce layout shifts */
             [data-astro-cid] {
                 contain: layout style;
+            }
+
+            /* Text size optimization for mobile */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: clamp(2rem, 8vw, 3rem);
+                }
+                p {
+                    font-size: 1rem;
+                }
+                .text-secondary {
+                    font-display: swap;
+                    content-visibility: auto;
+                }
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+
+            /* Optimize LCP element */
+            .text-secondary {
+                font-display: swap;
+                transform: translateZ(0);
+                text-rendering: optimizeSpeed;
             }
 
             /* Modal styles */

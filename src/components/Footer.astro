@@ -19,7 +19,7 @@ const navigationLinks = [
 <footer id="footer" class="bg-gray-900 text-white py-6">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Navigation Links -->
-        <div class="flex justify-center space-x-4 mb-4">
+        <div class="flex justify-center space-x-2 mb-6">
             {
                 navigationLinks.map((link) => (
                     <a
@@ -28,7 +28,7 @@ const navigationLinks = [
                                 ? `/${lang}/${link.href}`
                                 : `/${lang}${link.href}`
                         }
-                        class="text-gray-300 hover:text-secondary transition-colors text-xs"
+                        class="text-gray-300 hover:text-secondary transition-colors text-sm px-4 py-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
                         data-nav-link={
                             link.href.startsWith("#") ? "section" : null
                         }>
@@ -55,12 +55,12 @@ const navigationLinks = [
                     {t("footer.contact.owner")}
                 </p>
 
-                <div class="space-y-1 mb-2">
+                <div class="space-y-4 mb-2">
                     <a
                         href="tel:+385997883851"
-                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-xs">
+                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-sm p-3 min-h-[44px] min-w-[44px]">
                         <svg
-                            class="w-3 h-3 mr-1"
+                            class="w-4 h-4 mr-2"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -75,9 +75,9 @@ const navigationLinks = [
                     </a>
                     <a
                         href="mailto:solarfusion789@gmail.com"
-                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-xs">
+                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-sm p-3 min-h-[44px] min-w-[44px]">
                         <svg
-                            class="w-3 h-3 mr-1"
+                            class="w-4 h-4 mr-2"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -94,9 +94,9 @@ const navigationLinks = [
                         href="https://www.facebook.com/profile.php?id=61556503869708"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-xs">
+                        class="flex items-center text-gray-300 hover:text-secondary transition-colors justify-center text-sm p-3 min-h-[44px] min-w-[44px]">
                         <svg
-                            class="w-3 h-3 mr-1"
+                            class="w-4 h-4 mr-2"
                             fill="currentColor"
                             viewBox="0 0 24 24">
                             <path
@@ -120,14 +120,14 @@ const navigationLinks = [
         </div>
 
         <div
-            class="border-t border-gray-800 mt-4 pt-2 text-center text-gray-400 text-[10px]">
+            class="border-t border-gray-800 mt-4 pt-4 text-center text-gray-400 text-xs">
             <p>
                 {t("footer.contact.designed")}
                 <a
                     href="https://codeandsail.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-secondary hover:text-secondary/80 transition-colors">
+                    class="text-secondary hover:text-secondary/80 transition-colors inline-block p-2 min-h-[44px] min-w-[44px]">
                     Code & Sail
                 </a>
             </p>

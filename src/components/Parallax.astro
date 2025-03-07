@@ -9,26 +9,38 @@ if (lang) {
     await i18next.changeLanguage(lang);
 }
 
+// Pre-render translations
+const parallaxTitle = tFunc("parallax.title");
+const parallaxDescription = tFunc("parallax.description");
+
 const services = [
     {
         title: tFunc("services.project1.title"),
         description: tFunc("services.project1.description"),
         image: "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2aaa22de3ab45eb9d0b31.png",
+        smallImage:
+            "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2aaa22de3ab45eb9d0b31.png?w=480",
     },
     {
         title: tFunc("services.project2.title"),
         description: tFunc("services.project2.description"),
         image: "https://cdn.pixabay.com/photo/2020/10/24/07/29/man-5680696_960_720.jpg",
+        smallImage:
+            "https://cdn.pixabay.com/photo/2020/10/24/07/29/man-5680696_480_360.jpg",
     },
     {
         title: tFunc("services.project3.title"),
         description: tFunc("services.project3.description"),
         image: "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
+        smallImage:
+            "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=60",
     },
     {
         title: tFunc("services.project4.title"),
         description: tFunc("services.project4.description"),
         image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
+        smallImage:
+            "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png?w=480",
     },
 ];
 ---
@@ -36,9 +48,23 @@ const services = [
 <section id="services" class="relative">
     <!-- Parallax Header Section -->
     <div class="relative h-[60vh] overflow-hidden">
-        <div
-            class="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"
-            style="background-image: url('https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png');">
+        <!-- Background container with image -->
+        <div class="absolute inset-0">
+            <picture>
+                <!-- Mobile-optimized image -->
+                <source
+                    media="(max-width: 768px)"
+                    srcset="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png?w=640"
+                />
+                <!-- Desktop image -->
+                <img
+                    src="https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674e160afd605f8a46bfa5c9.png"
+                    alt="Background"
+                    class="w-full h-full object-cover fixed-bg"
+                    aria-hidden="true"
+                    fetchpriority="low"
+                />
+            </picture>
         </div>
         <div
             class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80">
@@ -50,10 +76,10 @@ const services = [
                 <!-- Content -->
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                        {tFunc("parallax.title")}
+                        {parallaxTitle}
                     </h2>
                     <p class="text-xl text-gray-200 mb-8 leading-relaxed">
-                        {tFunc("parallax.description")}
+                        {parallaxDescription}
                     </p>
                 </div>
             </div>
@@ -69,15 +95,21 @@ const services = [
                         <div class="grid md:grid-cols-2 gap-12 items-center">
                             <div
                                 class={`relative ${index % 2 === 1 ? "md:order-2" : ""}`}>
-                                <img
-                                    src={service.image}
-                                    alt={service.title}
-                                    width="800"
-                                    height="600"
-                                    class="w-full h-auto rounded-lg shadow-xl cursor-zoom-in transition-transform hover:scale-[1.02] object-cover"
-                                    data-zoomable
-                                    loading="lazy"
-                                />
+                                <picture>
+                                    <source
+                                        media="(max-width: 768px)"
+                                        srcset={service.smallImage}
+                                    />
+                                    <img
+                                        src={service.image}
+                                        alt={service.title}
+                                        width="800"
+                                        height="600"
+                                        class="w-full h-auto rounded-lg shadow-xl cursor-zoom-in transition-transform hover:scale-[1.02] object-cover"
+                                        data-zoomable
+                                        loading={index <= 1 ? "eager" : "lazy"}
+                                    />
+                                </picture>
                             </div>
                             <div class={index % 2 === 1 ? "md:order-1" : ""}>
                                 <h3 class="text-3xl font-bold text-primary mb-4">
@@ -96,7 +128,23 @@ const services = [
 </section>
 
 <style>
-    .bg-fixed {
+    .fixed-bg {
         background-attachment: fixed;
+    }
+
+    @media (max-width: 768px) {
+        .fixed-bg {
+            /* Disable fixed background on mobile as it causes performance issues */
+            background-attachment: scroll;
+        }
+
+        h2 {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1rem;
+        }
     }
 </style>
