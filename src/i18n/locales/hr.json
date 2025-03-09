@@ -256,5 +256,29 @@
       "registration": "OIB: 13425230760",
       "address": "Ladrovići 13 | 52440 Poreč"
     }
+  },
+  "cookies": {
+    "title": "Kolačići i Privatnost",
+    "description": "Koristimo kolačiće kako bismo vam pružili najbolje iskustvo na našoj web stranici, personalizirali sadržaj i analizirali promet. Kliknite 'Prihvati sve' za pristanak ili 'Samo nužni' za minimalne postavke.",
+    "acceptAll": "Prihvati sve",
+    "acceptNecessary": "Samo nužni",
+    "privacyPolicy": "Politika privatnosti",
+    "customize": "Prilagodi postavke",
+    "save": "Spremi postavke",
+    "categories": {
+      "title": "Kategorije kolačića",
+      "necessary": {
+        "title": "Nužni kolačići",
+        "desc": "Ovi kolačići su neophodni za funkcioniranje web stranice i ne mogu se isključiti."
+      },
+      "analytics": {
+        "title": "Analitički kolačići",
+        "desc": "Pomažu nam razumjeti kako koristite našu stranicu, što omogućuje poboljšanje funkcionalnosti i usluga."
+      },
+      "marketing": {
+        "title": "Marketing kolačići",
+        "desc": "Koriste se za prikazivanje relevantnih oglasa i marketinških kampanja."
+      }
+    }
   }
 }

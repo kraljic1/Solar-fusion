@@ -4,6 +4,7 @@ import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
 import ImageModal from "../components/ImageModal.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import i18next from "i18next";
 
 interface Props {
@@ -396,6 +397,7 @@ const mobileImageUrl =
         <Footer />
         <BackToTop />
         <ImageModal />
+        <CookieConsent />
 
         <!-- Deferred script loading -->
         <script>
@@ -506,16 +508,62 @@ const mobileImageUrl =
         <!-- Google Analytics -->
         <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+            src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
         ></script>
         <script is:inline>
-            // Google Analytics setup
+            // Google Analytics 4 setup with consent mode
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 window.dataLayer.push(arguments);
             }
+
+            // Set default consent to 'denied' and wait for user consent
+            gtag("consent", "default", {
+                ad_storage: "denied",
+                analytics_storage: "denied",
+                functionality_storage: "denied",
+                personalization_storage: "denied",
+                security_storage: "granted", // Always allow security storage
+                wait_for_update: 500, // Wait for consent decision
+            });
+
+            // Initialize GA4 with config
             gtag("js", new Date());
-            gtag("config", "G-MEASUREMENT_ID");
+            gtag("config", "G-XXXXXXXXXX", {
+                // Replace with your actual GA4 Measurement ID
+                anonymize_ip: true,
+                send_page_view: false, // We'll send the page view after consent
+            });
+
+            // Check if consent was previously given
+            document.addEventListener("DOMContentLoaded", function () {
+                const consentDetails = localStorage.getItem(
+                    "cookie-consent-details"
+                );
+                if (consentDetails) {
+                    try {
+                        const preferences = JSON.parse(consentDetails);
+                        if (preferences && preferences.analytics) {
+                            gtag("consent", "update", {
+                                analytics_storage: "granted",
+                            });
+                            // Send the page view after consent is granted
+                            gtag("event", "page_view");
+                        }
+                        if (preferences && preferences.marketing) {
+                            gtag("consent", "update", {
+                                ad_storage: "granted",
+                                personalization_storage: "granted",
+                            });
+                        }
+                        gtag("consent", "update", {
+                            functionality_storage: "granted",
+                        });
+                    } catch (e) {
+                        console.error("Error parsing consent details", e);
+                    }
+                }
+            });
         </script>
 
         <!-- Cookie Consent Setup -->
