@@ -2,15 +2,22 @@
 import { t } from "i18next";
 import i18next from "../i18n/config";
 
+// Define type for supported languages
+type SupportedLanguage = "en" | "hr" | "sl" | "de" | "it" | "hu";
+type PathKey = "projects" | "about-us" | "contact";
+type DisplayNameKey = "home" | PathKey;
+
 const { lang = "hr" } = Astro.params;
+// Type assertion for lang parameter
+const currentLang = lang as SupportedLanguage;
 
 // Change language before rendering
-if (lang) {
-    await i18next.changeLanguage(lang);
+if (currentLang) {
+    await i18next.changeLanguage(currentLang);
 }
 
 // Define paths that should be translated
-const pathTranslations = {
+const pathTranslations: Record<PathKey, Record<SupportedLanguage, string>> = {
     projects: {
         en: "projects",
         hr: "projekti",
@@ -38,7 +45,7 @@ const pathTranslations = {
 };
 
 // Path display names (friendly names)
-const pathDisplayNames = {
+const pathDisplayNames: Record<DisplayNameKey, Record<SupportedLanguage, string>> = {
     home: {
         en: "Home",
         hr: "Početna",
@@ -86,23 +93,26 @@ const pathSegments = segments.length > 0 &&
 // Build breadcrumbs
 const breadcrumbs = [
     {
-        name: pathDisplayNames.home[lang] || "Home",
-        url: `/${lang}/`
+        name: pathDisplayNames.home[currentLang] || "Home",
+        url: `/${currentLang}/`
     }
 ];
 
 // Function to get display name for path segment
-function getDisplayName(segment) {
+function getDisplayName(segment: string): string {
     // First try to find a matching key in pathTranslations (normalized segment)
     const normalizedSegment = segment.replace(/-/g, '').toLowerCase();
     
     // Check if this segment has translations
     for (const [key, translations] of Object.entries(pathDisplayNames)) {
+        const pathKey = key as DisplayNameKey;
         // Check if current segment matches the translation for any language
-        for (const [langCode, translation] of Object.entries(pathTranslations[key] || {})) {
-            if (segment === translation) {
-                // Found a match! Return the display name for current language
-                return pathDisplayNames[key][lang] || segment;
+        if (pathKey !== 'home' && pathKey in pathTranslations) {
+            for (const [langCode, translation] of Object.entries(pathTranslations[pathKey] || {})) {
+                if (segment === translation) {
+                    // Found a match! Return the display name for current language
+                    return pathDisplayNames[pathKey][currentLang] || segment;
+                }
             }
         }
     }
@@ -113,7 +123,7 @@ function getDisplayName(segment) {
 }
 
 // Add each path segment as a breadcrumb
-let currentPath = `/${lang}`;
+let currentPath = `/${currentLang}`;
 pathSegments.forEach((segment) => {
     // Add to breadcrumbs
     currentPath += `/${segment}`;
@@ -122,6 +132,14 @@ pathSegments.forEach((segment) => {
         url: currentPath
     });
 });
+
+// Define type for breadcrumb item
+interface BreadcrumbItem {
+    "@type": "ListItem";
+    position: number;
+    name: string;
+    item: string;
+}
 
 // Get structured data for breadcrumbs
 const breadcrumbsStructuredData = {
@@ -132,7 +150,7 @@ const breadcrumbsStructuredData = {
         "position": index + 1,
         "name": breadcrumb.name,
         "item": `https://solarfusion.hr${breadcrumb.url}`
-    }))
+    } as BreadcrumbItem))
 };
 ---
 
