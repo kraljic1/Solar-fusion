@@ -3,11 +3,15 @@
 interface Props {
     priority?: "high" | "low" | "auto";
     heroImagePath?: string;
+    mobileImageUrl?: string;
+    criticalImageUrl?: string;
 }
 
 const { 
     priority = "auto", 
-    heroImagePath = "/assets/images/hero-optimized.webp"
+    heroImagePath = "/assets/images/hero-optimized.webp",
+    mobileImageUrl = "/assets/images/hero-mobile.webp",
+    criticalImageUrl = "/assets/images/hero-optimized.webp"
 } = Astro.props;
 
 // Determine what resources to preload based on priority
@@ -15,11 +19,10 @@ const shouldPreloadCritical = priority === "high" || priority === "auto";
 ---
 
 <!-- Critical rendering path optimization -->
-<script is:inline define:vars={{ mobileImageUrl, criticalImageUrl }}>
+<script is:inline define:vars={{ mobileImageUrl, criticalImageUrl, heroImagePath }}>
     // Mobile detection
-    const isMobile =
-        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
-        window.innerWidth <= 768;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     window.innerWidth <= 768;
 
     // Immediately set a base dark background color to avoid flash
     document.documentElement.style.backgroundColor = "#1a202c";
@@ -45,9 +48,34 @@ const shouldPreloadCritical = priority === "high" || priority === "auto";
     // Prevent layout shifts by setting initial dimensions
     document.documentElement.style.setProperty("--hero-height", "100vh");
 
-    // Set content-visibility auto for below-the-fold content on mobile
-    if (isMobile) {
-        document.addEventListener("DOMContentLoaded", () => {
+    // Set background color for final display
+    document.addEventListener('DOMContentLoaded', () => {
+        // Set initial dimensions for images that will load later
+        const reserveImgSpace = () => {
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                if (!img.width && !img.height) {
+                    // Default aspect ratio if no dimensions specified
+                    img.style.aspectRatio = '16/9';
+                }
+            });
+        };
+        
+        // Set minimum height for containers that will have dynamic content
+        const reserveContentSpace = () => {
+            const dynamicContainers = document.querySelectorAll('.dynamic-content, [data-dynamic]');
+            dynamicContainers.forEach(container => {
+                const minHeight = container.getAttribute('data-min-height');
+                if (minHeight) {
+                    container.style.minHeight = minHeight;
+                }
+            });
+        };
+        
+        reserveImgSpace();
+        reserveContentSpace();
+        
+        // Set content-visibility auto for below-the-fold content on mobile
+        if (isMobile) {
             const belowFoldElements = document.querySelectorAll(
                 "section:not(.hero-section)"
             );
@@ -58,8 +86,44 @@ const shouldPreloadCritical = priority === "high" || priority === "auto";
                     el.style.containIntrinsicSize = "0 500px"; // Estimated size
                 }
             });
-        });
-    }
+        }
+        
+        // Detect high-end devices for better JS performance budgeting
+        const isHighEndDevice = () => {
+            const hardware = navigator.hardwareConcurrency || 4;
+            const memory = navigator.deviceMemory || 4;
+            return hardware >= 4 && memory >= 4;
+        };
+        
+        // Performance budget based on device capability
+        window.perfBudget = {
+            highEnd: isHighEndDevice(),
+            mobile: isMobile
+        };
+        
+        // Implement intersection observer for content visibility
+        if ('IntersectionObserver' in window) {
+            const loadVisibility = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Enable full rendering for elements scrolled into view
+                        entry.target.style.contentVisibility = 'visible';
+                        entry.target.style.containIntrinsicSize = 'auto';
+                        loadVisibility.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            // Apply content-visibility to elements far below the fold
+            document.querySelectorAll('[data-defer-visibility]').forEach(el => {
+                if (isMobile) {
+                    el.style.contentVisibility = 'auto';
+                    el.style.containIntrinsicSize = el.getAttribute('data-height') || '1000px';
+                    loadVisibility.observe(el);
+                }
+            });
+        }
+    });
 </script>
 
 <!-- Inline critical CSS for mobile -->
@@ -184,96 +248,6 @@ const shouldPreloadCritical = priority === "high" || priority === "auto";
         </>
     )
 }
-
-<!-- Core Web Vitals Optimizations -->
-<script is:inline define:vars={{ heroImagePath }}>
-    // LCP Optimization
-    // Set initial page background early to prevent white flash
-    document.documentElement.style.backgroundColor = "#f9fafb";
-    
-    // FID Optimization
-    // Break up long tasks
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                    window.innerWidth <= 768;
-    
-    // Detect high-end devices for better JS performance budgeting
-    const isHighEndDevice = () => {
-        const hardware = navigator.hardwareConcurrency || 4;
-        const memory = navigator.deviceMemory || 4;
-        return hardware >= 4 && memory >= 4;
-    };
-    
-    // Performance budget based on device capability
-    window.perfBudget = {
-        highEnd: isHighEndDevice(),
-        mobile: isMobile
-    };
-    
-    // CLS Prevention
-    // Reserve space for dynamic content to prevent layout shifts
-    document.addEventListener('DOMContentLoaded', () => {
-        // Set initial dimensions for images that will load later
-        const reserveImgSpace = () => {
-            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                if (!img.width && !img.height) {
-                    // Default aspect ratio if no dimensions specified
-                    img.style.aspectRatio = '16/9';
-                }
-            });
-        };
-        
-        // Set minimum height for containers that will have dynamic content
-        const reserveContentSpace = () => {
-            const dynamicContainers = document.querySelectorAll('.dynamic-content, [data-dynamic]');
-            dynamicContainers.forEach(container => {
-                const minHeight = container.getAttribute('data-min-height');
-                if (minHeight) {
-                    container.style.minHeight = minHeight;
-                }
-            });
-        };
-        
-        reserveImgSpace();
-        reserveContentSpace();
-        
-        // Implement intersection observer for content visibility
-        if ('IntersectionObserver' in window) {
-            const loadVisibility = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Enable full rendering for elements scrolled into view
-                        entry.target.style.contentVisibility = 'visible';
-                        entry.target.style.containIntrinsicSize = 'auto';
-                        loadVisibility.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            // Apply content-visibility to elements far below the fold
-            document.querySelectorAll('[data-defer-visibility]').forEach(el => {
-                if (isMobile) {
-                    el.style.contentVisibility = 'auto';
-                    el.style.containIntrinsicSize = el.getAttribute('data-height') || '1000px';
-                    loadVisibility.observe(el);
-                }
-            });
-        }
-
-        // Set content-visibility auto for below-the-fold content on mobile
-        if (isMobile) {
-            const belowFoldElements = document.querySelectorAll(
-                "section:not(.hero-section)"
-            );
-            belowFoldElements.forEach((el, index) => {
-                if (index > 0) {
-                    // Skip the first section after hero
-                    el.style.contentVisibility = "auto";
-                    el.style.containIntrinsicSize = "0 500px"; // Estimated size
-                }
-            });
-        }
-    });
-</script>
 
 <!-- HTTP/2 Server Push Hints -->
 <script type="module" is:inline>
