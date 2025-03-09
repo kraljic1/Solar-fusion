@@ -4,7 +4,6 @@ import ProjectHero from "../../components/ProjectHero.astro";
 import Projects from "../../components/Projects.astro";
 import ProjectGallery from "../../components/ProjectGallery.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import { t } from "i18next";
 import i18next from "../../i18n/config";
 
 export function getStaticPaths() {
@@ -25,38 +24,52 @@ if (lang) {
     await i18next.changeLanguage(lang);
 }
 
-const pageTitle = `Solar Fusion - ${t("nav.projects")}`;
+const pageTitle = `Solar Fusion - ${i18next.t("nav.projects")}`;
 const pageDescription =
-    t("meta.projects.description") ||
-    "Check out our completed solar panel installation projects. Solar Fusion provides high-quality solar solutions for residential, industrial and rural properties.";
+    i18next.t("meta.projects.description") ||
+    "Explore our portfolio of solar energy projects across Croatia. View residential, commercial and agricultural installations.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-    <main>
-        <ProjectHero />
-        <Breadcrumbs />
-        <Projects />
+    <Breadcrumbs />
+    <ProjectHero />
+    <Projects
+        client:load
+        viewAllText={i18next.t("projects.viewAll")}
+        hideAllText={i18next.t("projects.hideAll") ?? "Sakrij Projekte"}
+    />
 
-        <!-- Gallery Toggle Button -->
-        <div class="text-center py-12 bg-gray-50">
-            <button
-                id="toggleGalleryBtn"
-                class="inline-flex items-center px-8 py-4 border border-transparent rounded-lg shadow-md text-lg font-medium text-white bg-secondary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors">
-                {t("projects.viewAll")}
-            </button>
-        </div>
+    <div class="text-center my-6">
+        <button
+            id="toggleGalleryBtn"
+            class="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-6 rounded-xl transition-all inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            aria-expanded="false">
+            <span>{i18next.t("projects.viewAll")}</span>
+            <svg
+                class="w-5 h-5 transition-transform duration-300 transform rotate-0"
+                id="chevronIcon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+    </div>
 
-        <!-- Hidden Gallery Section -->
-        <div id="projectGalleryContainer" class="hidden">
-            <ProjectGallery />
-        </div>
-    </main>
+    <div id="projectGalleryContainer" class="hidden">
+        <ProjectGallery />
+    </div>
 </Layout>
 
 <script
     define:vars={{
-        viewAllText: t("projects.viewAll"),
-        hideAllText: t("projects.hideAll") ?? "Sakrij Projekte",
+        viewAllText: i18next.t("projects.viewAll"),
+        hideAllText: i18next.t("projects.hideAll") ?? "Sakrij Projekte",
     }}
 >
     // Toggle gallery visibility when button is clicked
