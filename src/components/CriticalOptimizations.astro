@@ -251,17 +251,30 @@ const shouldPreloadCritical = priority === "high" || priority === "auto";
 
 <!-- HTTP/2 Server Push Hints -->
 <script type="module" is:inline>
-    // Use JS module preloading for HTTP/2 benefits
-    // These won't execute until needed but browser will prioritize fetching
+    // Use appropriate preloading for different resource types
     const resources = [
-        '/assets/scripts/main.js',
-        '/assets/styles/main.css'
+        { 
+            href: '/assets/styles/critical.css',
+            rel: 'preload',
+            as: 'style'
+        }
     ];
     
+    // Use absolute URLs to prevent path resolution issues in language subdirectories
     resources.forEach(resource => {
         const link = document.createElement('link');
-        link.rel = 'modulepreload';
-        link.href = resource;
+        link.rel = resource.rel;
+        link.as = resource.as;
+        
+        // Ensure the path starts with a forward slash
+        const href = resource.href.startsWith('/') ? resource.href : `/${resource.href}`;
+        link.href = href;
+        
+        // Add additional attributes based on resource type
+        if (resource.as === 'font') {
+            link.crossOrigin = 'anonymous';
+        }
+        
         document.head.appendChild(link);
     });
 </script>
