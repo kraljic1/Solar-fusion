@@ -38,16 +38,16 @@ const hoursTitle = {
 const businessInfo = {
     name: "Solar Fusion",
     address: {
-        street: "Istarska ulica 23",
-        city: "Zagreb",
-        region: "Zagreb",
-        postalCode: "10000",
+        street: "Kampor 26a",
+        city: "Rab",
+        region: "Primorsko-goranska županija",
+        postalCode: "51280",
         country: "Croatia",
         countryCode: "HR",
     },
     coordinates: {
-        latitude: 45.815399,
-        longitude: 15.966568,
+        latitude: 45.2107333,
+        longitude: 13.7053992,
     },
     contact: {
         phone: "+385 1 234 5678",
@@ -70,10 +70,9 @@ const businessInfo = {
     },
 };
 
-// Prepare map URL
-const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(
-    `${businessInfo.name}, ${businessInfo.address.street}, ${businessInfo.address.city}`
-)}&center=${businessInfo.coordinates.latitude},${businessInfo.coordinates.longitude}&zoom=15`;
+// Prepare map URL - replace with the exact embed URL provided by the user
+const mapUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2810.8320845377007!2d13.705399199999999!3d45.2107333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477cbda06d054da9%3A0xfff8e58ce0a5a2cc!2sSOLAR%20FUSION%20d.o.o.!5e0!3m2!1sen!2shr!4v1741490000931!5m2!1sen!2shr";
 
 // Microdata JSON for local business
 const localBusinessStructuredData = {
@@ -280,7 +279,8 @@ const localBusinessStructuredData = {
                         allowfullscreen=""
                         loading="lazy"
                         title={`${businessInfo.name} location map`}
-                        class="rounded-lg shadow-sm"></iframe>
+                        class="rounded-lg shadow-sm"
+                    />
                 </div>
             )
         }
@@ -292,4 +292,3 @@ const localBusinessStructuredData = {
     type="application/ld+json"
     set:html={JSON.stringify(localBusinessStructuredData)}
 />
-
