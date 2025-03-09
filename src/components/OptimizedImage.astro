@@ -10,6 +10,8 @@ interface Props {
     decoding?: "async" | "sync" | "auto";
     fetchpriority?: "high" | "low" | "auto";
     sizes?: string;
+    aspectRatio?: string; // Added for CLS prevention
+    deferVisibility?: boolean; // Control if image should use content-visibility
 }
 
 const {
@@ -22,6 +24,8 @@ const {
     decoding = "async",
     fetchpriority = "auto",
     sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+    aspectRatio = "",
+    deferVisibility = false,
 } = Astro.props;
 
 // Function to convert image URL to WebP
@@ -70,9 +74,17 @@ function generateSrcSet(imgSrc: string, format: string): string {
 
 const originalSrcSet = generateSrcSet(src, "original");
 const webpSrcSet = generateSrcSet(src, "webp");
+
+// Generate style attribute for aspect ratio
+const styleAttr = aspectRatio ? `aspect-ratio: ${aspectRatio};` : "";
+// Generate data attribute for content visibility optimization
+const dataAttr = deferVisibility ? "data-defer-visibility" : "";
 ---
 
-<picture>
+<picture
+    class={className}
+    style={styleAttr}
+    {...dataAttr && { [dataAttr]: true }}>
     <source srcset={webpSrcSet} sizes={sizes} type="image/webp" />
     <source
         srcset={originalSrcSet}
@@ -84,10 +96,10 @@ const webpSrcSet = generateSrcSet(src, "webp");
         alt={alt}
         width={width}
         height={height}
-        class={className}
+        class="w-full h-auto"
         loading={loading}
         decoding={decoding}
         fetchpriority={fetchpriority}
+        style={styleAttr}
     />
 </picture>
-
