@@ -1,0 +1,85 @@
+---
+import { defaultLang, languages } from "../i18n/config";
+import Layout from "../layouts/Layout.astro";
+
+// Define supported languages type
+type SupportedLanguage = "hr" | "en" | "sl" | "de" | "it" | "hu";
+
+// Extract language from URL if present
+const getLanguageFromUrl = (url: URL): SupportedLanguage => {
+    const [, lang] = url.pathname.split("/");
+    if (languages.includes(lang)) {
+        return lang as SupportedLanguage;
+    }
+    return defaultLang as SupportedLanguage;
+};
+
+const lang = getLanguageFromUrl(Astro.url);
+
+// Define page titles and content for each supported language
+const titles: Record<SupportedLanguage, string> = {
+    hr: "404 - Stranica nije pronađena | Solar Fusion",
+    en: "404 - Page Not Found | Solar Fusion",
+    sl: "404 - Stran ni najdena | Solar Fusion",
+    de: "404 - Seite nicht gefunden | Solar Fusion",
+    it: "404 - Pagina non trovata | Solar Fusion",
+    hu: "404 - Az oldal nem található | Solar Fusion",
+};
+
+const messages: Record<SupportedLanguage, string> = {
+    hr: "Stranica koju tražite ne postoji ili je premještena",
+    en: "The page you are looking for doesn't exist or has been moved",
+    sl: "Stran, ki jo iščete, ne obstaja ali je bila premaknjena",
+    de: "Die Seite, die Sie suchen, existiert nicht oder wurde verschoben",
+    it: "La pagina che stai cercando non esiste o è stata spostata",
+    hu: "A keresett oldal nem létezik vagy áthelyezték",
+};
+
+const backLinks: Record<SupportedLanguage, string> = {
+    hr: "Povratak na početnu stranicu",
+    en: "Return to home page",
+    sl: "Vrnitev na domačo stran",
+    de: "Zurück zur Startseite",
+    it: "Ritorna alla pagina iniziale",
+    hu: "Vissza a kezdőlapra",
+};
+
+const title = titles[lang];
+const message = messages[lang];
+const backLink = backLinks[lang];
+
+// Ensure proper 404 status is sent
+Astro.response.status = 404;
+---
+
+<Layout title={title} description={message}>
+    <main class="min-h-screen flex items-center justify-center px-4 py-16">
+        <div class="text-center max-w-2xl mx-auto">
+            <h1 class="text-8xl font-bold text-primary mb-4">404</h1>
+            <div class="w-full h-1 bg-secondary max-w-md mx-auto mb-8"></div>
+            <h2 class="text-3xl font-semibold mb-4">{message}</h2>
+            <p class="text-gray-600 mb-8">
+                {
+                    lang === "hr"
+                        ? "Provjerite jeste li unijeli ispravnu adresu ili"
+                        : lang === "en"
+                          ? "Check if you have entered the correct address or"
+                          : lang === "sl"
+                            ? "Preverite, ali ste vnesli pravilen naslov ali"
+                            : lang === "de"
+                              ? "Überprüfen Sie, ob Sie die richtige Adresse eingegeben haben oder"
+                              : lang === "it"
+                                ? "Controlla se hai inserito l'indirizzo corretto o"
+                                : lang === "hu"
+                                  ? "Ellenőrizze, hogy helyesen adta-e meg a címet, vagy"
+                                  : "Check if you have entered the correct address or"
+                }
+            </p>
+            <a
+                href={`/${lang}/`}
+                class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg inline-block transition-colors">
+                {backLink}
+            </a>
+        </div>
+    </main>
+</Layout>
