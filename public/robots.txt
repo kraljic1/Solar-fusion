@@ -1,6 +1,35 @@
-# https://www.robotstxt.org/robotstxt.html
+# www.robotstxt.org/
+
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://friendly-gingersnap-be2b80.netlify.app/sitemap.xml
+# Sitemap location
+Sitemap: https://solarfusion.hr/sitemap.xml
+
+# Don't index any admin or utility pages that might exist
+Disallow: /admin/
+Disallow: /login/
+Disallow: /cart/
+
+# Allow all bots full access to static assets
+Allow: /assets/
+Allow: /images/
+
+# Don't allow large bots to crawl certain resource-intensive pages
+User-agent: GPTBot
+Disallow: /calculator/
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Wait time between crawls in seconds
+Crawl-delay: 10

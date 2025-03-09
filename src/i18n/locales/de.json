@@ -140,6 +140,24 @@
       "totalPower": "Gesamtleistung in kW",
       "co2Savings": "Tonnen CO₂-Einsparung pro Jahr"
     },
+    "mainGallery": {
+      "project1": {
+        "title": "Familienhaus in Medulin",
+        "description": "18kW Solarsystem für ein Familienhaus in Medulin."
+      },
+      "project2": {
+        "title": "Modernes Haus mit Flachdach",
+        "description": "9kW Solarsystem für ein modernes Haus mit Flachdach."
+      },
+      "project3": {
+        "title": "Familienhaus in Poreč",
+        "description": "9kW Solarsystem für ein Familienhaus in Poreč."
+      },
+      "project4": {
+        "title": "Familienhaus in Medulin",
+        "description": "9kW Solarsystem für ein Familienhaus in Medulin."
+      }
+    },
     "gallery": {
       "project1": {
         "title": "Einfamilienhaus in Poreč",

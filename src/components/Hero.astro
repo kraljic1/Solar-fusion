@@ -13,15 +13,19 @@ if (lang) {
 const title = t("hero.title");
 const subtitle = t("hero.subtitle");
 const description = t("hero.description");
+const ctaText = t("hero.cta") || "Izračunajte Vašu Uštedu";
+const imageAlt =
+    t("hero.imageAlt") ||
+    "Solar panels installed in a beautiful landscape with mountains in the background";
 
 // Define image paths for different screen sizes - set directly without query params
 const mobileBgImage =
-    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop";
 const desktopBgImage =
-    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop";
 ---
 
-<section class="hero-section">
+<section class="hero-section" role="banner" aria-labelledby="hero-heading">
     <!-- Preload critical hero image for better performance -->
     <link
         rel="preload"
@@ -49,7 +53,7 @@ const desktopBgImage =
             justify-content: center;
             overflow: hidden;
             background-color: #1a202c;
-            background-image: url("https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp");
+            background-image: url("https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop");
             background-size: cover;
             background-position: center center;
         }
@@ -121,17 +125,28 @@ const desktopBgImage =
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .hero-section {
-                background-image: url("https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp");
+                background-image: url("https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop");
             }
         }
     </style>
 
+    <!-- Hidden image for SEO - Background images aren't read by search engines -->
+    <img
+        src={desktopBgImage}
+        alt={imageAlt}
+        width="2000"
+        height="1333"
+        class="sr-only"
+        loading="eager"
+        fetchpriority="high"
+    />
+
     <!-- Optimized background structure -->
-    <div class="hero-overlay"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
 
     <!-- Content container -->
     <div class="hero-content">
-        <h1 class="hero-heading">
+        <h1 class="hero-heading" id="hero-heading">
             <span class="hero-title">{title}</span>
             <span class="hero-subtitle" data-astro-cid-bbe6dxrz=""
                 >{subtitle}</span
@@ -140,7 +155,7 @@ const desktopBgImage =
         <p class="hero-description">{description}</p>
         <div class="hero-cta">
             <a href="#calculator" class="cta-button" data-nav-link="section">
-                Izračunajte Vašu Uštedu
+                {ctaText}
             </a>
         </div>
     </div>

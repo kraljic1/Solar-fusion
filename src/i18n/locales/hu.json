@@ -140,22 +140,22 @@
       "totalPower": "Összes kW",
       "co2Savings": "Tonna CO₂ Éves Megtakarítás"
     },
-    "gallery": {
+    "mainGallery": {
       "project1": {
-        "title": "Családi ház Porecben",
-        "description": "10kW-os napelemes rendszer telepítése akkumulátoros tárolórendszerrel."
+        "title": "Családi ház Medulinban",
+        "description": "18kW-os napelemes rendszer egy medulini családi házhoz."
       },
       "project2": {
-        "title": "Ipari épület Pazinban",
-        "description": "50kW-os kereskedelmi napenergia-erőmű villamosenergia-termelésre."
+        "title": "Modern ház lapos tetővel",
+        "description": "9kW-os napelemes rendszer egy lapos tetős modern házhoz."
       },
       "project3": {
-        "title": "Társasház Rijekában",
-        "description": "Közös napelemes rendszer egy 12 lakásos lakóépülethez."
+        "title": "Családi ház Porečben",
+        "description": "9kW-os napelemes rendszer egy poreči családi házhoz."
       },
       "project4": {
-        "title": "Hotel Opatijában",
-        "description": "75kW-os rendszer magas energiafogyasztású szálloda számára."
+        "title": "Családi ház Medulinban",
+        "description": "9kW-os napelemes rendszer egy medulini családi házhoz."
       }
     },
     "projectPage": {

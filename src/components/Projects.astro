@@ -1,6 +1,41 @@
 ---
 import { t as tFunc } from "i18next";
 import i18next from "../i18n/config";
+import { projectImages, projectDetails } from "../data/projects";
+
+// Import the WebP images
+import lukaA from "../assets/images/Luka-A.webp";
+import lukaA1 from "../assets/images/Luka-A1.webp";
+import lukaA2 from "../assets/images/Luka-A2.webp";
+import lukaA3 from "../assets/images/Luka-A3.webp";
+import lukaB from "../assets/images/Luka-B.webp";
+import lukaB1 from "../assets/images/Luka-B1.webp";
+import lukaB2 from "../assets/images/Luka-B2.webp";
+import lukaD from "../assets/images/Luka-D.webp";
+import lukaD1 from "../assets/images/Luka-D1.webp";
+import lukaD2 from "../assets/images/Luka-D2.webp";
+import lukaF from "../assets/images/Luka-F.webp";
+import lukaF1 from "../assets/images/Luka-F1.webp";
+import lukaF2 from "../assets/images/Luka-F2.webp";
+import lukaE from "../assets/images/Luka-E.webp";
+import lukaE1 from "../assets/images/Luka-E1.webp";
+import lukaE2 from "../assets/images/Luka-E2.webp";
+import lukaE3 from "../assets/images/Luka-E3.webp";
+import lukaG from "../assets/images/Luka-G.webp";
+import lukaG1 from "../assets/images/Luka-G1.webp";
+import lukaG2 from "../assets/images/Luka-G2.webp";
+import lukaH from "../assets/images/Luka-H.webp";
+import lukaH1 from "../assets/images/Luka-H1.webp";
+import lukaH2 from "../assets/images/Luka-H2.webp";
+import lukaI from "../assets/images/Luka-I.webp";
+import lukaI1 from "../assets/images/Luka-I1.webp";
+import lukaJ from "../assets/images/Luka-J.webp";
+import lukaJ1 from "../assets/images/Luka-J1.webp";
+import lukaK from "../assets/images/Luka-K.webp";
+import lukaK1 from "../assets/images/Luka-K1.webp";
+import lukaL from "../assets/images/Luka-L.webp";
+import lukaL1 from "../assets/images/Luka-L1.webp";
+import lukaL2 from "../assets/images/Luka-L2.webp";
 
 const { lang = "hr" } = Astro.params;
 
@@ -11,63 +46,47 @@ if (lang) {
 
 const projects = [
     {
-        title: tFunc("projects.gallery.project1.title"),
-        description: tFunc("projects.gallery.project1.description"),
-        images: [
-            "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
-            "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        ],
+        title: tFunc("projects.mainGallery.project1.title"),
+        description: tFunc("projects.mainGallery.project1.description"),
+        images: [lukaF.src, lukaF1.src, lukaF2.src],
         details: {
-            power: "10kW",
-            panels: "25",
+            power: "18kW",
+            panels: "72",
             savings: "90%",
             completed: "2023",
         },
     },
     {
-        title: tFunc("projects.gallery.project2.title"),
-        description: tFunc("projects.gallery.project2.description"),
-        images: [
-            "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        ],
+        title: tFunc("projects.mainGallery.project2.title"),
+        description: tFunc("projects.mainGallery.project2.description"),
+        images: [lukaA2.src, lukaA.src, lukaA1.src, lukaA3.src],
         details: {
-            power: "50kW",
-            panels: "125",
-            savings: "75%",
+            power: "9kW",
+            panels: "36",
+            savings: "85%",
             completed: "2022",
         },
     },
     {
-        title: tFunc("projects.gallery.project3.title"),
-        description: tFunc("projects.gallery.project3.description"),
-        images: [
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1592833138865-985873910d33?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        ],
+        title: tFunc("projects.mainGallery.project3.title"),
+        description: tFunc("projects.mainGallery.project3.description"),
+        images: [lukaB.src, lukaB1.src, lukaB2.src],
         details: {
-            power: "25kW",
-            panels: "60",
-            savings: "60%",
+            power: "9kW",
+            panels: "36",
+            savings: "75%",
             completed: "2023",
         },
     },
     {
-        title: tFunc("projects.gallery.project4.title"),
-        description: tFunc("projects.gallery.project4.description"),
-        images: [
-            "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        ],
+        title: tFunc("projects.mainGallery.project4.title"),
+        description: tFunc("projects.mainGallery.project4.description"),
+        images: [lukaD.src, lukaD1.src, lukaD2.src],
         details: {
-            power: "75kW",
-            panels: "180",
+            power: "9kW",
+            panels: "36",
             savings: "80%",
-            completed: "2022",
+            completed: "2023",
         },
     },
 ];

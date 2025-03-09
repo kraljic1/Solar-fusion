@@ -1,0 +1,52 @@
+---
+// Import the image
+import { Image } from "astro:assets";
+import myImage from "../assets/images/example.webp"; // This is where your WebP image would be
+---
+
+<div class="image-container">
+    <h2>Example WebP Image</h2>
+
+    <!-- Using the Astro Image component with a WebP image -->
+    <Image
+        src={myImage}
+        alt="Example WebP image"
+        width={500}
+        height={300}
+        format="webp"
+        quality={80}
+    />
+
+    <!-- Alternative: Using a WebP image with picture element for fallbacks -->
+    <picture>
+        <source srcset="/src/assets/images/example.webp" type="image/webp" />
+        <source srcset="/src/assets/images/example.jpg" type="image/jpeg" />
+        <img
+            src="/src/assets/images/example.jpg"
+            alt="Example image with fallback"
+            width="500"
+            height="300"
+        />
+    </picture>
+</div>
+
+<style>
+    .image-container {
+        padding: 1rem;
+        margin: 2rem 0;
+        border-radius: 0.5rem;
+        background-color: #f4f4f4;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.25rem;
+    }
+</style>

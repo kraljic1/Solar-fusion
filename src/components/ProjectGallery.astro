@@ -1,6 +1,7 @@
 ---
-import { t } from "i18next";
+import { t as tFunc } from "i18next";
 import i18next from "../i18n/config";
+import { projectImages, projectDetails } from "../data/projects";
 
 const { lang = "hr" } = Astro.params;
 
@@ -12,194 +13,45 @@ if (lang) {
 const projects = [
     {
         id: 1,
-        title: t("projects.projectPage.title"),
-        image: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
-        description: t("projects.projectPage.description"),
-        gallery: [
-            "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "50kW",
-            panels: "125",
-            yearlyOutput: "75,000 kWh",
-            completed: "2023",
-        },
+        title: tFunc("projects.gallery.project0.title"),
+        description: tFunc("projects.gallery.project0.description"),
+        gallery: projectImages.countryHouse,
+        details: projectDetails.countryHouse,
     },
     {
         id: 2,
-        title: t("projects.projectPage.residential.title"),
-        image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.projectPage.residential.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-            "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
-            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
-        ],
-        details: {
-            power: "10kW",
-            panels: "25",
-            yearlyOutput: "15,000 kWh",
-            completed: "2023",
-        },
+        title: tFunc("projects.gallery.project1.title"),
+        description: tFunc("projects.gallery.project1.description"),
+        gallery: projectImages.carCanopy,
+        details: projectDetails.carCanopy,
     },
     {
         id: 3,
-        title: t("projects.projectPage.commercial.title"),
-        image: "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.projectPage.commercial.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1545209463-e2825498edbf",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "85kW",
-            panels: "213",
-            yearlyOutput: "127,500 kWh",
-            completed: "2022",
-        },
+        title: tFunc("projects.gallery.project2.title"),
+        description: tFunc("projects.gallery.project2.description"),
+        gallery: projectImages.countryHouseBuje,
+        details: projectDetails.countryHouseBuje,
     },
     {
         id: 4,
-        title: t("projects.projectPage.hotel.title"),
-        image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.projectPage.hotel.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "120kW",
-            panels: "300",
-            yearlyOutput: "180,000 kWh",
-            completed: "2023",
-        },
+        title: tFunc("projects.gallery.project3.title"),
+        description: tFunc("projects.gallery.project3.description"),
+        gallery: projectImages.vilaInBale,
+        details: projectDetails.vilaInBale,
     },
     {
         id: 5,
-        title: t("projects.additionalProjects.school.title"),
-        image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.additionalProjects.school.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-            "https://images.unsplash.com/photo-1628206554201-41ebb06ef313",
-        ],
-        details: {
-            power: "25kW",
-            panels: "63",
-            yearlyOutput: "37,500 kWh",
-            completed: "2024",
-        },
+        title: tFunc("projects.gallery.project4.title"),
+        description: tFunc("projects.gallery.project4.description"),
+        gallery: projectImages.houseMaliLosinj,
+        details: projectDetails.houseMaliLosinj,
     },
     {
         id: 6,
-        title: t("projects.additionalProjects.sportsCenter.title"),
-        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.additionalProjects.sportsCenter.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "40kW",
-            panels: "100",
-            yearlyOutput: "60,000 kWh",
-            completed: "2023",
-        },
-    },
-    {
-        id: 7,
-        title: t("projects.additionalProjects.shoppingCenter.title"),
-        image: "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t(
-            "projects.additionalProjects.shoppingCenter.description"
-        ),
-        gallery: [
-            "https://images.unsplash.com/photo-1548614606-52b4451f994b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "120kW",
-            panels: "300",
-            yearlyOutput: "180,000 kWh",
-            completed: "2024",
-        },
-    },
-    {
-        id: 8,
-        title: t("projects.additionalProjects.winery.title"),
-        image: "https://images.unsplash.com/photo-1592833159155-c62df1b65634?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.additionalProjects.winery.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1592833159155-c62df1b65634?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "35kW",
-            panels: "88",
-            yearlyOutput: "52,500 kWh",
-            completed: "2023",
-        },
-    },
-    {
-        id: 9,
-        title: t("projects.additionalProjects.warehouse.title"),
-        image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.additionalProjects.warehouse.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "90kW",
-            panels: "225",
-            yearlyOutput: "135,000 kWh",
-            completed: "2024",
-        },
-    },
-    {
-        id: 10,
-        title: t("projects.additionalProjects.officeBuilding.title"),
-        image: "https://images.unsplash.com/photo-1553451191-1f1f13c1c0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t(
-            "projects.additionalProjects.officeBuilding.description"
-        ),
-        gallery: [
-            "https://images.unsplash.com/photo-1553451191-1f1f13c1c0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "45kW",
-            panels: "113",
-            yearlyOutput: "67,500 kWh",
-            completed: "2023",
-        },
-    },
-    {
-        id: 11,
-        title: t("projects.additionalProjects.marina.title"),
-        image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-        description: t("projects.additionalProjects.marina.description"),
-        gallery: [
-            "https://images.unsplash.com/photo-1559302504-64aae6ca6b6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-            "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d",
-            "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
-        ],
-        details: {
-            power: "60kW",
-            panels: "150",
-            yearlyOutput: "90,000 kWh",
-            completed: "2024",
-        },
+        title: tFunc("projects.gallery.project5.title"),
+        description: tFunc("projects.gallery.project5.description"),
+        gallery: projectImages.familyHouseZadar,
+        details: projectDetails.familyHouseZadar,
     },
 ];
 ---
@@ -208,32 +60,35 @@ const projects = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-primary mb-4">
-                {t("projects.title")}
+                {tFunc("projects.title")}
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                {t("projects.subtitle")}
+                {tFunc("projects.subtitle")}
             </p>
         </div>
 
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
             {
-                projects.map((project) => (
+                projects.map((project, index) => (
                     <div
-                        class="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-[1.02]"
-                        data-project={JSON.stringify(project)}>
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            class="h-64 w-full object-cover transition-transform group-hover:scale-110"
-                            loading="lazy"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div class="absolute bottom-0 p-4 text-white">
+                        class="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 project-card"
+                        data-project={JSON.stringify(project)}
+                        style={`animation-delay: ${index * 100}ms`}>
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img
+                                src={project.gallery[0]}
+                                alt={project.title}
+                                class="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-0 p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                 <h3 class="text-lg font-semibold">
                                     {project.title}
                                 </h3>
-                                <p class="text-sm opacity-90">
+                                <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                                     {project.description}
                                 </p>
                             </div>
@@ -246,17 +101,20 @@ const projects = [
 </section>
 
 <!-- Modal -->
-<div id="projectModal" class="fixed inset-0 z-[110] hidden">
+<div
+    id="projectModal"
+    class="fixed inset-0 z-[110] hidden opacity-0 transition-opacity duration-300">
     <div class="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
     <div class="fixed inset-0 flex items-center justify-center p-4 pt-24">
         <div
-            class="relative bg-white rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto mt-5">
+            class="relative bg-white rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto mt-5 transform scale-95 opacity-0 transition-all duration-300"
+            id="modalContent">
             <button
                 id="closeModal"
                 class="absolute top-2 right-2 text-gray-700 hover:text-gray-900 z-[120] p-3 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200"
                 aria-label="Close project details">
                 <span class="font-medium hidden sm:inline"
-                    >{t("projects.closeModal")}</span
+                    >{tFunc("projects.closeModal")}</span
                 >
                 <svg
                     class="w-6 h-6 sm:w-5 sm:h-5"
@@ -273,7 +131,8 @@ const projects = [
 
             <div class="p-6 pt-10">
                 <!-- Swiper Gallery -->
-                <div class="swiper-container mb-6 aspect-video">
+                <div
+                    class="swiper-container mb-6 aspect-video rounded-lg overflow-hidden shadow-lg">
                     <div class="swiper-wrapper">
                         <!-- Slides will be inserted here by JavaScript -->
                     </div>
@@ -297,7 +156,7 @@ const projects = [
                             class="text-2xl font-bold text-secondary">
                         </div>
                         <div class="text-gray-600">
-                            {t("projects.details.power")}
+                            {tFunc("projects.details.power")}
                         </div>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg">
@@ -306,7 +165,7 @@ const projects = [
                             class="text-2xl font-bold text-secondary">
                         </div>
                         <div class="text-gray-600">
-                            {t("projects.details.panels")}
+                            {tFunc("projects.details.panels")}
                         </div>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg">
@@ -315,7 +174,7 @@ const projects = [
                             class="text-2xl font-bold text-secondary">
                         </div>
                         <div class="text-gray-600">
-                            {t("projects.details.yearlyOutput")}
+                            {tFunc("projects.details.yearlyOutput")}
                         </div>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg">
@@ -324,19 +183,9 @@ const projects = [
                             class="text-2xl font-bold text-secondary">
                         </div>
                         <div class="text-gray-600">
-                            {t("projects.details.completed")}
+                            {tFunc("projects.details.completed")}
                         </div>
                     </div>
-                </div>
-
-                <!-- Bottom close button -->
-                <div class="mt-8 flex justify-center">
-                    <button
-                        id="closeModalBottom"
-                        class="px-6 py-3 bg-secondary text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium"
-                        aria-label="Close project details">
-                        {t("projects.closeModal")}
-                    </button>
                 </div>
             </div>
         </div>
@@ -358,8 +207,8 @@ const projects = [
     // Define swiper type
     let swiper: any;
     const modal = document.getElementById("projectModal");
+    const modalContent = document.getElementById("modalContent");
     const closeButton = document.getElementById("closeModal");
-    const closeBottomButton = document.getElementById("closeModalBottom");
     const projectElements = document.querySelectorAll("[data-project]");
 
     // Modal elements
@@ -372,54 +221,121 @@ const projects = [
     const modalYear = document.getElementById("modalYear");
     const swiperWrapper = document.querySelector(".swiper-wrapper");
 
+    // Animate project cards on load
+    document.addEventListener("DOMContentLoaded", () => {
+        const projectCards = document.querySelectorAll(".project-card");
+        projectCards.forEach((card) => {
+            setTimeout(() => {
+                card.classList.add("animate-in");
+            }, 100);
+        });
+    });
+
     projectElements.forEach((element) => {
         element.addEventListener("click", () => {
             const project = JSON.parse(
                 element.getAttribute("data-project") || "{}"
             );
 
+            // Preload images for smooth swiper transitions
+            const preloadImages = async () => {
+                const imagePromises = project.gallery?.map(
+                    (imageUrl: string) => {
+                        return new Promise((resolve, reject) => {
+                            const img = new Image();
+                            img.onload = () => resolve(imageUrl);
+                            img.onerror = reject;
+                            img.src = imageUrl;
+                        });
+                    }
+                );
+
+                return Promise.all(imagePromises);
+            };
+
             // Clear previous slides
             if (swiperWrapper) {
                 swiperWrapper.innerHTML = "";
 
-                // Add new slides
-                project.gallery?.forEach((imageUrl: string) => {
-                    const slide = document.createElement("div");
-                    slide.className = "swiper-slide";
-                    slide.innerHTML = `
-            <img 
-              src="${imageUrl}" 
-              alt="${project.title}"
-              class="w-full h-full object-cover"
-            />
-          `;
-                    swiperWrapper.appendChild(slide);
+                // Add loading indicator
+                const loadingSlide = document.createElement("div");
+                loadingSlide.className = "swiper-slide loading-slide";
+                loadingSlide.innerHTML = `
+                    <div class="flex items-center justify-center w-full h-full">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    </div>
+                `;
+                swiperWrapper.appendChild(loadingSlide);
+            }
+
+            // Show modal with loading state
+            modal?.classList.remove("hidden");
+            // Delay to allow CSS transition to work
+            setTimeout(() => {
+                modal?.classList.add("opacity-100");
+                modalContent?.classList.add("scale-100", "opacity-100");
+            }, 10);
+            document.body.style.overflow = "hidden";
+
+            // Preload images then initialize swiper
+            preloadImages().then(() => {
+                // Clear loading indicator
+                if (swiperWrapper) {
+                    swiperWrapper.innerHTML = "";
+
+                    // Add actual slides
+                    project.gallery?.forEach((imageUrl: string) => {
+                        const slide = document.createElement("div");
+                        slide.className = "swiper-slide";
+                        slide.innerHTML = `
+                            <img 
+                                src="${imageUrl}" 
+                                alt="${project.title}"
+                                class="w-full h-full object-cover"
+                            />
+                        `;
+                        swiperWrapper.appendChild(slide);
+                    });
+                }
+
+                // Initialize or update Swiper
+                if (swiper) {
+                    swiper.destroy();
+                }
+
+                swiper = new Swiper(".swiper-container", {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: true,
+                    effect: "fade", // Use fade effect for smoother transitions
+                    fadeEffect: {
+                        crossFade: true,
+                    },
+                    speed: 800, // Slower transition for smoother effect
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    grabCursor: true,
+                    keyboard: {
+                        enabled: true,
+                    },
+                    lazy: {
+                        loadPrevNext: true,
+                    },
                 });
-            }
-
-            // Initialize or update Swiper
-            if (swiper) {
-                swiper.destroy();
-            }
-
-            swiper = new Swiper(".swiper-container", {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
             });
 
+            // Update modal content
             if (modalTitle) modalTitle.textContent = project.title;
             if (modalDescription)
                 modalDescription.textContent = project.description;
@@ -428,14 +344,10 @@ const projects = [
             if (modalOutput)
                 modalOutput.textContent = project.details.yearlyOutput;
             if (modalYear) modalYear.textContent = project.details.completed;
-
-            modal?.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
         });
     });
 
     closeButton?.addEventListener("click", closeModal);
-    closeBottomButton?.addEventListener("click", closeModal);
     modal?.addEventListener("click", (e) => {
         if (e.target === modal) {
             closeModal();
@@ -449,11 +361,17 @@ const projects = [
     });
 
     function closeModal() {
-        modal?.classList.add("hidden");
-        document.body.style.overflow = "";
-        if (swiper) {
-            swiper.destroy();
-        }
+        modal?.classList.remove("opacity-100");
+        modalContent?.classList.remove("scale-100", "opacity-100");
+
+        // Wait for animations to complete before hiding
+        setTimeout(() => {
+            modal?.classList.add("hidden");
+            document.body.style.overflow = "";
+            if (swiper) {
+                swiper.destroy();
+            }
+        }, 300);
     }
 </script>
 
@@ -461,10 +379,22 @@ const projects = [
     .swiper-button-next,
     .swiper-button-prev {
         color: #fbb034 !important;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        opacity: 1;
+    }
+
+    .swiper-pagination-bullet {
+        transition: all 0.3s ease;
     }
 
     .swiper-pagination-bullet-active {
         background: #fbb034 !important;
+        transform: scale(1.2);
     }
 
     .swiper-container {
@@ -478,6 +408,27 @@ const projects = [
         justify-content: center;
         width: 100%;
         height: 100%;
+        transition: opacity 0.5s ease;
+    }
+
+    /* Animation for project cards */
+    .project-card {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .animate-in {
+        opacity: 1 !important;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 

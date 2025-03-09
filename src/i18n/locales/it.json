@@ -140,22 +140,22 @@
       "totalPower": "Totale kW",
       "co2Savings": "Tonnellate di CO₂ Risparmiate Annualmente"
     },
-    "gallery": {
+    "mainGallery": {
       "project1": {
-        "title": "Casa Familiare a Parenzo",
-        "description": "Installazione di un sistema solare da 10kW con sistema di accumulo a batteria."
+        "title": "Casa Familiare a Medulin",
+        "description": "Sistema solare da 18kW per una casa familiare a Medulin."
       },
       "project2": {
-        "title": "Edificio Industriale a Pisino",
-        "description": "Centrale solare commerciale da 50kW per la produzione di energia elettrica."
+        "title": "Casa Moderna con Tetto Piano",
+        "description": "Sistema solare da 9kW per una casa moderna con tetto piano."
       },
       "project3": {
-        "title": "Condominio a Fiume",
-        "description": "Sistema solare condiviso per un edificio residenziale con 12 appartamenti."
+        "title": "Casa Familiare a Poreč",
+        "description": "Sistema solare da 9kW per una casa familiare a Poreč."
       },
       "project4": {
-        "title": "Hotel ad Abbazia",
-        "description": "Sistema da 75kW per un hotel con elevato consumo energetico."
+        "title": "Casa Familiare a Medulin",
+        "description": "Sistema solare da 9kW per una casa familiare a Medulin."
       }
     },
     "projectPage": {

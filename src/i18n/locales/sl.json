@@ -140,22 +140,22 @@
       "totalPower": "Skupaj kW",
       "co2Savings": "Ton CO₂ Letnih Prihrankov"
     },
-    "gallery": {
+    "mainGallery": {
       "project1": {
-        "title": "Družinska hiša v Piranu",
-        "description": "Namestitev solarnega sistema z močjo 10 kW s sistemom za shranjevanje baterij."
+        "title": "Družinska hiša v Medulinu",
+        "description": "18kW solarni sistem za družinsko hišo v Medulinu."
       },
       "project2": {
-        "title": "Industrijski objekt Koper",
-        "description": "Komercialna solarna elektrarna z močjo 50 kW za proizvodnjo električne energije."
+        "title": "Moderna hiša z ravno streho",
+        "description": "9kW solarni sistem za moderno hišo z ravno streho."
       },
       "project3": {
-        "title": "Stanovanjski blok Ljubljana",
-        "description": "Skupni solarni sistem za stanovanjsko stavbo z 12 stanovanji."
+        "title": "Družinska hiša v Poreču",
+        "description": "9kW solarni sistem za družinsko hišo v Poreču."
       },
       "project4": {
-        "title": "Hotel Bled",
-        "description": "Sistem z močjo 75 kW za hotel z veliko porabo energije."
+        "title": "Družinska hiša v Medulinu",
+        "description": "9kW solarni sistem za družinsko hišo v Medulinu."
       }
     },
     "projectPage": {

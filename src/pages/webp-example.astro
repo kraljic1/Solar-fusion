@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import WebpImageExample from "../components/WebpImageExample.astro";
+---
+
+<Layout title="WebP Image Example">
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8">WebP Image Examples</h1>
+
+        <p class="mb-6">
+            WebP is a modern image format developed by Google that provides
+            superior lossless and lossy compression for web images. Using WebP
+            can help improve your website's performance by reducing image file
+            sizes without sacrificing quality.
+        </p>
+
+        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+            <h2 class="text-xl font-bold mb-2">Benefits of WebP:</h2>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Smaller file sizes (25-34% smaller than PNG and JPEG)</li>
+                <li>
+                    Support for transparency with better compression than PNG
+                </li>
+                <li>Support for animation (like GIF but smaller)</li>
+                <li>Better quality-to-size ratio than other formats</li>
+            </ul>
+        </div>
+
+        <WebpImageExample />
+
+        <div class="mt-8 p-4 border border-gray-300 rounded-lg">
+            <h2 class="text-xl font-bold mb-2">Using WebP in Astro</h2>
+            <p class="mb-4">
+                To use WebP images in your Astro project, you can:
+            </p>
+            <ol class="list-decimal pl-6 space-y-2">
+                <li>
+                    Place your WebP images in the <code>src/assets/images</code>
+                    directory
+                </li>
+                <li>
+                    Import and use them in your components with Astro's Image
+                    component
+                </li>
+                <li>
+                    For better browser compatibility, consider providing
+                    fallback formats
+                </li>
+            </ol>
+        </div>
+    </main>
+</Layout>
+

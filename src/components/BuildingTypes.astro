@@ -21,10 +21,36 @@ type TranslationMap = {
     [key: string]: BuildingType[];
 };
 
+// SVG icons as strings
+const houseIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" class="w-full h-full text-primary">
+  <path d="M20,50 L50,20 L80,50" stroke-linecap="round"/>
+  <path d="M30,42 L30,80 L70,80 L70,42" stroke-linejoin="round"/>
+  <rect x="45" y="55" width="10" height="25"/>
+</svg>`;
+
+const factoryIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" class="w-full h-full text-primary">
+  <path d="M20,80 L20,30 L30,30 L30,80" stroke-linejoin="round"/>
+  <path d="M30,40 L50,50 L50,80" stroke-linejoin="round"/>
+  <path d="M50,60 L70,70 L70,80" stroke-linejoin="round"/>
+  <path d="M70,30 L70,50" stroke-linecap="round"/>
+  <path d="M70,30 C70,25 75,25 75,30" stroke-linecap="round"/>
+  <rect x="35" y="60" width="10" height="10"/>
+  <rect x="55" y="70" width="10" height="10"/>
+  <path d="M15,80 L85,80" stroke-linecap="round"/>
+</svg>`;
+
+const farmIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" class="w-full h-full text-primary">
+  <path d="M70,45 L85,45 L85,65 C85,70 80,70 80,65 L80,55 L75,55 L75,65 L70,65 Z" stroke-linejoin="round" fill="currentColor"/>
+  <path d="M15,65 L85,65" stroke-linecap="round"/>
+  <path d="M20,65 C20,60 25,55 25,50 C25,45 30,40 30,35 C30,30 35,25 35,20" stroke-linecap="round"/>
+  <path d="M40,65 C40,60 45,55 45,50 C45,45 50,40 50,35 C50,30 55,25 55,20" stroke-linecap="round"/>
+  <path d="M60,65 C60,60 65,55 65,50 C65,45 70,40 70,35 C70,30 75,25 75,20" stroke-linecap="round"/>
+</svg>`;
+
 const translations: TranslationMap = {
     hr: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "STAMBENE ZGRADE",
             description:
                 "🏡 Solarni paneli za obiteljske kuće omogućuju vam značajnu uštedu na računima za struju i veću energetsku neovisnost. Povećajte vrijednost svoje nekretnine i smanjite utjecaj na okoliš.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Ušteda do 90% na računima za struju</div>\n<div>🔹 Mogućnost subvencija i poticaja</div>\n<div>🔹 Ekološki i dugoročno isplativo rješenje</div>\n</div>",
@@ -33,7 +59,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "INDUSTRIJSKE ZGRADE",
             description:
                 "🏭 Solarni paneli za industrijske objekte pomažu tvrtkama smanjiti troškove energije, povećati održivost i postići bolju financijsku stabilnost. Idealno rješenje za pogone, skladišta i poslovne prostore.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Smanjenje operativnih troškova</div>\n<div>🔹 Brzi povrat investicije</div>\n<div>🔹 Mogućnost prodaje viška energije</div>\n</div>",
@@ -42,7 +68,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "RURALNA PODRUČJA",
             description:
                 "🌿 Solarni paneli za poljoprivredu i farme omogućuju pouzdan izvor energije i smanjuju ovisnost o nestabilnim mrežama. Savršeni su za staklenike, navodnjavanje i elektrifikaciju udaljenih područja.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Neovisnost od mreže (off-grid sustavi)</div>\n<div>🔹 Smanjenje troškova za poljoprivrednike</div>\n<div>🔹 Sigurnost opskrbe energijom</div>\n</div>",
@@ -53,7 +79,7 @@ const translations: TranslationMap = {
     ],
     en: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "RESIDENTIAL BUILDINGS",
             description:
                 "🏡 Solar panels for residential homes enable significant savings on electricity bills and greater energy independence. Increase your property value and reduce environmental impact.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Save up to 90% on electricity bills</div>\n<div>🔹 Access to subsidies and incentives</div>\n<div>🔹 Eco-friendly and long-term cost-effective solution</div>\n</div>",
@@ -62,7 +88,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "INDUSTRIAL BUILDINGS",
             description:
                 "🏭 Solar panels for industrial facilities help companies reduce energy costs, increase sustainability, and achieve better financial stability. Ideal solution for plants, warehouses, and business premises.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Reduction in operating costs</div>\n<div>🔹 Quick return on investment</div>\n<div>🔹 Possibility to sell excess energy</div>\n</div>",
@@ -71,7 +97,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "RURAL AREAS",
             description:
                 "🌿 Solar panels for agriculture and farms provide a reliable energy source and reduce dependence on unstable grids. Perfect for greenhouses, irrigation, and electrification of remote areas.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Grid independence (off-grid systems)</div>\n<div>🔹 Cost reduction for farmers</div>\n<div>🔹 Secure energy supply</div>\n</div>",
@@ -82,7 +108,7 @@ const translations: TranslationMap = {
     ],
     sl: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "STANOVANJSKE STAVBE",
             description:
                 "🏡 Sončne celice za stanovanjske hiše omogočajo pomembne prihranke pri računih za elektriko in večjo energetsko neodvisnost. Povečajte vrednost svoje nepremičnine in zmanjšajte vpliv na okolje.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Prihranek do 90% pri računih za elektriko</div>\n<div>🔹 Možnost subvencij in spodbud</div>\n<div>🔹 Ekološka in dolgoročno stroškovno učinkovita rešitev</div>\n</div>",
@@ -91,7 +117,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "INDUSTRIJSKI OBJEKTI",
             description:
                 "🏭 Sončne celice za industrijske objekte pomagajo podjetjem zmanjšati stroške energije, povečati trajnost in doseči boljšo finančno stabilnost. Idealna rešitev za proizvodne obrate, skladišča in poslovne prostore.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Zmanjšanje operativnih stroškov</div>\n<div>🔹 Hiter povratek naložbe</div>\n<div>🔹 Možnost prodaje presežne energije</div>\n</div>",
@@ -100,7 +126,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "PODEŽELSKA OBMOČJA",
             description:
                 "🌿 Sončne celice za kmetijstvo in kmetije zagotavljajo zanesljiv vir energije in zmanjšujejo odvisnost od nestabilnih omrežij. Popolne za rastlinjake, namakanje in elektrifikacijo oddaljenih območij.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Neodvisnost od omrežja (off-grid sistemi)</div>\n<div>🔹 Zmanjšanje stroškov za kmete</div>\n<div>🔹 Zanesljiva oskrba z energijo</div>\n</div>",
@@ -111,7 +137,7 @@ const translations: TranslationMap = {
     ],
     de: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "WOHNGEBÄUDE",
             description:
                 "🏡 Solarmodule für Wohnhäuser ermöglichen erhebliche Einsparungen bei den Stromrechnungen und größere Energieunabhängigkeit. Steigern Sie den Wert Ihrer Immobilie und reduzieren Sie die Umweltbelastung.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Bis zu 90% Einsparung bei Stromrechnungen</div>\n<div>🔹 Zugang zu Subventionen und Förderungen</div>\n<div>🔹 Umweltfreundliche und langfristig kostengünstige Lösung</div>\n</div>",
@@ -120,7 +146,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "INDUSTRIEGEBÄUDE",
             description:
                 "🏭 Solarmodule für Industrieanlagen helfen Unternehmen, Energiekosten zu senken, Nachhaltigkeit zu steigern und bessere finanzielle Stabilität zu erreichen. Ideale Lösung für Fabriken, Lagerhallen und Geschäftsräume.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Reduzierung der Betriebskosten</div>\n<div>🔹 Schnelle Kapitalrendite</div>\n<div>🔹 Möglichkeit zum Verkauf überschüssiger Energie</div>\n</div>",
@@ -129,7 +155,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "LÄNDLICHE GEBIETE",
             description:
                 "🌿 Solarmodule für Landwirtschaft und Bauernhöfe bieten eine zuverlässige Energiequelle und reduzieren die Abhängigkeit von instabilen Netzen. Perfekt für Gewächshäuser, Bewässerung und Elektrifizierung abgelegener Gebiete.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Netzunabhängigkeit (Off-Grid-Systeme)</div>\n<div>🔹 Kostensenkung für Landwirte</div>\n<div>🔹 Sichere Energieversorgung</div>\n</div>",
@@ -140,7 +166,7 @@ const translations: TranslationMap = {
     ],
     it: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "EDIFICI RESIDENZIALI",
             description:
                 "🏡 I pannelli solari per le abitazioni residenziali consentono significativi risparmi sulle bollette elettriche e una maggiore indipendenza energetica. Aumenta il valore della tua proprietà e riduci l'impatto ambientale.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Risparmio fino al 90% sulle bollette elettriche</div>\n<div>🔹 Accesso a sovvenzioni e incentivi</div>\n<div>🔹 Soluzione ecologica ed economicamente vantaggiosa a lungo termine</div>\n</div>",
@@ -149,7 +175,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "EDIFICI INDUSTRIALI",
             description:
                 "🏭 I pannelli solari per strutture industriali aiutano le aziende a ridurre i costi energetici, aumentare la sostenibilità e raggiungere una migliore stabilità finanziaria. Soluzione ideale per impianti, magazzini e locali commerciali.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Riduzione dei costi operativi</div>\n<div>🔹 Rapido ritorno sull'investimento</div>\n<div>🔹 Possibilità di vendere energia in eccesso</div>\n</div>",
@@ -158,7 +184,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "AREE RURALI",
             description:
                 "🌿 I pannelli solari per agricoltura e fattorie forniscono una fonte di energia affidabile e riducono la dipendenza da reti instabili. Perfetti per serre, irrigazione ed elettrificazione di aree remote.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Indipendenza dalla rete (sistemi off-grid)</div>\n<div>🔹 Riduzione dei costi per gli agricoltori</div>\n<div>🔹 Fornitura energetica sicura</div>\n</div>",
@@ -169,7 +195,7 @@ const translations: TranslationMap = {
     ],
     hu: [
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e64c1c7aaa4744ab1e.svg",
+            icon: houseIcon,
             title: "LAKÓÉPÜLETEK",
             description:
                 "🏡 A lakóházak napelemei jelentős megtakarítást tesznek lehetővé a villanyszámlákon és nagyobb energetikai függetlenséget biztosítanak. Növelje ingatlana értékét és csökkentse környezeti hatását.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Akár 90% megtakarítás a villanyszámlákon</div>\n<div>🔹 Támogatások és ösztönzők elérhetősége</div>\n<div>🔹 Környezetbarát és hosszú távon költséghatékony megoldás</div>\n</div>",
@@ -178,7 +204,7 @@ const translations: TranslationMap = {
                 "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/bb36ce78-1da3-4756-9b03-20286a8d8fb0.jpeg?w=20",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e663f24e7036f80e86.svg",
+            icon: factoryIcon,
             title: "IPARI ÉPÜLETEK",
             description:
                 "🏭 Az ipari létesítmények napelemei segítenek a vállalatoknak csökkenteni az energiaköltségeket, növelni a fenntarthatóságot és jobb pénzügyi stabilitást elérni. Ideális megoldás üzemek, raktárak és üzlethelyiségek számára.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Működési költségek csökkentése</div>\n<div>🔹 Gyors megtérülés</div>\n<div>🔹 Többletenergia értékesítésének lehetősége</div>\n</div>",
@@ -187,7 +213,7 @@ const translations: TranslationMap = {
                 "https://images.unsplash.com/photo-1545209463-e2825498edbf?ixlib=rb-1.2.1&auto=format&fit=crop&w=20&q=10",
         },
         {
-            icon: "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/674f15e69264c9b30fecdbc2.svg",
+            icon: farmIcon,
             title: "VIDÉKI TERÜLETEK",
             description:
                 "🌿 A mezőgazdaság és farmok napelemei megbízható energiaforrást biztosítanak és csökkentik a függést az instabil hálózatoktól. Tökéletes üvegházak, öntözés és távoli területek villamosítására.\n\n<hr class='my-4 border-gray-200'>\n\n<div class='space-y-2'>\n<div>🔹 Hálózattól való függetlenség (off-grid rendszerek)</div>\n<div>🔹 Költségcsökkentés gazdálkodóknak</div>\n<div>🔹 Biztonságos energiaellátás</div>\n</div>",
@@ -207,14 +233,9 @@ const types = translations[lang] || translations.hr;
             {
                 types.map((type) => (
                     <div class="flex flex-col items-center p-8 rounded-2xl bg-gradient-to-b from-gray-50 to-gray-100 h-full">
-                        <img
-                            src={type.icon}
-                            alt={type.title}
-                            class="w-24 h-24 mb-4"
-                            loading="lazy"
-                            width="96"
-                            height="96"
-                        />
+                        <div class="w-24 h-24 mb-4">
+                            <Fragment set:html={type.icon} />
+                        </div>
                         <h3 class="text-2xl font-bold text-primary mb-3 text-center">
                             {type.title}
                         </h3>

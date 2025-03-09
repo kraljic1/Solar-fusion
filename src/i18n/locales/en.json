@@ -141,37 +141,53 @@
       "co2Savings": "Tons of CO₂ Annual Savings"
     },
     "gallery": {
+      "project0": {
+        "title": "Country House",
+        "description": "5kW solar system for a self-sustainable country house."
+      },
       "project1": {
-        "title": "Family House in Porec",
-        "description": "Installation of a 10kW solar system with a battery storage system."
+        "title": "Car Canopy",
+        "description": "9kW solar system installed on a car canopy providing shade and energy."
       },
       "project2": {
-        "title": "Industrial Building in Pazin",
-        "description": "Commercial solar power plant with 50kW for electricity production."
+        "title": "Country House Buje",
+        "description": "20kW solar system for a large country property with 80 panels."
       },
       "project3": {
-        "title": "Apartment Building in Rijeka",
-        "description": "Shared solar system for a residential building with 12 apartments."
+        "title": "Vila in Bale",
+        "description": "8kW solar system for a beautiful vila with 32 panels."
       },
       "project4": {
-        "title": "Hotel in Opatija",
-        "description": "Large-scale 75kW system for a hotel with high energy consumption."
+        "title": "Family House in Mali Lošinj",
+        "description": "9kW solar system for a family house on the island with 36 panels."
+      },
+      "project5": {
+        "title": "Family House in Zadar",
+        "description": "5kW solar system for a family house in Zadar with 20 panels."
       }
     },
     "projectPage": {
-      "title": "Solar Farm Porec",
-      "description": "50kW solar power plant for commercial use",
+      "title": "Country House",
+      "description": "5kW solar system for a self-sustainable country house",
       "residential": {
-        "title": "Family House in Porec",
-        "description": "10kW system with battery storage for a family home"
+        "title": "Car Canopy",
+        "description": "9kW solar system installed on a car canopy providing shade and energy"
       },
       "commercial": {
-        "title": "Business Complex Zagreb",
-        "description": "85kW commercial system for office buildings"
+        "title": "Country House Buje",
+        "description": "20kW solar system for a large country property with 80 panels"
       },
       "hotel": {
-        "title": "Resort in Dubrovnik",
-        "description": "120kW system for a luxury resort with 200 rooms"
+        "title": "Family House in Mali Lošinj",
+        "description": "9kW solar system for a family house on the island with 36 panels"
+      },
+      "apartments": {
+        "title": "Vila in Bale",
+        "description": "8kW solar system for a beautiful vila with 32 panels"
+      },
+      "school": {
+        "title": "Family House in Zadar",
+        "description": "5kW solar system for a family house in Zadar with 20 panels"
       }
     },
     "additionalProjects": {
@@ -204,7 +220,25 @@
         "description": "60kW system for a marina"
       }
     },
-    "closeModal": "Close"
+    "closeModal": "Close",
+    "mainGallery": {
+      "project1": {
+        "title": "Family House in Medulin",
+        "description": "18kW solar system for a family house in Medulin."
+      },
+      "project2": {
+        "title": "Modern House with Flat Roof",
+        "description": "9kW solar system for a modern house with flat roof."
+      },
+      "project3": {
+        "title": "Family House in Poreč",
+        "description": "9kW solar system for a family house in Poreč."
+      },
+      "project4": {
+        "title": "Family House in Medulin",
+        "description": "9kW solar system for a family house in Medulin."
+      }
+    }
   },
   "footer": {
     "navigation": {

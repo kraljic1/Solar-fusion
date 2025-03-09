@@ -4,18 +4,26 @@ import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
 import ImageModal from "../components/ImageModal.astro";
+import i18next from "i18next";
 
 interface Props {
     title?: string;
     description?: string;
+    canonicalUrl?: string;
+    noindex?: boolean;
 }
 
 const {
     title = "Solar Fusion",
     description = "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
+    canonicalUrl,
+    noindex = false,
 } = Astro.props;
 
 const { lang = "hr" } = Astro.params;
+const baseUrl = "https://solarfusion.hr"; // Update this with your actual domain
+const currentPath = Astro.url.pathname;
+const canonical = canonicalUrl || `${baseUrl}${currentPath}`;
 
 // Construct the full title with the site name
 const fullTitle = title.includes("Solar Fusion")
@@ -24,9 +32,9 @@ const fullTitle = title.includes("Solar Fusion")
 
 // Define critical resources
 const criticalImageUrl =
-    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp";
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop";
 const mobileImageUrl =
-    "https://assets.cdn.filesafe.space/M4krpnwvjmupM7QGr4NX/media/67cac48454acb4c0c3d44dca.webp?width=640&quality=80";
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop";
 ---
 
 <!doctype html>
@@ -36,19 +44,43 @@ const mobileImageUrl =
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+
+        <!-- SEO Meta Tags -->
+        <title>{fullTitle}</title>
         <meta name="description" content={description} />
-        <meta property="og:image" content={criticalImageUrl} />
+        <link rel="canonical" href={canonical} />
+        {noindex && <meta name="robots" content="noindex,nofollow" />}
+        <meta name="author" content="Solar Fusion" />
+        <meta
+            name="keywords"
+            content="solar panels, solar energy, solar installation, renewable energy, solar power, Croatia, energy savings, sustainable energy"
+        />
+
+        <!-- Open Graph / Facebook Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
         <meta property="og:title" content={fullTitle} />
         <meta property="og:description" content={description} />
-        <title>{fullTitle}</title>
+        <meta property="og:image" content={criticalImageUrl} />
+        <meta property="og:locale" content={lang} />
+        <meta property="og:site_name" content="Solar Fusion" />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonical} />
+        <meta name="twitter:title" content={fullTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={criticalImageUrl} />
 
         <!-- Resource hints for faster resource loading -->
         <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link
             rel="preconnect"
             href="https://assets.cdn.filesafe.space"
             crossorigin
         />
+        <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
         <link
             rel="preconnect"
             href="https://fonts.googleapis.com"
@@ -72,8 +104,120 @@ const mobileImageUrl =
             fetchpriority="high"
         />
 
+        <!-- Structured Data - Local Business -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Solar Fusion",
+                "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+                "description": "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Istarska ulica 23",
+                    "addressLocality": "Zagreb",
+                    "addressRegion": "Zagreb",
+                    "postalCode": "10000",
+                    "addressCountry": "HR"
+                },
+                "telephone": "+385 1 234 5678",
+                "email": "info@solarfusion.hr",
+                "url": "https://solarfusion.hr",
+                "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
+                "priceRange": "$$",
+                "sameAs": [
+                    "https://www.facebook.com/solarfusion",
+                    "https://www.instagram.com/solarfusion",
+                    "https://www.linkedin.com/company/solarfusion"
+                ],
+                "serviceArea": {
+                    "@type": "GeoCircle",
+                    "geoMidpoint": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "45.815399",
+                        "longitude": "15.966568"
+                    },
+                    "geoRadius": "100000"
+                }
+            }
+        </script>
+
+        <!-- Structured Data - Website -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Solar Fusion",
+                "url": "https://solarfusion.hr",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://solarfusion.hr/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        </script>
+
+        <!-- Structured Data - Service -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "serviceType": "Solar Panel Installation",
+                "provider": {
+                    "@type": "LocalBusiness",
+                    "name": "Solar Fusion"
+                },
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "Croatia"
+                },
+                "description": "Professional installation of solar panels for residential and commercial buildings, offering energy independence and cost savings.",
+                "offers": {
+                    "@type": "Offer",
+                    "priceSpecification": {
+                        "@type": "PriceSpecification",
+                        "priceCurrency": "EUR"
+                    }
+                }
+            }
+        </script>
+
+        <!-- Structured Data - FAQ -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "How much can I save with solar panels?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Most customers save up to 90% on their electricity bills after installing solar panels. The exact savings depend on your energy consumption, roof orientation, and local solar conditions."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How long does a solar panel installation take?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A typical residential installation takes 1-3 days, while commercial installations may take 1-2 weeks depending on the system size."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Are there any government incentives available?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes, there are various incentives available in Croatia including tax rebates and subsidies. Our consultants will help you navigate available options during your free consultation."
+                        }
+                    }
+                ]
+            }
+        </script>
+
         <!-- Critical rendering path optimization -->
-        <script is:inline>
+        <script is:inline define:vars={{ mobileImageUrl, criticalImageUrl }}>
             // Mobile detection
             const isMobile =
                 /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
@@ -357,6 +501,68 @@ const mobileImageUrl =
                 "astro:page-load",
                 window.initializeModals
             );
+        </script>
+
+        <!-- Google Analytics -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"
+        ></script>
+        <script is:inline>
+            // Google Analytics setup
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-MEASUREMENT_ID");
+        </script>
+
+        <!-- Cookie Consent Setup -->
+        <script is:inline>
+            window.addEventListener("load", function () {
+                // Check if user has previously consented to cookies
+                const hasConsent = localStorage.getItem("cookie-consent");
+
+                if (!hasConsent) {
+                    // Show cookie consent banner (which already exists in your CookieConsent component)
+                    const cookieBanner =
+                        document.querySelector("#cookie-banner");
+                    if (cookieBanner) cookieBanner.classList.remove("hidden");
+                } else if (hasConsent === "accepted") {
+                    // If user has already accepted, initialize analytics
+                    initializeAnalytics();
+                }
+            });
+
+            function initializeAnalytics() {
+                // Enable analytics tracking - this would be called when user accepts cookies
+                if (typeof gtag === "function") {
+                    gtag("consent", "update", {
+                        analytics_storage: "granted",
+                    });
+                }
+            }
+
+            // Function to be called when user accepts cookies
+            window.acceptCookies = function () {
+                localStorage.setItem("cookie-consent", "accepted");
+                initializeAnalytics();
+                const cookieBanner = document.querySelector("#cookie-banner");
+                if (cookieBanner) cookieBanner.classList.add("hidden");
+            };
+
+            // Function to be called when user rejects cookies
+            window.rejectCookies = function () {
+                localStorage.setItem("cookie-consent", "rejected");
+                if (typeof gtag === "function") {
+                    gtag("consent", "update", {
+                        analytics_storage: "denied",
+                    });
+                }
+                const cookieBanner = document.querySelector("#cookie-banner");
+                if (cookieBanner) cookieBanner.classList.add("hidden");
+            };
         </script>
     </body>
 </html>

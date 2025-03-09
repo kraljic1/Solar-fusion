@@ -141,37 +141,53 @@
       "co2Savings": "Tona CO₂ Godišnje Uštede"
     },
     "gallery": {
+      "project0": {
+        "title": "Kuća na selu",
+        "description": "5kW solarni sustav za samoodrživu kuću na selu."
+      },
       "project1": {
-        "title": "Obiteljska kuća u Poreču",
-        "description": "Instalacija solarnog sustava od 10kW s baterijskim sustavom za pohranu."
+        "title": "Nadstrešnica za auto",
+        "description": "9kW solarni sustav instaliran na nadstrešnici za auto koji pruža hlad i energiju."
       },
       "project2": {
-        "title": "Industrijska zgrada u Pazinu",
-        "description": "Komercijalna solarna elektrana od 50kW za proizvodnju električne energije."
+        "title": "Kuća na selu u Bujama",
+        "description": "20kW solarni sustav za veliko seosko imanje s 80 panela."
       },
       "project3": {
-        "title": "Stambena zgrada u Rijeci",
-        "description": "Zajednički solarni sustav za stambenu zgradu s 12 stanova."
+        "title": "Vila u Balama",
+        "description": "8kW solarni sustav za prekrasnu vilu s 32 panela."
       },
       "project4": {
-        "title": "Hotel u Opatiji",
-        "description": "Veliki sustav od 75kW za hotel s velikom potrošnjom energije."
+        "title": "Obiteljska kuća u Malom Lošinju",
+        "description": "9kW solarni sustav za obiteljsku kuću na otoku s 36 panela."
+      },
+      "project5": {
+        "title": "Obiteljska kuća u Zadru",
+        "description": "5kW solarni sustav za obiteljsku kuću u Zadru s 20 panela."
       }
     },
     "projectPage": {
-      "title": "Solarna farma Poreč",
-      "description": "50kW solarna elektrana za komercijalnu upotrebu",
+      "title": "Kuća na selu",
+      "description": "5kW solarni sustav za samoodrživu kuću na selu",
       "residential": {
-        "title": "Obiteljska kuća u Poreču",
-        "description": "10kW sustav s baterijskim skladištem za obiteljsku kuću"
+        "title": "Nadstrešnica za auto",
+        "description": "9kW solarni sustav instaliran na nadstrešnici za auto koji pruža hlad i energiju"
       },
       "commercial": {
-        "title": "Poslovni kompleks Zagreb",
-        "description": "85kW komercijalni sustav za poslovne zgrade"
+        "title": "Kuća na selu u Bujama",
+        "description": "20kW solarni sustav za veliko seosko imanje s 80 panela"
       },
       "hotel": {
-        "title": "Resort u Dubrovniku",
-        "description": "120kW sustav za luksuzni resort s 200 soba"
+        "title": "Obiteljska kuća u Malom Lošinju",
+        "description": "9kW solarni sustav za obiteljsku kuću na otoku s 36 panela"
+      },
+      "apartments": {
+        "title": "Vila u Balama",
+        "description": "8kW solarni sustav za prekrasnu vilu s 32 panela"
+      },
+      "school": {
+        "title": "Obiteljska kuća u Zadru",
+        "description": "5kW solarni sustav za obiteljsku kuću u Zadru s 20 panela"
       }
     },
     "additionalProjects": {
@@ -204,7 +220,25 @@
         "description": "60kW sustav za marinu"
       }
     },
-    "closeModal": "Zatvori"
+    "closeModal": "Zatvori",
+    "mainGallery": {
+      "project1": {
+        "title": "Obiteljska kuća u Medulinu",
+        "description": "18kW solarni sustav za obiteljsku kuću u Medulinu."
+      },
+      "project2": {
+        "title": "Moderna kuća s ravnim krovom",
+        "description": "9kW solarni sustav za modernu kuću s ravnim krovom."
+      },
+      "project3": {
+        "title": "Obiteljska kuća u Poreću",
+        "description": "9kW solarni sustav za obiteljsku kuću u Poreću."
+      },
+      "project4": {
+        "title": "Obiteljska kuća u Medulinu",
+        "description": "9kW solarni sustav za obiteljsku kuću u Medulinu."
+      }
+    }
   },
   "footer": {
     "navigation": {

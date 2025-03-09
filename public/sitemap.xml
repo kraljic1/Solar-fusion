@@ -1,139 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Home pages for each language -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Homepage -->
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/hr/</loc>
+    <loc>https://solarfusion.hr/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
-  </url>
-  <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/en/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
-  </url>
-  <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/sl/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
-  </url>
-  <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/de/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
-  </url>
-  <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/it/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
-  </url>
-  <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/hu/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu" />
   </url>
 
-  <!-- Projects pages for each language -->
+  <!-- Croatian Pages -->
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/hr/projekti</loc>
+    <loc>https://solarfusion.hr/hr</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu" />
   </url>
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/en/projekti</loc>
+    <loc>https://solarfusion.hr/hr/projekti</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/projekti" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/projects" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/projekti" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/projekte" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/progetti" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/projektek" />
   </url>
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/sl/projekti</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <loc>https://solarfusion.hr/hr/o-nama</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/o-nama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/about-us" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/o-nas" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/uber-uns" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/rolunk" />
   </url>
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/de/projekti</loc>
+    <loc>https://solarfusion.hr/hr/kontakt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/kontakt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/kontakt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/kontakt" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/kapcsolat" />
+  </url>
+  
+  <!-- English Pages -->
+  <url>
+    <loc>https://solarfusion.hr/en</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu" />
   </url>
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/it/projekti</loc>
+    <loc>https://solarfusion.hr/en/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/projekti" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/projects" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/projekti" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/projekte" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/progetti" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/projektek" />
   </url>
   <url>
-    <loc>https://friendly-gingersnap-be2b80.netlify.app/hu/projekti</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://friendly-gingersnap-be2b80.netlify.app/hr/projekti"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://friendly-gingersnap-be2b80.netlify.app/en/projekti"/>
-    <xhtml:link rel="alternate" hreflang="sl" href="https://friendly-gingersnap-be2b80.netlify.app/sl/projekti"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://friendly-gingersnap-be2b80.netlify.app/de/projekti"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://friendly-gingersnap-be2b80.netlify.app/it/projekti"/>
-    <xhtml:link rel="alternate" hreflang="hu" href="https://friendly-gingersnap-be2b80.netlify.app/hu/projekti"/>
+    <loc>https://solarfusion.hr/en/about-us</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/o-nama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/about-us" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/o-nas" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/uber-uns" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/rolunk" />
+  </url>
+  <url>
+    <loc>https://solarfusion.hr/en/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://solarfusion.hr/hr/kontakt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://solarfusion.hr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://solarfusion.hr/sl/kontakt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://solarfusion.hr/de/kontakt" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://solarfusion.hr/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://solarfusion.hr/hu/kapcsolat" />
   </url>
 </urlset>
