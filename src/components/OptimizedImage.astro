@@ -1,0 +1,93 @@
+---
+// OptimizedImage.astro - Optimized image component with WebP support
+interface Props {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    class?: string;
+    loading?: "lazy" | "eager";
+    decoding?: "async" | "sync" | "auto";
+    fetchpriority?: "high" | "low" | "auto";
+    sizes?: string;
+}
+
+const {
+    src,
+    alt,
+    width,
+    height,
+    class: className = "",
+    loading = "lazy",
+    decoding = "async",
+    fetchpriority = "auto",
+    sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+} = Astro.props;
+
+// Function to convert image URL to WebP
+function getWebPVersion(imageUrl: string): string {
+    // For external image URLs that don't support WebP conversion
+    if (imageUrl.includes("unsplash.com")) {
+        // Unsplash images can be requested as WebP by appending format=webp
+        return imageUrl.includes("?")
+            ? `${imageUrl}&fm=webp`
+            : `${imageUrl}?fm=webp`;
+    }
+
+    // For local images, change extension
+    const urlParts = imageUrl.split(".");
+    if (urlParts.length > 1) {
+        const extension = urlParts.pop();
+        return `${urlParts.join(".")}.webp`;
+    }
+
+    return imageUrl;
+}
+
+const webpSrc = getWebPVersion(src);
+
+// Generate different sizes for srcset
+function generateSrcSet(imgSrc: string, format: string): string {
+    // Example sizes for responsive images
+    const sizes = [400, 800, 1200, 1600, 2000];
+
+    // For Unsplash images that support dynamic sizing
+    if (imgSrc.includes("unsplash.com")) {
+        return sizes
+            .map((size) => {
+                const url = imgSrc.includes("?")
+                    ? `${imgSrc}&w=${size}${format === "webp" ? "&fm=webp" : ""}`
+                    : `${imgSrc}?w=${size}${format === "webp" ? "&fm=webp" : ""}`;
+                return `${url} ${size}w`;
+            })
+            .join(", ");
+    }
+
+    // For local images or other sources that don't support dynamic sizing
+    // Just return the original source
+    return format === "webp" ? webpSrc : src;
+}
+
+const originalSrcSet = generateSrcSet(src, "original");
+const webpSrcSet = generateSrcSet(src, "webp");
+---
+
+<picture>
+    <source srcset={webpSrcSet} sizes={sizes} type="image/webp" />
+    <source
+        srcset={originalSrcSet}
+        sizes={sizes}
+        type={`image/${src.split(".").pop()}`}
+    />
+    <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        class={className}
+        loading={loading}
+        decoding={decoding}
+        fetchpriority={fetchpriority}
+    />
+</picture>
+

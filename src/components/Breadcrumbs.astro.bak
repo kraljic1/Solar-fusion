@@ -1,0 +1,116 @@
+import { t } from "i18next";
+import i18next from "../i18n/config";
+
+const { lang = "hr" } = Astro.params;
+
+// Change language before rendering
+if (lang) {
+    await i18next.changeLanguage(lang);
+}
+
+// Define paths that should be translated
+const pathTranslations = {
+    projects: {
+        en: "projects",
+        hr: "projekti",
+        sl: "projekti",
+        de: "projekte",
+        it: "progetti",
+        hu: "projektek"
+    },
+    "about-us": {
+        en: "about-us",
+        hr: "o-nama",
+        sl: "o-nas",
+        de: "uber-uns",
+        it: "chi-siamo",
+        hu: "rolunk"
+    },
+    contact: {
+        en: "contact",
+        hr: "kontakt",
+        sl: "kontakt",
+        de: "kontakt",
+        it: "contatto",
+        hu: "kapcsolat"
+    }
+};
+
+// Current path segments from URL
+const currentUrl = Astro.url.pathname;
+const segments = currentUrl.split('/').filter(segment => segment);
+
+// Ignore language prefix
+const pathSegments = segments.length > 0 && Object.keys(i18next.languages || {}).includes(segments[0]) 
+    ? segments.slice(1) 
+    : segments;
+
+// Build breadcrumbs with matching translations
+const breadcrumbs = [
+    {
+        name: "Home",
+        url: `/${lang}`
+    }
+];
+
+// Add each path segment as a breadcrumb
+let currentPath = `/${lang}`;
+pathSegments.forEach((segment, index) => {
+    // Create a readable name from the path segment
+    let name = segment.replace(/-/g, ' ');
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    
+    // Try to get a translated name if available
+    const translationKey = `nav.${segment.replace(/-/g, '')}`; // Remove hyphens for translation key
+    const translatedName = t(translationKey);
+    
+    // Use translation if it exists and isn't just returning the key
+    if (translatedName && !translatedName.includes(translationKey)) {
+        name = translatedName;
+    }
+    
+    // Add to breadcrumbs
+    currentPath += `/${segment}`;
+    breadcrumbs.push({
+        name,
+        url: currentPath,
+        isActive: index === pathSegments.length - 1
+    });
+});
+
+// Get structured data for breadcrumbs
+const breadcrumbsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((breadcrumb, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": breadcrumb.name,
+        "item": `https://solarfusion.hr${breadcrumb.url}`
+    }))
+};
+
+<nav aria-label="Breadcrumbs" class="py-3 px-4 bg-gray-50">
+    <ol class="flex items-center flex-wrap text-sm text-gray-600">
+        {breadcrumbs.map((breadcrumb, index) => (
+            <li class="flex items-center">
+                {index > 0 && (
+                    <span class="mx-2 text-gray-400">/</span>
+                )}
+                
+                {breadcrumb.isActive ? (
+                    <span class="font-medium text-primary" aria-current="page">
+                        {breadcrumb.name}
+                    </span>
+                ) : (
+                    <a href={breadcrumb.url} class="hover:text-secondary transition-colors">
+                        {breadcrumb.name}
+                    </a>
+                )}
+            </li>
+        ))}
+    </ol>
+</nav>
+
+<!-- Structured Data for Breadcrumbs -->
+<script type="application/ld+json">{JSON.stringify(breadcrumbsStructuredData)}</script> 

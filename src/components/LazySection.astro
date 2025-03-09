@@ -1,0 +1,88 @@
+---
+// LazySection.astro - Component to lazy load content below the fold
+interface Props {
+    id?: string;
+    class?: string;
+    threshold?: number; // Intersection threshold (0-1)
+    rootMargin?: string; // Root margin (e.g., "200px 0px")
+    minHeight?: string; // Minimum height before load
+}
+
+const {
+    id,
+    class: className = "",
+    threshold = 0.1,
+    rootMargin = "200px 0px",
+    minHeight = "200px",
+} = Astro.props;
+---
+
+<section
+    id={id}
+    class:list={["lazy-section", className]}
+    data-threshold={threshold}
+    data-rootmargin={rootMargin}
+    style={`min-height: ${minHeight}; content-visibility: auto; contain-intrinsic-size: auto ${minHeight};`}>
+    <slot />
+</section>
+
+<script>
+    // Initialize all lazy sections on the page
+    document.addEventListener("DOMContentLoaded", () => {
+        initLazySections();
+    });
+
+    // Re-initialize after Astro view transitions
+    document.addEventListener("astro:page-load", () => {
+        initLazySections();
+    });
+
+    function initLazySections() {
+        const lazySections = document.querySelectorAll(".lazy-section");
+
+        if ("IntersectionObserver" in window) {
+            lazySections.forEach((section) => {
+                const threshold = parseFloat(
+                    section.getAttribute("data-threshold") || "0.1"
+                );
+                const rootMargin =
+                    section.getAttribute("data-rootmargin") || "200px 0px";
+
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                // When section is visible, apply full styling and remove optimization attributes
+                                const element = entry.target as HTMLElement;
+                                element.style.contentVisibility = "visible";
+                                element.style.containIntrinsicSize = "";
+
+                                // Stop observing once loaded
+                                observer.unobserve(element);
+                            }
+                        });
+                    },
+                    { threshold, rootMargin }
+                );
+
+                observer.observe(section);
+            });
+        } else {
+            // Fallback for browsers that don't support IntersectionObserver
+            lazySections.forEach((section) => {
+                const element = section as HTMLElement;
+                element.style.contentVisibility = "visible";
+                element.style.containIntrinsicSize = "";
+            });
+        }
+    }
+</script>
+
+<style>
+    .lazy-section {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+</style>
+

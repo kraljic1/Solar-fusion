@@ -1,5 +1,10 @@
 ---
 // StructuredData.astro - Component for all structured data schemas
+const {
+    currentUrl = "https://solarfusion.hr",
+    pageType = "website", // Can be website, service, product, faq, etc.
+    lang = "hr",
+} = Astro.props;
 ---
 
 <!-- Structured Data - Local Business -->
@@ -17,6 +22,11 @@
             "addressRegion": "Zagreb",
             "postalCode": "10000",
             "addressCountry": "HR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "45.815399",
+            "longitude": "15.966568"
         },
         "telephone": "+385 1 234 5678",
         "email": "info@solarfusion.hr",
@@ -36,6 +46,40 @@
                 "longitude": "15.966568"
             },
             "geoRadius": "100000"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Solar Panel Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Residential Solar Installation"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Commercial Solar Installation"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Solar Panel Maintenance"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Solar Battery Installation"
+                    }
+                }
+            ]
         }
     }
 </script>
@@ -47,6 +91,7 @@
         "@type": "WebSite",
         "name": "Solar Fusion",
         "url": "https://solarfusion.hr",
+        "inLanguage": ["hr", "en", "sl", "de", "it", "hu"],
         "potentialAction": {
             "@type": "SearchAction",
             "target": "https://solarfusion.hr/search?q={search_term_string}",
@@ -63,7 +108,8 @@
         "serviceType": "Solar Panel Installation",
         "provider": {
             "@type": "LocalBusiness",
-            "name": "Solar Fusion"
+            "name": "Solar Fusion",
+            "url": "https://solarfusion.hr"
         },
         "areaServed": {
             "@type": "Country",
@@ -71,11 +117,89 @@
         },
         "description": "Professional installation of solar panels for residential and commercial buildings, offering energy independence and cost savings.",
         "offers": {
-            "@type": "Offer",
-            "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "EUR"
+            "@type": "AggregateOffer",
+            "priceCurrency": "EUR",
+            "highPrice": "15000",
+            "lowPrice": "4000",
+            "offerCount": "4"
+        },
+        "termsOfService": "https://solarfusion.hr/hr/terms",
+        "serviceOutput": "Fully operational solar energy system that reduces electricity bills by up to 90%",
+        "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://solarfusion.hr/hr/contact",
+            "servicePhone": "+385 1 234 5678",
+            "serviceSmsNumber": "+385 1 234 5678"
+        }
+    }
+</script>
+
+<!-- Structured Data - Organization -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Solar Fusion",
+        "url": "https://solarfusion.hr",
+        "logo": "https://solarfusion.hr/logo.png",
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+385 1 234 5678",
+                "contactType": "customer service",
+                "areaServed": "HR",
+                "availableLanguage": [
+                    "Croatian",
+                    "English",
+                    "Slovenian",
+                    "German",
+                    "Italian",
+                    "Hungarian"
+                ]
+            },
+            {
+                "@type": "ContactPoint",
+                "telephone": "+385 1 234 5679",
+                "contactType": "technical support",
+                "areaServed": "HR",
+                "availableLanguage": ["Croatian", "English"]
             }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/solarfusion",
+            "https://www.instagram.com/solarfusion",
+            "https://www.linkedin.com/company/solarfusion"
+        ]
+    }
+</script>
+
+<!-- Structured Data - Product -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Complete Solar Energy System",
+        "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+        "description": "Complete solar energy system including panels, inverter, mounting, and installation for residential homes.",
+        "brand": {
+            "@type": "Brand",
+            "name": "Solar Fusion"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "https://solarfusion.hr/hr/products/complete-system",
+            "priceCurrency": "EUR",
+            "priceValidUntil": "2024-12-31",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "Solar Fusion"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "47"
         }
     }
 </script>
@@ -109,8 +233,117 @@
                     "@type": "Answer",
                     "text": "Yes, there are various incentives available in Croatia including tax rebates and subsidies. Our consultants will help you navigate available options during your free consultation."
                 }
+            },
+            {
+                "@type": "Question",
+                "name": "What maintenance do solar panels require?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Solar panels require minimal maintenance. We recommend cleaning them 2-4 times per year and having a professional inspection annually to ensure optimal performance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long do solar panels last?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most quality solar panels come with a 25-year warranty and can continue producing electricity for 30+ years. The inverter typically needs replacement after 10-15 years."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I install solar panels on any type of roof?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Solar panels can be installed on most roof types including tile, metal, and shingle. Our team will assess your roof's suitability during the initial consultation."
+                }
             }
         ]
     }
 </script>
 
+<!-- Structured Data - BreadcrumbList is handled in the Breadcrumbs component --><!-- Structured Data - Professional Service -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Solar Fusion - Solar Installation Experts",
+        "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+        "telephone": "+385 1 234 5678",
+        "email": "info@solarfusion.hr",
+        "url": "https://solarfusion.hr",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Istarska ulica 23",
+            "addressLocality": "Zagreb",
+            "addressRegion": "Zagreb",
+            "postalCode": "10000",
+            "addressCountry": "HR"
+        },
+        "priceRange": "$$",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                ],
+                "opens": "09:00",
+                "closes": "17:00"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Solar Installation Services",
+            "itemListElement": [
+                {
+                    "@type": "OfferCatalog",
+                    "name": "Residential Services",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Home Solar Panel Installation",
+                                "description": "Complete solar panel system installation for residential homes"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Home Battery Installation",
+                                "description": "Energy storage solutions for residential properties"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@type": "OfferCatalog",
+                    "name": "Commercial Services",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Commercial Solar Installation",
+                                "description": "Large-scale solar solutions for businesses"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Industrial Energy Solutions",
+                                "description": "Custom renewable energy systems for industrial applications"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+</script>

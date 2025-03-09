@@ -11,8 +11,14 @@ const {
     mobileImageUrl = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop",
 } = Astro.props;
 
+import { languages } from "../i18n/config";
+
 const currentPath = Astro.url.pathname;
 const canonical = canonicalUrl || `${baseUrl}${currentPath}`;
+
+// Extract the path without the language prefix for alternate links
+const pathWithoutLang = currentPath.split("/").slice(2).join("/");
+const langPath = pathWithoutLang ? `/${pathWithoutLang}` : "/";
 
 // Construct the full title with the site name
 const fullTitle = title.includes("Solar Fusion")
@@ -31,14 +37,53 @@ const fullTitle = title.includes("Solar Fusion")
     content="solar panels, solar energy, solar installation, renewable energy, solar power, Croatia, energy savings, sustainable energy"
 />
 
+<!-- Language Alternates for Multilingual SEO -->
+{
+    languages.map((lng) => (
+        <link
+            rel="alternate"
+            hreflang={lng}
+            href={`${baseUrl}/${lng}${langPath}`}
+        />
+    ))
+}
+<link rel="alternate" hreflang="x-default" href={`${baseUrl}/hr${langPath}`} />
+
 <!-- Open Graph / Facebook Meta Tags -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonical} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={criticalImageUrl} />
-<meta property="og:locale" content={lang} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta
+    property="og:locale"
+    content={lang === "hr"
+        ? "hr_HR"
+        : lang === "en"
+          ? "en_US"
+          : lang === "sl"
+            ? "sl_SI"
+            : lang === "de"
+              ? "de_DE"
+              : lang === "it"
+                ? "it_IT"
+                : lang === "hu"
+                  ? "hu_HU"
+                  : "hr_HR"}
+/>
 <meta property="og:site_name" content="Solar Fusion" />
+<meta property="og:updated_time" content={new Date().toISOString()} />
+<meta property="og:see_also" content="https://www.facebook.com/solarfusion" />
+<meta property="og:see_also" content="https://www.instagram.com/solarfusion" />
+<meta
+    property="og:see_also"
+    content="https://www.linkedin.com/company/solarfusion"
+/>
+
+<!-- Facebook specific -->
+<meta property="fb:app_id" content="your-fb-app-id" />
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -46,6 +91,12 @@ const fullTitle = title.includes("Solar Fusion")
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={criticalImageUrl} />
+<meta name="twitter:site" content="@solarfusion" />
+<meta name="twitter:creator" content="@solarfusion" />
+<meta name="twitter:label1" content="Installation Time" />
+<meta name="twitter:data1" content="1-3 days" />
+<meta name="twitter:label2" content="Energy Savings" />
+<meta name="twitter:data2" content="Up to 90% on electricity bills" />
 
 <!-- Resource hints for faster resource loading -->
 <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
@@ -91,4 +142,3 @@ const fullTitle = title.includes("Solar Fusion")
         type="text/css"
     />
 </noscript>
-

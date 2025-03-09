@@ -1,0 +1,79 @@
+---
+// SEOFaq.astro - Component for SEO-optimized FAQ sections
+import SectionHeading from "./SectionHeading.astro";
+
+interface FaqItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    items: FaqItem[];
+    className?: string;
+    structured?: boolean; // whether to output structured data
+}
+
+const {
+    title = "Frequently Asked Questions",
+    subtitle = "Find answers to the most common questions about our solar solutions",
+    items = [],
+    className = "",
+    structured = true,
+} = Astro.props;
+
+// Prepare structured data for FAQs
+const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+        },
+    })),
+};
+---
+
+<section class={`faq-section py-12 ${className}`}>
+    <div class="container mx-auto px-4">
+        <SectionHeading
+            title={title}
+            subtitle={subtitle}
+            level={2}
+            align="center"
+            withDivider={true}
+        />
+
+        <div class="max-w-3xl mx-auto mt-8">
+            <div class="space-y-6">
+                {
+                    items.map((item, index) => (
+                        <div class="faq-item bg-white rounded-lg shadow-sm p-6 transition-all hover:shadow-md">
+                            <h3 class="text-lg md:text-xl font-semibold text-primary mb-2">
+                                {item.question}
+                            </h3>
+                            <div
+                                class="prose text-gray-600"
+                                set:html={item.answer}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+{
+    structured && (
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(faqStructuredData)}
+        />
+    )
+}
+
