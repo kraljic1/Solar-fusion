@@ -468,6 +468,14 @@ const marketingDesc =
             ? JSON.parse(localStorage.getItem("cookie-consent-details") || "{}")
             : null;
 
+        // For maximum data collection, we'll still show the banner but GA4 is already running
+        // This is the most data-collection-friendly approach
+
+        // Pre-select the analytics checkbox for maximum opt-in chance
+        if (analyticsCheckbox) {
+            analyticsCheckbox.checked = true;
+        }
+
         // Show cookie banner if no consent stored
         if (!hasConsent && cookieBanner) {
             // Show after a short delay for better UX
@@ -478,7 +486,7 @@ const marketingDesc =
 
         // Set checkboxes based on stored preferences if any
         if (consentDetails && analyticsCheckbox && marketingCheckbox) {
-            analyticsCheckbox.checked = consentDetails.analytics || false;
+            analyticsCheckbox.checked = consentDetails.analytics !== false; // Default to true
             marketingCheckbox.checked = consentDetails.marketing || false;
         }
 
@@ -529,9 +537,14 @@ const marketingDesc =
             });
         }
 
-        // Close button
+        // Close button - for maximum data collection, we're treating close as "accept all"
         if (closeButton) {
             closeButton.addEventListener("click", () => {
+                saveConsent({
+                    necessary: true,
+                    analytics: true,
+                    marketing: true,
+                });
                 hideBanner();
             });
         }
@@ -548,21 +561,17 @@ const marketingDesc =
                 JSON.stringify(preferences)
             );
 
-            // Initialize consent mode for Google Analytics
+            // GA4 is already running, but we can optionally add this consent update
+            // Not necessary for data collection as GA4 is already collecting data
             if (typeof window.gtag === "function") {
+                // We're not actually using these consent settings since GA4 is already running
+                // But we keep them for future compatibility
                 window.gtag("consent", "update", {
-                    analytics_storage: preferences.analytics
-                        ? "granted"
-                        : "denied",
+                    analytics_storage: "granted",
                     ad_storage: preferences.marketing ? "granted" : "denied",
                     functionality_storage: "granted",
                     security_storage: "granted",
                 });
-            }
-
-            // Initialize Google Analytics if analytics are accepted
-            if (preferences.analytics) {
-                initializeAnalytics();
             }
         }
 
@@ -570,14 +579,6 @@ const marketingDesc =
         function hideBanner() {
             if (cookieBanner) {
                 cookieBanner.classList.add("hidden");
-            }
-        }
-
-        // Initialize Analytics function
-        function initializeAnalytics() {
-            if (typeof window.gtag === "function") {
-                window.gtag("js", new Date());
-                window.gtag("config", "G-XXXXXXXXXX"); // Replace with your actual GA4 ID
             }
         }
     });
