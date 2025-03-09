@@ -73,6 +73,16 @@ const gaId = "G-XXXXXXXX"; // Replace with your actual GA4 ID
 
         <!-- Add View Transitions -->
         <ViewTransitions />
+
+        <!-- Fix for horizontal overflow on mobile -->
+        <style is:global>
+            html,
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+            }
+        </style>
     </head>
     <body>
         <Navigation />

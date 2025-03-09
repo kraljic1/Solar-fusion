@@ -495,3 +495,98 @@ const t = translations[lang as keyof typeof translations] || translations.hr;
         initializeProjectCarousels();
     });
 </script>
+
+<style>
+    .project-carousel {
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-slide {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: background-color 0.3s;
+    }
+
+    .carousel-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev-button {
+        left: 15px;
+    }
+
+    .next-button {
+        right: 15px;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+
+    .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .carousel-dot.active {
+        background-color: white;
+        transform: scale(1.2);
+    }
+
+    /* Mobile responsiveness fixes */
+    @media (max-width: 768px) {
+        .project-details {
+            padding: 1rem;
+        }
+
+        img,
+        picture,
+        svg,
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .carousel-container,
+        .project-carousel {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    }
+</style>
