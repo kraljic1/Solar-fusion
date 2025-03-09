@@ -3,301 +3,398 @@
 interface Props {
     priority?: "high" | "low" | "auto";
     heroImagePath?: string;
-    mobileImagePath?: string;
 }
 
 const { 
     priority = "auto", 
-    heroImagePath = "/assets/images/hero-optimized.webp",
-    mobileImagePath = "/assets/images/hero-mobile-optimized.webp"
+    heroImagePath = "/assets/images/hero-optimized.webp"
 } = Astro.props;
 
 // Determine what resources to preload based on priority
 const shouldPreloadCritical = priority === "high" || priority === "auto";
 ---
 
-<>
-    <!-- Preload Critical Resources -->
-    {
-        shouldPreloadCritical && (
-            <>
-                <!-- Preload critical fonts -->
-                <link
-                    rel="preload"
-                    href="/assets/fonts/inter-var.woff2"
-                    as="font"
-                    type="font/woff2"
-                    crossorigin
-                />
-                <!-- Preload hero image for LCP improvement -->
-                <link
-                    rel="preload"
-                    href={heroImagePath}
-                    as="image"
-                    type="image/webp"
-                />
-                <!-- Preload critical CSS -->
-                <link
-                    rel="preload"
-                    href="/assets/styles/critical.css"
-                    as="style"
-                />
-            </>
-        )
+<!-- Critical rendering path optimization -->
+<script is:inline define:vars={{ mobileImageUrl, criticalImageUrl }}>
+    // Mobile detection
+    const isMobile =
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+        window.innerWidth <= 768;
+
+    // Immediately set a base dark background color to avoid flash
+    document.documentElement.style.backgroundColor = "#1a202c";
+
+    // Critical font preloading for the hero subtitle
+    const fontLink = document.createElement("link");
+    fontLink.rel = "preload";
+    fontLink.href =
+        "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap";
+    fontLink.as = "style";
+    document.head.appendChild(fontLink);
+
+    // LCP optimization - initiate early fetch for critical image
+    if (isMobile) {
+        const preloadLink = document.createElement("link");
+        preloadLink.rel = "preload";
+        preloadLink.as = "image";
+        preloadLink.href = `${mobileImageUrl}`;
+        preloadLink.fetchPriority = "high";
+        document.head.appendChild(preloadLink);
     }
 
-    <!-- Core Web Vitals Optimizations -->
-    <script is:inline define:vars={{ heroImagePath, mobileImagePath }}>
-        // LCP Optimization
-        // Set initial page background early to prevent white flash
-        document.documentElement.style.backgroundColor = "#f9fafb";
-        
-        // FID Optimization
-        // Break up long tasks
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                    window.innerWidth <= 768;
-        
-        // Detect high-end devices for better JS performance budgeting
-        const isHighEndDevice = () => {
-            const hardware = navigator.hardwareConcurrency || 4;
-            const memory = navigator.deviceMemory || 4;
-            return hardware >= 4 && memory >= 4;
-        };
-        
-        // Performance budget based on device capability
-        window.perfBudget = {
-            highEnd: isHighEndDevice(),
-            mobile: isMobile
-        };
-        
-        // Critical font preloading for the hero subtitle
-        const fontLink = document.createElement("link");
-        fontLink.rel = "preload";
-        fontLink.href = "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap";
-        fontLink.as = "style";
-        document.head.appendChild(fontLink);
+    // Prevent layout shifts by setting initial dimensions
+    document.documentElement.style.setProperty("--hero-height", "100vh");
 
-        // LCP optimization - initiate early fetch for critical image
-        if (isMobile && mobileImagePath) {
-            const preloadLink = document.createElement("link");
-            preloadLink.rel = "preload";
-            preloadLink.as = "image";
-            preloadLink.href = mobileImagePath;
-            preloadLink.fetchPriority = "high";
-            document.head.appendChild(preloadLink);
-        } else if (heroImagePath) {
-            const preloadLink = document.createElement("link");
-            preloadLink.rel = "preload";
-            preloadLink.as = "image";
-            preloadLink.href = heroImagePath;
-            preloadLink.fetchPriority = "high";
-            document.head.appendChild(preloadLink);
-        }
-        
-        // Prevent layout shifts by setting initial dimensions
-        document.documentElement.style.setProperty("--hero-height", "100vh");
-        
-        // CLS Prevention
-        // Reserve space for dynamic content to prevent layout shifts
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial dimensions for images that will load later
-            const reserveImgSpace = () => {
-                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                    if (!img.width && !img.height) {
-                        // Default aspect ratio if no dimensions specified
-                        img.style.aspectRatio = '16/9';
-                    }
-                });
-            };
-            
-            // Set minimum height for containers that will have dynamic content
-            const reserveContentSpace = () => {
-                const dynamicContainers = document.querySelectorAll('.dynamic-content, [data-dynamic]');
-                dynamicContainers.forEach(container => {
-                    const minHeight = container.getAttribute('data-min-height');
-                    if (minHeight) {
-                        container.style.minHeight = minHeight;
-                    }
-                });
-            };
-            
-            reserveImgSpace();
-            reserveContentSpace();
-            
-            // Implement intersection observer for content visibility
-            if ('IntersectionObserver' in window) {
-                const loadVisibility = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // Enable full rendering for elements scrolled into view
-                            entry.target.style.contentVisibility = 'visible';
-                            entry.target.style.containIntrinsicSize = 'auto';
-                            loadVisibility.unobserve(entry.target);
-                        }
-                    });
-                });
-                
-                // Apply content-visibility to elements far below the fold
-                document.querySelectorAll('[data-defer-visibility]').forEach(el => {
-                    if (isMobile) {
-                        el.style.contentVisibility = 'auto';
-                        el.style.containIntrinsicSize = el.getAttribute('data-height') || '1000px';
-                        loadVisibility.observe(el);
-                    }
-                });
-            }
-
-            // Set content-visibility auto for below-the-fold content on mobile
-            if (isMobile) {
-                const belowFoldElements = document.querySelectorAll(
-                    "section:not(.hero-section)"
-                );
-                belowFoldElements.forEach((el, index) => {
-                    if (index > 0) {
-                        // Skip the first section after hero
-                        el.style.contentVisibility = "auto";
-                        el.style.containIntrinsicSize = "0 500px"; // Estimated size
-                    }
-                });
-            }
+    // Set content-visibility auto for below-the-fold content on mobile
+    if (isMobile) {
+        document.addEventListener("DOMContentLoaded", () => {
+            const belowFoldElements = document.querySelectorAll(
+                "section:not(.hero-section)"
+            );
+            belowFoldElements.forEach((el, index) => {
+                if (index > 0) {
+                    // Skip the first section after hero
+                    el.style.contentVisibility = "auto";
+                    el.style.containIntrinsicSize = "0 500px"; // Estimated size
+                }
+            });
         });
-    </script>
+    }
+</script>
 
-    <!-- HTTP/2 Server Push Hints -->
-    <script type="module" is:inline>
-        // Use JS module preloading for HTTP/2 benefits
-        // These won't execute until needed but browser will prioritize fetching
-        const resources = [
-            '/assets/scripts/main.js',
-            '/assets/styles/main.css'
-        ];
-        
-        resources.forEach(resource => {
-            const link = document.createElement('link');
-            link.rel = 'modulepreload';
-            link.href = resource;
-            document.head.appendChild(link);
-        });
-    </script>
-
-    <!-- Inline critical CSS for mobile -->
-    <style is:inline>
-        /* Mobile-specific optimizations */
-        @media (max-width: 768px) {
-            /* Optimize font rendering for mobile */
-            body {
-                text-rendering: optimizeSpeed;
-                -webkit-font-smoothing: antialiased;
-            }
-
-            /* Reduce animation complexity on mobile */
-            * {
-                transition-duration: 0.1s !important;
-                animation-duration: 0.1s !important;
-            }
-
-            /* Improve touch response */
-            a,
-            button {
-                touch-action: manipulation;
-            }
-        }
-    </style>
-
-    <!-- Critical CSS Inline -->
-    <style is:inline>
-        /* Critical above-the-fold styles to improve LCP and CLS */
-        :root {
-            --primary: #0f766e;
-            --primary-dark: #0e6964;
-            --secondary: #083344;
-            --accent: #f59e0b;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --background: #f9fafb;
-            --white: #ffffff;
-            --hero-height: 100vh;
-        }
-        
-        /* Font settings */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-            color: var(--text);
-            background-color: var(--background);
-            text-rendering: optimizeLegibility;
+<!-- Inline critical CSS for mobile -->
+<style is:inline>
+    /* Mobile-specific optimizations */
+    @media (max-width: 768px) {
+        /* Optimize font rendering for mobile */
+        body {
+            text-rendering: optimizeSpeed;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
-        
-        /* Navigation and hero preload styles */
-        .logo {
-            display: block;
-            height: 40px;
-            width: auto;
+
+        /* Reduce animation complexity on mobile */
+        * {
+            transition-duration: 0.1s !important;
+            animation-duration: 0.1s !important;
         }
+
+        /* Improve touch response */
+        a,
+        button {
+            touch-action: manipulation;
+        }
+    }
+</style>
+
+<!-- Simplified critical CSS -->
+<style is:inline>
+    /* Core styles only */
+    @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local("Inter Regular"), local("Inter-Regular");
+    }
+
+    :root {
+        --primary-color: #0f172a;
+        --secondary-color: #f59e0b;
+        --text-color: #1f2937;
+        --text-light: #e5e7eb;
+        --hero-font-size: 3.75rem;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--text-color);
+        background-color: #f9fafb;
+    }
+
+    /* Mobile optimizations */
+    .is-mobile {
+        font-size: 14px;
+    }
+
+    /* Optimize images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Optimize hero content */
+    .hero-title,
+    .hero-subtitle {
+        font-size: var(--hero-font-size);
+    }
+
+    /* Reduce layout shifts */
+    [data-astro-cid] {
+        contain: layout;
+    }
+
+    /* Basic modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<!-- Preload Critical Resources -->
+{
+    shouldPreloadCritical && (
+        <>
+            <!-- Preload critical fonts -->
+            <link
+                rel="preload"
+                href="/assets/fonts/inter-var.woff2"
+                as="font"
+                type="font/woff2"
+                crossorigin
+            />
+            <!-- Preload hero image for LCP improvement -->
+            <link
+                rel="preload"
+                href={heroImagePath}
+                as="image"
+                type="image/webp"
+            />
+            <!-- Preload critical CSS -->
+            <link
+                rel="preload"
+                href="/assets/styles/critical.css"
+                as="style"
+            />
+        </>
+    )
+}
+
+<!-- Core Web Vitals Optimizations -->
+<script is:inline define:vars={{ heroImagePath }}>
+    // LCP Optimization
+    // Set initial page background early to prevent white flash
+    document.documentElement.style.backgroundColor = "#f9fafb";
+    
+    // FID Optimization
+    // Break up long tasks
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                    window.innerWidth <= 768;
+    
+    // Detect high-end devices for better JS performance budgeting
+    const isHighEndDevice = () => {
+        const hardware = navigator.hardwareConcurrency || 4;
+        const memory = navigator.deviceMemory || 4;
+        return hardware >= 4 && memory >= 4;
+    };
+    
+    // Performance budget based on device capability
+    window.perfBudget = {
+        highEnd: isHighEndDevice(),
+        mobile: isMobile
+    };
+    
+    // CLS Prevention
+    // Reserve space for dynamic content to prevent layout shifts
+    document.addEventListener('DOMContentLoaded', () => {
+        // Set initial dimensions for images that will load later
+        const reserveImgSpace = () => {
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                if (!img.width && !img.height) {
+                    // Default aspect ratio if no dimensions specified
+                    img.style.aspectRatio = '16/9';
+                }
+            });
+        };
         
+        // Set minimum height for containers that will have dynamic content
+        const reserveContentSpace = () => {
+            const dynamicContainers = document.querySelectorAll('.dynamic-content, [data-dynamic]');
+            dynamicContainers.forEach(container => {
+                const minHeight = container.getAttribute('data-min-height');
+                if (minHeight) {
+                    container.style.minHeight = minHeight;
+                }
+            });
+        };
+        
+        reserveImgSpace();
+        reserveContentSpace();
+        
+        // Implement intersection observer for content visibility
+        if ('IntersectionObserver' in window) {
+            const loadVisibility = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Enable full rendering for elements scrolled into view
+                        entry.target.style.contentVisibility = 'visible';
+                        entry.target.style.containIntrinsicSize = 'auto';
+                        loadVisibility.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            // Apply content-visibility to elements far below the fold
+            document.querySelectorAll('[data-defer-visibility]').forEach(el => {
+                if (isMobile) {
+                    el.style.contentVisibility = 'auto';
+                    el.style.containIntrinsicSize = el.getAttribute('data-height') || '1000px';
+                    loadVisibility.observe(el);
+                }
+            });
+        }
+
+        // Set content-visibility auto for below-the-fold content on mobile
+        if (isMobile) {
+            const belowFoldElements = document.querySelectorAll(
+                "section:not(.hero-section)"
+            );
+            belowFoldElements.forEach((el, index) => {
+                if (index > 0) {
+                    // Skip the first section after hero
+                    el.style.contentVisibility = "auto";
+                    el.style.containIntrinsicSize = "0 500px"; // Estimated size
+                }
+            });
+        }
+    });
+</script>
+
+<!-- HTTP/2 Server Push Hints -->
+<script type="module" is:inline>
+    // Use JS module preloading for HTTP/2 benefits
+    // These won't execute until needed but browser will prioritize fetching
+    const resources = [
+        '/assets/scripts/main.js',
+        '/assets/styles/main.css'
+    ];
+    
+    resources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
+</script>
+
+<!-- Critical CSS Inline -->
+<style is:inline>
+    /* Critical above-the-fold styles to improve LCP and CLS */
+    :root {
+        --primary: #0f766e;
+        --primary-dark: #0e6964;
+        --secondary: #083344;
+        --accent: #f59e0b;
+        --text: #1f2937;
+        --text-light: #6b7280;
+        --background: #f9fafb;
+        --white: #ffffff;
+    }
+    
+    /* Font settings */
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--text);
+        background-color: var(--background);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Navigation and hero preload styles */
+    .logo {
+        display: block;
+        height: 40px;
+        width: auto;
+    }
+    
+    .hero {
+        position: relative;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    /* Prevent layout shifts for images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Basic button styling */
+    .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 0.375rem;
+        text-align: center;
+        transition: all 0.2s ease-in-out;
+        text-decoration: none;
+    }
+    
+    .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+        border: 2px solid var(--primary);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+    
+    /* Mobile optimization */
+    @media (max-width: 768px) {
         .hero {
-            position: relative;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
+            min-height: 50vh;
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        h1 {
+            font-size: 2rem;
         }
         
-        /* Prevent layout shifts for images */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        /* Basic button styling */
         .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-align: center;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
+            width: 100%;
+            margin-bottom: 0.5rem;
         }
         
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-            border: 2px solid var(--primary);
+        /* Reduce animation complexity on mobile */
+        * {
+            transition-duration: 0.1s !important;
+            animation-duration: 0.1s !important;
         }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
+
+        /* Improve touch response */
+        a, button {
+            touch-action: manipulation;
         }
-        
-        /* Mobile optimization */
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 50vh;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .btn {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-        }
-    </style>
-</>
+    }
+</style>
 
