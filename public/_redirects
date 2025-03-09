@@ -1,0 +1,15 @@
+# Redirect domain aliases to primary domain
+http://www.solarfusion.hr/* https://solarfusion.hr/:splat 301!
+https://www.solarfusion.hr/* https://solarfusion.hr/:splat 301!
+
+# Redirect default Netlify subdomain to primary domain
+https://keen-brigadeiros-f9039a.netlify.app/* https://solarfusion.hr/:splat 301!
+
+# Handle trailing slashes
+/*  /:splat  301
+
+# Redirect root to default language
+/  /hr/  302
+
+# Handle 404s by redirecting to language-specific 404 pages
+/* /hr/404/ 404 

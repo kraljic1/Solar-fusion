@@ -9,7 +9,7 @@ export default defineConfig({
     }), 
     tailwind()
   ],
-  site: 'https://keen-brigadeiros-f9039a.netlify.app',
+  site: 'https://solarfusion.hr',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'
