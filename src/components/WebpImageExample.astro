@@ -1,31 +1,33 @@
 ---
-// Import the image
+// Import the Image component from Astro
 import { Image } from "astro:assets";
-import myImage from "../assets/images/example.webp"; // This is where your WebP image would be
+// Using an Unsplash image URL instead of a local file that doesn't exist
+const imageUrl =
+    "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80";
 ---
 
 <div class="image-container">
     <h2>Example WebP Image</h2>
 
-    <!-- Using the Astro Image component with a WebP image -->
-    <Image
-        src={myImage}
-        alt="Example WebP image"
-        width={500}
-        height={300}
-        format="webp"
-        quality={80}
+    <!-- Using a direct img tag with the Unsplash URL instead of the Image component -->
+    <img
+        src={imageUrl}
+        alt="Modern house with solar panels"
+        width="500"
+        height="300"
+        loading="lazy"
     />
 
-    <!-- Alternative: Using a WebP image with picture element for fallbacks -->
+    <!-- Alternative approach using picture element with Unsplash URLs -->
     <picture>
-        <source srcset="/src/assets/images/example.webp" type="image/webp" />
-        <source srcset="/src/assets/images/example.jpg" type="image/jpeg" />
+        <source srcset={imageUrl + "&format=webp"} type="image/webp" />
+        <source srcset={imageUrl} type="image/jpeg" />
         <img
-            src="/src/assets/images/example.jpg"
-            alt="Example image with fallback"
+            src={imageUrl}
+            alt="Modern house with solar panels"
             width="500"
             height="300"
+            loading="lazy"
         />
     </picture>
 </div>
