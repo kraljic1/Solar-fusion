@@ -1,0 +1,697 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { t } from "i18next";
+import i18next from "../../i18n/config";
+
+export function getStaticPaths() {
+    return [
+        { params: { lang: "hr" } },
+        { params: { lang: "en" } },
+        { params: { lang: "sl" } },
+        { params: { lang: "de" } },
+        { params: { lang: "it" } },
+        { params: { lang: "hu" } },
+    ];
+}
+
+const { lang } = Astro.params;
+
+// Change language before rendering
+if (lang) {
+    await i18next.changeLanguage(lang);
+}
+
+const pageTitle = lang === "hr" ? "Politika Privatnosti" : "Privacy Policy";
+const pageDescription =
+    lang === "hr"
+        ? "Politika privatnosti Solar Fusion - Saznajte kako koristimo i štitimo vaše podatke."
+        : "Solar Fusion Privacy Policy - Learn how we use and protect your data.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+    <main class="privacy-policy">
+        <div class="privacy-hero">
+            <div class="container mx-auto px-4 py-16 md:py-24">
+                <h1
+                    class="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-800 mb-6">
+                    {pageTitle}
+                </h1>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto">
+                    {
+                        lang === "hr"
+                            ? "Saznajte kako prikupljamo, koristimo i štitimo vaše podatke."
+                            : "Learn how we collect, use, and protect your data."
+                    }
+                </p>
+            </div>
+        </div>
+
+        <Breadcrumbs />
+
+        <div class="container mx-auto px-4 py-12">
+            <div
+                class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-sm">
+                {
+                    lang === "hr" ? (
+                        <div class="privacy-content text-gray-700">
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Pregled
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. ("mi", "nas" ili "naš")
+                                    upravlja web stranicom solarfusion.hr
+                                    ("Usluga").
+                                </p>
+                                <p class="mb-4">
+                                    Ova stranica vas obavještava o našim
+                                    pravilima u vezi s prikupljanjem,
+                                    korištenjem i otkrivanjem osobnih podataka
+                                    kada koristite našu uslugu te o izborima
+                                    koje ste povezali s tim podacima.
+                                </p>
+                                <p class="mb-4">
+                                    Vaše podatke koristimo za pružanje i
+                                    poboljšanje usluge. Korištenjem usluge
+                                    pristajete na prikupljanje i korištenje
+                                    informacija u skladu s ovom politikom.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Prikupljanje i korištenje informacija
+                                </h2>
+                                <p class="mb-4">
+                                    Prikupljamo nekoliko različitih vrsta
+                                    informacija za različite svrhe kako bismo
+                                    vam pružili i poboljšali našu uslugu.
+                                </p>
+
+                                <h3 class="text-xl font-medium mb-3 mt-6 text-gray-800">
+                                    Osobni podaci
+                                </h3>
+                                <p class="mb-4">
+                                    Dok koristite našu uslugu, možemo vas
+                                    zamoliti da nam pružite određene osobne
+                                    podatke koji se mogu koristiti za
+                                    kontaktiranje ili identifikaciju vas
+                                    ("Osobni podaci"). Osobni podaci mogu
+                                    uključivati, ali nisu ograničeni na:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>Email adresu</li>
+                                    <li>Ime i prezime</li>
+                                    <li>Telefonski broj</li>
+                                    <li>Adresu</li>
+                                    <li>Kolačiće i podatke o korištenju</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Podaci o korištenju
+                                </h2>
+                                <p class="mb-4">
+                                    Također prikupljamo informacije o tome kako
+                                    se pristupa i koristi naša usluga ("Podaci o
+                                    korištenju"). Ovi podaci mogu uključivati
+                                    informacije poput IP adrese vašeg računala,
+                                    vrste preglednika, verzije preglednika,
+                                    stranice naše usluge koje posjećujete,
+                                    vrijeme i datum vašeg posjeta, vrijeme
+                                    provedeno na tim stranicama, jedinstveni
+                                    identifikatori uređaja i druge dijagnostičke
+                                    podatke.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Podaci o kolačićima
+                                </h2>
+                                <p class="mb-4">
+                                    Koristimo kolačiće i slične tehnologije
+                                    praćenja za praćenje aktivnosti na našoj
+                                    usluzi i zadržavanje određenih informacija.
+                                </p>
+                                <p class="mb-4">
+                                    Kolačići su datoteke s malom količinom
+                                    podataka koje mogu uključivati anonimni
+                                    jedinstveni identifikator. Kolačići se šalju
+                                    vašem pregledniku s web stranice i
+                                    pohranjuju na vaš uređaj. Također se koriste
+                                    tehnologije praćenja kao što su web signali,
+                                    oznake i skripte za prikupljanje i praćenje
+                                    informacija te za poboljšanje i analizu naše
+                                    usluge.
+                                </p>
+                                <p class="mb-4">
+                                    Možete uputiti svoj preglednik da odbije sve
+                                    kolačiće ili da naznači kada se šalje
+                                    kolačić. Međutim, ako ne prihvatite
+                                    kolačiće, možda nećete moći koristiti neke
+                                    dijelove naše usluge.
+                                </p>
+                                <p class="mb-4">
+                                    Primjeri kolačića koje koristimo:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>
+                                        <strong>Nužni kolačići:</strong>{" "}
+                                        Potrebni za funkcioniranje web stranice.
+                                    </li>
+                                    <li>
+                                        <strong>Analitički kolačići:</strong>{" "}
+                                        Koristimo Google Analytics za praćenje i
+                                        razumijevanje kako koristite našu web
+                                        stranicu.
+                                    </li>
+                                    <li>
+                                        <strong>Marketing kolačići:</strong>{" "}
+                                        Omogućuju nam da vam prikazujemo
+                                        relevantne oglase.
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Korištenje podataka
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. koristi prikupljene
+                                    podatke za različite svrhe:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>
+                                        Za pružanje i održavanje naše usluge
+                                    </li>
+                                    <li>
+                                        Da vas obavijestimo o promjenama u našoj
+                                        usluzi
+                                    </li>
+                                    <li>
+                                        Da vam omogućimo sudjelovanje u
+                                        interaktivnim značajkama naše usluge
+                                        kada to odlučite
+                                    </li>
+                                    <li>Za pružanje korisničke podrške</li>
+                                    <li>
+                                        Za prikupljanje analize ili vrijednih
+                                        informacija kako bismo poboljšali našu
+                                        uslugu
+                                    </li>
+                                    <li>Za praćenje korištenja naše usluge</li>
+                                    <li>
+                                        Za otkrivanje, sprečavanje i rješavanje
+                                        tehničkih problema
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Google Analytics
+                                </h2>
+                                <p class="mb-4">
+                                    Koristimo Google Analytics za praćenje i
+                                    razumijevanje kako koristite našu web
+                                    stranicu. Google Analytics je web analitički
+                                    servis koji prati i izvještava o prometu na
+                                    web stranici. Google koristi prikupljene
+                                    podatke za praćenje i nadzor korištenja naše
+                                    usluge. Ove podatke dijeli s drugim Google
+                                    servisima. Google može koristiti prikupljene
+                                    podatke za kontekstualizaciju i
+                                    personalizaciju oglasa iz vlastite
+                                    oglašivačke mreže.
+                                </p>
+                                <p class="mb-4">
+                                    Za više informacija o praksama privatnosti
+                                    Google-a, posjetite Google stranicu o
+                                    privatnosti:{" "}
+                                    <a
+                                        href="https://policies.google.com/privacy"
+                                        target="_blank"
+                                        class="text-secondary hover:underline">
+                                        https://policies.google.com/privacy
+                                    </a>
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Otkrivanje podataka
+                                </h2>
+                                <h3 class="text-xl font-medium mb-3 mt-6 text-gray-800">
+                                    Pravni zahtjevi
+                                </h3>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. može otkriti vaše osobne
+                                    podatke u dobroj vjeri da je takva radnja
+                                    neophodna za:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>Usklađivanje sa zakonskom obvezom</li>
+                                    <li>
+                                        Zaštitu i obranu prava ili imovine Solar
+                                        Fusion d.o.o.
+                                    </li>
+                                    <li>
+                                        Sprečavanje ili istraživanje mogućih
+                                        kršenja u vezi s uslugom
+                                    </li>
+                                    <li>
+                                        Zaštitu osobne sigurnosti korisnika
+                                        usluge ili javnosti
+                                    </li>
+                                    <li>Zaštitu od pravne odgovornosti</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Sigurnost podataka
+                                </h2>
+                                <p class="mb-4">
+                                    Sigurnost vaših podataka važna nam je, ali
+                                    imajte na umu da nijedna metoda prijenosa
+                                    putem interneta ili metoda elektroničkog
+                                    pohranjivanja nije 100% sigurna. Dok se
+                                    trudimo koristiti komercijalno prihvatljiva
+                                    sredstva za zaštitu vaših osobnih podataka,
+                                    ne možemo jamčiti njihovu apsolutnu
+                                    sigurnost.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Vaša prava
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. ima za cilj poduzeti
+                                    razumne korake kako bi vam omogućio da
+                                    ispravite, izmijenite, izbrišete ili
+                                    ograničite korištenje vaših osobnih
+                                    podataka.
+                                </p>
+                                <p class="mb-4">
+                                    Ako želite biti obaviješteni o osobnim
+                                    podacima koje držimo o vama i ako želite da
+                                    ih uklonimo iz naših sustava, kontaktirajte
+                                    nas.
+                                </p>
+                                <p class="mb-4">
+                                    U određenim okolnostima imate sljedeća prava
+                                    na zaštitu podataka:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>
+                                        Pravo pristupa, ažuriranja ili brisanja
+                                        informacija koje imamo o vama
+                                    </li>
+                                    <li>Pravo na ispravak</li>
+                                    <li>Pravo na prigovor</li>
+                                    <li>Pravo na ograničenje</li>
+                                    <li>Pravo na prenosivost podataka</li>
+                                    <li>Pravo na povlačenje pristanka</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Izmjene ove politike privatnosti
+                                </h2>
+                                <p class="mb-4">
+                                    Možemo ažurirati našu politiku privatnosti s
+                                    vremena na vrijeme. Obavijestit ćemo vas o
+                                    bilo kakvim promjenama objavom nove politike
+                                    privatnosti na ovoj stranici.
+                                </p>
+                                <p class="mb-4">
+                                    Savjetujemo vam da periodično pregledate ovu
+                                    politiku privatnosti radi bilo kakvih
+                                    promjena. Promjene ove politike privatnosti
+                                    stupaju na snagu kada se objave na ovoj
+                                    stranici.
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Kontaktirajte nas
+                                </h2>
+                                <p class="mb-4">
+                                    Ako imate pitanja o ovoj politici
+                                    privatnosti, kontaktirajte nas:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>E-poštom: info@solarfusion.hr</li>
+                                    <li>Telefonom: +385 1 234 5678</li>
+                                    <li>
+                                        Poštom: Ladrovići 13, 52440 Poreč,
+                                        Hrvatska
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    ) : (
+                        <div class="privacy-content text-gray-700">
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Overview
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. ("we", "us", or "our")
+                                    operates the solarfusion.hr website
+                                    ("Service").
+                                </p>
+                                <p class="mb-4">
+                                    This page informs you of our policies
+                                    regarding the collection, use, and
+                                    disclosure of personal data when you use our
+                                    Service and the choices you have associated
+                                    with that data.
+                                </p>
+                                <p class="mb-4">
+                                    We use your data to provide and improve the
+                                    Service. By using the Service, you agree to
+                                    the collection and use of information in
+                                    accordance with this policy.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Information Collection and Use
+                                </h2>
+                                <p class="mb-4">
+                                    We collect several different types of
+                                    information for various purposes to provide
+                                    and improve our Service to you.
+                                </p>
+
+                                <h3 class="text-xl font-medium mb-3 mt-6 text-gray-800">
+                                    Personal Data
+                                </h3>
+                                <p class="mb-4">
+                                    While using our Service, we may ask you to
+                                    provide us with certain personally
+                                    identifiable information that can be used to
+                                    contact or identify you ("Personal Data").
+                                    Personally identifiable information may
+                                    include, but is not limited to:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>Email address</li>
+                                    <li>First name and last name</li>
+                                    <li>Phone number</li>
+                                    <li>Address</li>
+                                    <li>Cookies and Usage Data</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Usage Data
+                                </h2>
+                                <p class="mb-4">
+                                    We may also collect information on how the
+                                    Service is accessed and used ("Usage Data").
+                                    This Usage Data may include information such
+                                    as your computer's Internet Protocol address
+                                    (e.g., IP address), browser type, browser
+                                    version, the pages of our Service that you
+                                    visit, the time and date of your visit, the
+                                    time spent on those pages, unique device
+                                    identifiers, and other diagnostic data.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Tracking & Cookies Data
+                                </h2>
+                                <p class="mb-4">
+                                    We use cookies and similar tracking
+                                    technologies to track the activity on our
+                                    Service and hold certain information.
+                                </p>
+                                <p class="mb-4">
+                                    Cookies are files with a small amount of
+                                    data which may include an anonymous unique
+                                    identifier. Cookies are sent to your browser
+                                    from a website and stored on your device.
+                                    Tracking technologies also used are beacons,
+                                    tags, and scripts to collect and track
+                                    information and to improve and analyze our
+                                    Service.
+                                </p>
+                                <p class="mb-4">
+                                    You can instruct your browser to refuse all
+                                    cookies or to indicate when a cookie is
+                                    being sent. However, if you do not accept
+                                    cookies, you may not be able to use some
+                                    portions of our Service.
+                                </p>
+                                <p class="mb-4">Examples of Cookies we use:</p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>
+                                        <strong>Necessary Cookies:</strong>{" "}
+                                        Required for the website to function.
+                                    </li>
+                                    <li>
+                                        <strong>Analytics Cookies:</strong> We
+                                        use Google Analytics to track and
+                                        understand how you use our website.
+                                    </li>
+                                    <li>
+                                        <strong>Marketing Cookies:</strong>{" "}
+                                        Allow us to show you relevant
+                                        advertisements.
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Use of Data
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. uses the collected data
+                                    for various purposes:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>To provide and maintain our Service</li>
+                                    <li>
+                                        To notify you about changes to our
+                                        Service
+                                    </li>
+                                    <li>
+                                        To allow you to participate in
+                                        interactive features of our Service when
+                                        you choose to do so
+                                    </li>
+                                    <li>To provide customer support</li>
+                                    <li>
+                                        To gather analysis or valuable
+                                        information so that we can improve our
+                                        Service
+                                    </li>
+                                    <li>To monitor the usage of our Service</li>
+                                    <li>
+                                        To detect, prevent and address technical
+                                        issues
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Google Analytics
+                                </h2>
+                                <p class="mb-4">
+                                    We use Google Analytics to track and
+                                    understand how you use our website. Google
+                                    Analytics is a web analytics service that
+                                    tracks and reports website traffic. Google
+                                    uses the data collected to track and monitor
+                                    the use of our Service. This data is shared
+                                    with other Google services. Google may use
+                                    the collected data to contextualize and
+                                    personalize the ads of its own advertising
+                                    network.
+                                </p>
+                                <p class="mb-4">
+                                    For more information on the privacy
+                                    practices of Google, please visit the Google
+                                    Privacy Terms web page:{" "}
+                                    <a
+                                        href="https://policies.google.com/privacy"
+                                        target="_blank"
+                                        class="text-secondary hover:underline">
+                                        https://policies.google.com/privacy
+                                    </a>
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Disclosure of Data
+                                </h2>
+                                <h3 class="text-xl font-medium mb-3 mt-6 text-gray-800">
+                                    Legal Requirements
+                                </h3>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. may disclose your
+                                    Personal Data in the good faith belief that
+                                    such action is necessary to:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>To comply with a legal obligation</li>
+                                    <li>
+                                        To protect and defend the rights or
+                                        property of Solar Fusion d.o.o.
+                                    </li>
+                                    <li>
+                                        To prevent or investigate possible
+                                        wrongdoing in connection with the
+                                        Service
+                                    </li>
+                                    <li>
+                                        To protect the personal safety of users
+                                        of the Service or the public
+                                    </li>
+                                    <li>To protect against legal liability</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Security of Data
+                                </h2>
+                                <p class="mb-4">
+                                    The security of your data is important to
+                                    us, but remember that no method of
+                                    transmission over the Internet, or method of
+                                    electronic storage is 100% secure. While we
+                                    strive to use commercially acceptable means
+                                    to protect your Personal Data, we cannot
+                                    guarantee its absolute security.
+                                </p>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Your Rights
+                                </h2>
+                                <p class="mb-4">
+                                    Solar Fusion d.o.o. aims to take reasonable
+                                    steps to allow you to correct, amend,
+                                    delete, or limit the use of your Personal
+                                    Data.
+                                </p>
+                                <p class="mb-4">
+                                    If you wish to be informed what Personal
+                                    Data we hold about you and if you want it to
+                                    be removed from our systems, please contact
+                                    us.
+                                </p>
+                                <p class="mb-4">
+                                    In certain circumstances, you have the
+                                    following data protection rights:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>
+                                        The right to access, update or to delete
+                                        the information we have on you
+                                    </li>
+                                    <li>The right of rectification</li>
+                                    <li>The right to object</li>
+                                    <li>The right of restriction</li>
+                                    <li>The right to data portability</li>
+                                    <li>The right to withdraw consent</li>
+                                </ul>
+                            </section>
+
+                            <section class="mb-8">
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Changes to This Privacy Policy
+                                </h2>
+                                <p class="mb-4">
+                                    We may update our Privacy Policy from time
+                                    to time. We will notify you of any changes
+                                    by posting the new Privacy Policy on this
+                                    page.
+                                </p>
+                                <p class="mb-4">
+                                    We advise you to review this Privacy Policy
+                                    periodically for any changes. Changes to
+                                    this Privacy Policy are effective when they
+                                    are posted on this page.
+                                </p>
+                            </section>
+
+                            <section>
+                                <h2 class="text-2xl font-semibold mb-4 text-primary">
+                                    Contact Us
+                                </h2>
+                                <p class="mb-4">
+                                    If you have any questions about this Privacy
+                                    Policy, please contact us:
+                                </p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li>By email: info@solarfusion.hr</li>
+                                    <li>By phone: +385 1 234 5678</li>
+                                    <li>
+                                        By mail: Ladrovići 13, 52440 Poreč,
+                                        Croatia
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .privacy-hero {
+        background-color: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .privacy-content h2 {
+        color: #0f172a;
+    }
+
+    .privacy-content p,
+    .privacy-content li {
+        line-height: 1.7;
+    }
+
+    .privacy-content a {
+        color: #f59e0b;
+        transition: color 0.2s;
+    }
+
+    .privacy-content a:hover {
+        color: #d97706;
+    }
+
+    @media (max-width: 768px) {
+        .privacy-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .privacy-content h3 {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
