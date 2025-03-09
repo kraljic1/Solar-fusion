@@ -1,5 +1,4 @@
 ---
-import { t as tFunc } from "i18next";
 import i18next from "../i18n/config";
 
 const { lang = "hr" } = Astro.params;
@@ -10,31 +9,31 @@ if (lang) {
 }
 
 // Pre-render translations
-const parallaxTitle = tFunc("parallax.title");
-const parallaxDescription = tFunc("parallax.description");
+const parallaxTitle = i18next.t("parallax.title");
+const parallaxDescription = i18next.t("parallax.description");
 
 const services = [
     {
-        title: tFunc("services.project1.title"),
-        description: tFunc("services.project1.description"),
+        title: i18next.t("services.project1.title"),
+        description: i18next.t("services.project1.description"),
         image: "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2aaa22de3ab45eb9d0b31.png",
         alt: "INSTALACIJA SOLARNE ENERGIJE",
     },
     {
-        title: tFunc("services.project2.title"),
-        description: tFunc("services.project2.description"),
+        title: i18next.t("services.project2.title"),
+        description: i18next.t("services.project2.description"),
         image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800",
         alt: "Solarna energija za poslovanje",
     },
     {
-        title: tFunc("services.project3.title"),
-        description: tFunc("services.project3.description"),
+        title: i18next.t("services.project3.title"),
+        description: i18next.t("services.project3.description"),
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800",
         alt: "Servis solarnih panela",
     },
     {
-        title: tFunc("services.project4.title"),
-        description: tFunc("services.project4.description"),
+        title: i18next.t("services.project4.title"),
+        description: i18next.t("services.project4.description"),
         image: "https://storage.googleapis.com/msgsndr/M4krpnwvjmupM7QGr4NX/media/67b2a91fafe6ae4deaaa5ebe.png",
         alt: "Solarna rješenja za vaš krov",
     },

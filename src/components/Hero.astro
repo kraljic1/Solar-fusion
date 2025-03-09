@@ -1,5 +1,4 @@
 ---
-import { t } from "i18next";
 import i18next from "../i18n/config";
 
 const { lang = "hr" } = Astro.params;
@@ -10,12 +9,12 @@ if (lang) {
 }
 
 // Pre-render translations to avoid render delay
-const title = t("hero.title");
-const subtitle = t("hero.subtitle");
-const description = t("hero.description");
-const ctaText = t("hero.cta") || "Izračunajte Vašu Uštedu";
+const title = i18next.t("hero.title");
+const subtitle = i18next.t("hero.subtitle");
+const description = i18next.t("hero.description");
+const ctaText = i18next.t("hero.cta") || "Izračunajte Vašu Uštedu";
 const imageAlt =
-    t("hero.imageAlt") ||
+    i18next.t("hero.imageAlt") ||
     "Solar panels installed in a beautiful landscape with mountains in the background";
 
 // Define image paths for different screen sizes - set directly without query params
