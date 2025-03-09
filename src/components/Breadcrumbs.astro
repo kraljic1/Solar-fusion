@@ -9,6 +9,70 @@ if (lang) {
     await i18next.changeLanguage(lang);
 }
 
+// Define paths that should be translated
+const pathTranslations = {
+    projects: {
+        en: "projects",
+        hr: "projekti",
+        sl: "projekti",
+        de: "projekte",
+        it: "progetti",
+        hu: "projektek"
+    },
+    "about-us": {
+        en: "about-us",
+        hr: "o-nama",
+        sl: "o-nas",
+        de: "uber-uns",
+        it: "chi-siamo",
+        hu: "rolunk"
+    },
+    contact: {
+        en: "contact",
+        hr: "kontakt",
+        sl: "kontakt",
+        de: "kontakt",
+        it: "contatto",
+        hu: "kapcsolat"
+    }
+};
+
+// Path display names (friendly names)
+const pathDisplayNames = {
+    home: {
+        en: "Home",
+        hr: "Početna",
+        sl: "Domov",
+        de: "Startseite",
+        it: "Home",
+        hu: "Kezdőlap"
+    },
+    projects: {
+        en: "Projects", 
+        hr: "Projekti",
+        sl: "Projekti",
+        de: "Projekte",
+        it: "Progetti",
+        hu: "Projektek"
+    },
+    "about-us": {
+        en: "About Us",
+        hr: "O nama",
+        sl: "O nas",
+        de: "Über uns",
+        it: "Chi siamo",
+        hu: "Rólunk"
+    },
+    contact: {
+        en: "Contact",
+        hr: "Kontakt",
+        sl: "Kontakt",
+        de: "Kontakt",
+        it: "Contatto",
+        hu: "Kapcsolat"
+    }
+};
+
 // Current path segments from URL
 const currentUrl = Astro.url.pathname;
 const segments = currentUrl.split('/').filter(segment => segment);
@@ -22,22 +86,39 @@ const pathSegments = segments.length > 0 &&
 // Build breadcrumbs
 const breadcrumbs = [
     {
-        name: "Home",
+        name: pathDisplayNames.home[lang] || "Home",
         url: `/${lang}`
     }
 ];
 
+// Function to get display name for path segment
+function getDisplayName(segment) {
+    // First try to find a matching key in pathTranslations (normalized segment)
+    const normalizedSegment = segment.replace(/-/g, '').toLowerCase();
+    
+    // Check if this segment has translations
+    for (const [key, translations] of Object.entries(pathDisplayNames)) {
+        // Check if current segment matches the translation for any language
+        for (const [langCode, translation] of Object.entries(pathTranslations[key] || {})) {
+            if (segment === translation) {
+                // Found a match! Return the display name for current language
+                return pathDisplayNames[key][lang] || segment;
+            }
+        }
+    }
+    
+    // If no translation found, format the segment (capitalize, replace hyphens with spaces)
+    let displayName = segment.replace(/-/g, ' ');
+    return displayName.charAt(0).toUpperCase() + displayName.slice(1);
+}
+
 // Add each path segment as a breadcrumb
 let currentPath = `/${lang}`;
 pathSegments.forEach((segment) => {
-    // Create a readable name from the path segment
-    let displayName = segment.replace(/-/g, ' ');
-    displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
-    
     // Add to breadcrumbs
     currentPath += `/${segment}`;
     breadcrumbs.push({
-        name: displayName,
+        name: getDisplayName(segment),
         url: currentPath
     });
 });
