@@ -1,0 +1,116 @@
+---
+// StructuredData.astro - Component for all structured data schemas
+---
+
+<!-- Structured Data - Local Business -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Solar Fusion",
+        "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+        "description": "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Istarska ulica 23",
+            "addressLocality": "Zagreb",
+            "addressRegion": "Zagreb",
+            "postalCode": "10000",
+            "addressCountry": "HR"
+        },
+        "telephone": "+385 1 234 5678",
+        "email": "info@solarfusion.hr",
+        "url": "https://solarfusion.hr",
+        "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
+        "priceRange": "$$",
+        "sameAs": [
+            "https://www.facebook.com/solarfusion",
+            "https://www.instagram.com/solarfusion",
+            "https://www.linkedin.com/company/solarfusion"
+        ],
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "45.815399",
+                "longitude": "15.966568"
+            },
+            "geoRadius": "100000"
+        }
+    }
+</script>
+
+<!-- Structured Data - Website -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Solar Fusion",
+        "url": "https://solarfusion.hr",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://solarfusion.hr/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+</script>
+
+<!-- Structured Data - Service -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Solar Panel Installation",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Solar Fusion"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Croatia"
+        },
+        "description": "Professional installation of solar panels for residential and commercial buildings, offering energy independence and cost savings.",
+        "offers": {
+            "@type": "Offer",
+            "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "EUR"
+            }
+        }
+    }
+</script>
+
+<!-- Structured Data - FAQ -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much can I save with solar panels?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most customers save up to 90% on their electricity bills after installing solar panels. The exact savings depend on your energy consumption, roof orientation, and local solar conditions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long does a solar panel installation take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A typical residential installation takes 1-3 days, while commercial installations may take 1-2 weeks depending on the system size."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are there any government incentives available?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, there are various incentives available in Croatia including tax rebates and subsidies. Our consultants will help you navigate available options during your free consultation."
+                }
+            }
+        ]
+    }
+</script>
+

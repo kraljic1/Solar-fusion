@@ -1,0 +1,94 @@
+---
+// MetaTags.astro - Component for all SEO-related tags
+const {
+    title = "Solar Fusion",
+    description = "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
+    canonicalUrl,
+    noindex = false,
+    lang = "hr",
+    baseUrl = "https://solarfusion.hr",
+    criticalImageUrl = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+    mobileImageUrl = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonical = canonicalUrl || `${baseUrl}${currentPath}`;
+
+// Construct the full title with the site name
+const fullTitle = title.includes("Solar Fusion")
+    ? title
+    : `Solar Fusion | ${title}`;
+---
+
+<!-- SEO Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+<meta name="author" content="Solar Fusion" />
+<meta
+    name="keywords"
+    content="solar panels, solar energy, solar installation, renewable energy, solar power, Croatia, energy savings, sustainable energy"
+/>
+
+<!-- Open Graph / Facebook Meta Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={criticalImageUrl} />
+<meta property="og:locale" content={lang} />
+<meta property="og:site_name" content="Solar Fusion" />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonical} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={criticalImageUrl} />
+
+<!-- Resource hints for faster resource loading -->
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
+<link rel="dns-prefetch" href="https://images.unsplash.com" />
+<link rel="preconnect" href="https://assets.cdn.filesafe.space" crossorigin />
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Mobile-specific preload for critical LCP image -->
+<link
+    rel="preload"
+    as="image"
+    href={mobileImageUrl}
+    media="(max-width: 768px)"
+    fetchpriority="high"
+/>
+<link
+    rel="preload"
+    as="image"
+    href={criticalImageUrl}
+    media="(min-width: 769px)"
+    fetchpriority="high"
+/>
+
+<!-- Simplified preconnect setup -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Preload only critical resources -->
+<link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+/>
+
+<!-- Fallback for no-JS -->
+<noscript>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+        type="text/css"
+    />
+</noscript>
+

@@ -1,0 +1,21 @@
+---
+// CookieConsentHandler.astro - Component for the cookie consent banner display logic
+---
+
+<!-- Cookie Consent Setup -->
+<script is:inline>
+    window.addEventListener("load", function () {
+        // For maximum data collection, GA4 is already running regardless of consent
+        // This is just for showing/hiding the banner
+
+        // Check if user has previously seen the banner
+        const hasConsent = localStorage.getItem("cookie-consent");
+
+        if (!hasConsent) {
+            // Show cookie consent banner
+            const cookieBanner = document.querySelector("#cookie-banner");
+            if (cookieBanner) cookieBanner.classList.remove("hidden");
+        }
+    });
+</script>
+

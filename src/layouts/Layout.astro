@@ -5,6 +5,12 @@ import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
 import ImageModal from "../components/ImageModal.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import MetaTags from "../components/MetaTags.astro";
+import StructuredData from "../components/StructuredData.astro";
+import CriticalOptimizations from "../components/CriticalOptimizations.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import ModalHandler from "../components/ModalHandler.astro";
+import CookieConsentHandler from "../components/CookieConsentHandler.astro";
 import i18next from "i18next";
 
 interface Props {
@@ -26,16 +32,14 @@ const baseUrl = "https://solarfusion.hr"; // Update this with your actual domain
 const currentPath = Astro.url.pathname;
 const canonical = canonicalUrl || `${baseUrl}${currentPath}`;
 
-// Construct the full title with the site name
-const fullTitle = title.includes("Solar Fusion")
-    ? title
-    : `Solar Fusion | ${title}`;
-
 // Define critical resources
 const criticalImageUrl =
     "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop";
 const mobileImageUrl =
     "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1024&auto=format&fit=crop";
+
+// Google Analytics measurement ID
+const gaId = "G-XXXXXXXX"; // Replace with your actual GA4 ID
 ---
 
 <!doctype html>
@@ -46,350 +50,29 @@ const mobileImageUrl =
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
 
-        <!-- SEO Meta Tags -->
-        <title>{fullTitle}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonical} />
-        {noindex && <meta name="robots" content="noindex,nofollow" />}
-        <meta name="author" content="Solar Fusion" />
-        <meta
-            name="keywords"
-            content="solar panels, solar energy, solar installation, renewable energy, solar power, Croatia, energy savings, sustainable energy"
+        <!-- SEO, Meta Tags and Resources -->
+        <MetaTags
+            title={title}
+            description={description}
+            canonicalUrl={canonical}
+            noindex={noindex}
+            lang={lang}
+            baseUrl={baseUrl}
+            criticalImageUrl={criticalImageUrl}
+            mobileImageUrl={mobileImageUrl}
         />
 
-        <!-- Open Graph / Facebook Meta Tags -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonical} />
-        <meta property="og:title" content={fullTitle} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={criticalImageUrl} />
-        <meta property="og:locale" content={lang} />
-        <meta property="og:site_name" content="Solar Fusion" />
+        <!-- Structured Data -->
+        <StructuredData />
 
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={canonical} />
-        <meta name="twitter:title" content={fullTitle} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={criticalImageUrl} />
-
-        <!-- Resource hints for faster resource loading -->
-        <link rel="dns-prefetch" href="https://assets.cdn.filesafe.space" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link
-            rel="preconnect"
-            href="https://assets.cdn.filesafe.space"
-            crossorigin
-        />
-        <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-        <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-            crossorigin
-        />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-        <!-- Mobile-specific preload for critical LCP image -->
-        <link
-            rel="preload"
-            as="image"
-            href={mobileImageUrl}
-            media="(max-width: 768px)"
-            fetchpriority="high"
-        />
-        <link
-            rel="preload"
-            as="image"
-            href={criticalImageUrl}
-            media="(min-width: 769px)"
-            fetchpriority="high"
+        <!-- Critical performance optimizations -->
+        <CriticalOptimizations
+            mobileImageUrl={mobileImageUrl}
+            criticalImageUrl={criticalImageUrl}
         />
 
-        <!-- Structured Data - Local Business -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "name": "Solar Fusion",
-                "image": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
-                "description": "Solar Fusion - Vodeći dobavljač solarnih energetskih rješenja. Instalacija solarnih panela, baterija i pretvarača za vaš dom ili poslovanje.",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Istarska ulica 23",
-                    "addressLocality": "Zagreb",
-                    "addressRegion": "Zagreb",
-                    "postalCode": "10000",
-                    "addressCountry": "HR"
-                },
-                "telephone": "+385 1 234 5678",
-                "email": "info@solarfusion.hr",
-                "url": "https://solarfusion.hr",
-                "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
-                "priceRange": "$$",
-                "sameAs": [
-                    "https://www.facebook.com/solarfusion",
-                    "https://www.instagram.com/solarfusion",
-                    "https://www.linkedin.com/company/solarfusion"
-                ],
-                "serviceArea": {
-                    "@type": "GeoCircle",
-                    "geoMidpoint": {
-                        "@type": "GeoCoordinates",
-                        "latitude": "45.815399",
-                        "longitude": "15.966568"
-                    },
-                    "geoRadius": "100000"
-                }
-            }
-        </script>
-
-        <!-- Structured Data - Website -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "Solar Fusion",
-                "url": "https://solarfusion.hr",
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://solarfusion.hr/search?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                }
-            }
-        </script>
-
-        <!-- Structured Data - Service -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "serviceType": "Solar Panel Installation",
-                "provider": {
-                    "@type": "LocalBusiness",
-                    "name": "Solar Fusion"
-                },
-                "areaServed": {
-                    "@type": "Country",
-                    "name": "Croatia"
-                },
-                "description": "Professional installation of solar panels for residential and commercial buildings, offering energy independence and cost savings.",
-                "offers": {
-                    "@type": "Offer",
-                    "priceSpecification": {
-                        "@type": "PriceSpecification",
-                        "priceCurrency": "EUR"
-                    }
-                }
-            }
-        </script>
-
-        <!-- Structured Data - FAQ -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "How much can I save with solar panels?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Most customers save up to 90% on their electricity bills after installing solar panels. The exact savings depend on your energy consumption, roof orientation, and local solar conditions."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "How long does a solar panel installation take?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "A typical residential installation takes 1-3 days, while commercial installations may take 1-2 weeks depending on the system size."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Are there any government incentives available?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, there are various incentives available in Croatia including tax rebates and subsidies. Our consultants will help you navigate available options during your free consultation."
-                        }
-                    }
-                ]
-            }
-        </script>
-
-        <!-- Critical rendering path optimization -->
-        <script is:inline define:vars={{ mobileImageUrl, criticalImageUrl }}>
-            // Mobile detection
-            const isMobile =
-                /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
-                window.innerWidth <= 768;
-
-            // Immediately set a base dark background color to avoid flash
-            document.documentElement.style.backgroundColor = "#1a202c";
-
-            // Critical font preloading for the hero subtitle
-            const fontLink = document.createElement("link");
-            fontLink.rel = "preload";
-            fontLink.href =
-                "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap";
-            fontLink.as = "style";
-            document.head.appendChild(fontLink);
-
-            // LCP optimization - initiate early fetch for critical image
-            if (isMobile) {
-                const preloadLink = document.createElement("link");
-                preloadLink.rel = "preload";
-                preloadLink.as = "image";
-                preloadLink.href = `${mobileImageUrl}`;
-                preloadLink.fetchPriority = "high";
-                document.head.appendChild(preloadLink);
-            }
-
-            // Prevent layout shifts by setting initial dimensions
-            document.documentElement.style.setProperty(
-                "--hero-height",
-                "100vh"
-            );
-
-            // Set content-visibility auto for below-the-fold content on mobile
-            if (isMobile) {
-                document.addEventListener("DOMContentLoaded", () => {
-                    const belowFoldElements = document.querySelectorAll(
-                        "section:not(.hero-section)"
-                    );
-                    belowFoldElements.forEach((el, index) => {
-                        if (index > 0) {
-                            // Skip the first section after hero
-                            el.style.contentVisibility = "auto";
-                            el.style.containIntrinsicSize = "0 500px"; // Estimated size
-                        }
-                    });
-                });
-            }
-        </script>
-
-        <!-- Inline critical CSS for mobile -->
-        <style is:inline>
-            /* Mobile-specific optimizations */
-            @media (max-width: 768px) {
-                /* Optimize font rendering for mobile */
-                body {
-                    text-rendering: optimizeSpeed;
-                    -webkit-font-smoothing: antialiased;
-                }
-
-                /* Reduce animation complexity on mobile */
-                * {
-                    transition-duration: 0.1s !important;
-                    animation-duration: 0.1s !important;
-                }
-
-                /* Improve touch response */
-                a,
-                button {
-                    touch-action: manipulation;
-                }
-            }
-        </style>
-
-        <!-- Add View Transitions - simplified -->
+        <!-- Add View Transitions -->
         <ViewTransitions />
-
-        <!-- Simplified preconnect setup -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            rel="preconnect"
-            href="https://assets.cdn.filesafe.space"
-            crossorigin
-        />
-
-        <!-- Preload only critical resources -->
-        <link
-            rel="preload"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        />
-
-        <!-- Fallback for no-JS -->
-        <noscript>
-            <link
-                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-                rel="stylesheet"
-                type="text/css"
-            />
-        </noscript>
-
-        <!-- Simplified critical CSS -->
-        <style is:inline>
-            /* Core styles only */
-            @font-face {
-                font-family: "Inter";
-                font-style: normal;
-                font-weight: 400;
-                font-display: swap;
-                src: local("Inter Regular"), local("Inter-Regular");
-            }
-
-            :root {
-                --primary-color: #0f172a;
-                --secondary-color: #f59e0b;
-                --text-color: #1f2937;
-                --text-light: #e5e7eb;
-                --hero-font-size: 3.75rem;
-            }
-
-            html,
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                overflow-x: hidden;
-                font-family:
-                    "Inter",
-                    system-ui,
-                    -apple-system,
-                    sans-serif;
-                font-size: 16px;
-                line-height: 1.5;
-                color: var(--text-color);
-                background-color: #f9fafb;
-            }
-
-            /* Mobile optimizations */
-            .is-mobile {
-                font-size: 14px;
-            }
-
-            /* Optimize images */
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            /* Optimize hero content */
-            .hero-title,
-            .hero-subtitle {
-                font-size: var(--hero-font-size);
-            }
-
-            /* Reduce layout shifts */
-            [data-astro-cid] {
-                contain: layout;
-            }
-
-            /* Basic modal styles */
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 100;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-        </style>
     </head>
     <body>
         <Navigation />
@@ -399,290 +82,13 @@ const mobileImageUrl =
         <ImageModal />
         <CookieConsent />
 
-        <!-- Deferred script loading -->
-        <script>
-            // Add any non-critical scripts here
-            document.addEventListener("DOMContentLoaded", function () {
-                // Initialize components after page is fully loaded
-                // @ts-ignore - Allow access to the global function
-                if (typeof window.initializeModals === "function") {
-                    // @ts-ignore
-                    window.initializeModals();
-                }
-            });
-        </script>
-
-        <!-- Simplified modal handling script -->
-        <script is:inline>
-            // Define the global modal function
-            window.initializeModals = function () {
-                // Mobile-optimized modal initialization
-                const isMobile =
-                    document.documentElement.classList.contains("is-mobile");
-
-                // Simple modal handling with fewer animations for mobile
-                document.querySelectorAll(".modal").forEach((modal) => {
-                    const modalId = modal.id;
-
-                    // Handle modal opening
-                    document
-                        .querySelectorAll(`[data-open-modal="${modalId}"]`)
-                        .forEach((trigger) => {
-                            trigger.addEventListener("click", (e) => {
-                                e.preventDefault();
-
-                                // Simple display without animations for mobile
-                                modal.style.display = "block";
-                                document.body.style.overflow = "hidden";
-
-                                // Add visible class (for desktop animations)
-                                if (!isMobile) {
-                                    setTimeout(
-                                        () =>
-                                            modal.classList.add(
-                                                "modal-visible"
-                                            ),
-                                        10
-                                    );
-                                } else {
-                                    modal.classList.add("modal-visible");
-                                }
-                            });
-                        });
-
-                    // Handle modal closing
-                    const closeModal = () => {
-                        if (!isMobile) {
-                            modal.classList.remove("modal-visible");
-                            setTimeout(() => {
-                                modal.style.display = "none";
-                                document.body.style.overflow = "";
-                            }, 200);
-                        } else {
-                            modal.classList.remove("modal-visible");
-                            modal.style.display = "none";
-                            document.body.style.overflow = "";
-                        }
-                    };
-
-                    // Close on button click
-                    modal
-                        .querySelectorAll("[data-close-modal]")
-                        .forEach((btn) => {
-                            btn.addEventListener("click", closeModal);
-                        });
-
-                    // Close on backdrop click if it exists
-                    const backdrop = modal.querySelector(".modal-backdrop");
-                    if (backdrop) {
-                        backdrop.addEventListener("click", (e) => {
-                            if (e.target === backdrop) closeModal();
-                        });
-                    }
-
-                    // Close on ESC key
-                    document.addEventListener("keydown", (e) => {
-                        if (
-                            e.key === "Escape" &&
-                            modal.style.display === "block"
-                        ) {
-                            closeModal();
-                        }
-                    });
-                });
-            };
-
-            // Initialize on page load for non-Astro use cases
-            document.addEventListener(
-                "DOMContentLoaded",
-                window.initializeModals
-            );
-
-            // Initialize after Astro page transitions
-            document.addEventListener(
-                "astro:page-load",
-                window.initializeModals
-            );
-        </script>
+        <!-- Modal handling -->
+        <ModalHandler />
 
         <!-- Google Analytics -->
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"
-        ></script>
-        <script is:inline>
-            // Google Analytics 4 setup with comprehensive data collection
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                window.dataLayer.push(arguments);
-            }
+        <GoogleAnalytics measurementId={gaId} />
 
-            // Initialize GA4 immediately without waiting for consent
-            // This is the most data-collection-friendly approach
-            gtag("js", new Date());
-            gtag("config", "G-XXXXXXXX", {
-                send_page_view: true,
-                user_id: getOrCreateUserId(), // Track users across sessions
-                cookie_domain: "solarfusion.hr",
-                cookie_expires: 63072000, // 2 years in seconds
-                custom_map: {
-                    dimension1: "user_id",
-                    dimension2: "page_language",
-                    dimension3: "user_type",
-                },
-            });
-
-            // Set the current language as a custom dimension
-            gtag("set", "page_language", document.documentElement.lang || "hr");
-
-            // Set user type (new vs returning)
-            const userType = localStorage.getItem("sf_user_visited")
-                ? "returning"
-                : "new";
-            localStorage.setItem("sf_user_visited", "true");
-            gtag("set", "user_type", userType);
-
-            // Enhanced link tracking
-            gtag("set", "link_attribution", {
-                cookie_name: "_gaela",
-                cookie_expires: 63072000,
-            });
-
-            // Enhanced measurement - automatically track:
-            // - Scrolls
-            // - Outbound clicks
-            // - File downloads
-            // - Video engagement
-            // - Form interactions
-            // No need to add code for these as they're automatically tracked in GA4 if enabled in the GA admin
-
-            // Track form submissions
-            document.addEventListener("DOMContentLoaded", function () {
-                const forms = document.querySelectorAll("form");
-                forms.forEach((form) => {
-                    form.addEventListener("submit", function (e) {
-                        const formId = this.id || "unknown_form";
-                        gtag("event", "form_submit", {
-                            form_id: formId,
-                            page_location: window.location.href,
-                        });
-                    });
-                });
-            });
-
-            // Track clicks on CTA buttons
-            document.addEventListener("DOMContentLoaded", function () {
-                const ctaButtons = document.querySelectorAll(
-                    ".cta-button, .btn-primary"
-                );
-                ctaButtons.forEach((button) => {
-                    button.addEventListener("click", function (e) {
-                        const buttonText = this.textContent.trim();
-                        gtag("event", "cta_click", {
-                            button_text: buttonText,
-                            page_location: window.location.href,
-                        });
-                    });
-                });
-            });
-
-            // Helper function to get or create a user ID
-            function getOrCreateUserId() {
-                let userId = localStorage.getItem("sf_user_id");
-                if (!userId) {
-                    userId =
-                        "user_" +
-                        Math.random().toString(36).substring(2, 15) +
-                        Math.random().toString(36).substring(2, 15);
-                    localStorage.setItem("sf_user_id", userId);
-                }
-                return userId;
-            }
-
-            // Track time on site when user leaves
-            let startTime = new Date();
-            window.addEventListener("beforeunload", function () {
-                const timeSpent = Math.round((new Date() - startTime) / 1000);
-                gtag("event", "time_on_page", {
-                    time_seconds: timeSpent,
-                    page_location: window.location.href,
-                });
-            });
-
-            // Track scroll depth
-            let scrollDepthTracked = {
-                "25": false,
-                "50": false,
-                "75": false,
-                "90": false,
-            };
-
-            window.addEventListener("scroll", function () {
-                const scrollPercentage = getScrollPercentage();
-
-                if (scrollPercentage >= 25 && !scrollDepthTracked["25"]) {
-                    gtag("event", "scroll_depth", { depth: "25%" });
-                    scrollDepthTracked["25"] = true;
-                }
-
-                if (scrollPercentage >= 50 && !scrollDepthTracked["50"]) {
-                    gtag("event", "scroll_depth", { depth: "50%" });
-                    scrollDepthTracked["50"] = true;
-                }
-
-                if (scrollPercentage >= 75 && !scrollDepthTracked["75"]) {
-                    gtag("event", "scroll_depth", { depth: "75%" });
-                    scrollDepthTracked["75"] = true;
-                }
-
-                if (scrollPercentage >= 90 && !scrollDepthTracked["90"]) {
-                    gtag("event", "scroll_depth", { depth: "90%" });
-                    scrollDepthTracked["90"] = true;
-                }
-            });
-
-            function getScrollPercentage() {
-                const windowHeight = window.innerHeight;
-                const documentHeight = Math.max(
-                    document.body.scrollHeight,
-                    document.documentElement.scrollHeight,
-                    document.body.offsetHeight,
-                    document.documentElement.offsetHeight,
-                    document.body.clientHeight,
-                    document.documentElement.clientHeight
-                );
-                const scrollTop =
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop ||
-                    document.body.scrollTop ||
-                    0;
-
-                if (windowHeight >= documentHeight) {
-                    return 100;
-                }
-
-                return Math.round(
-                    (scrollTop / (documentHeight - windowHeight)) * 100
-                );
-            }
-        </script>
-
-        <!-- Cookie Consent Setup -->
-        <script is:inline>
-            window.addEventListener("load", function () {
-                // For maximum data collection, GA4 is already running regardless of consent
-                // This is just for showing/hiding the banner
-
-                // Check if user has previously seen the banner
-                const hasConsent = localStorage.getItem("cookie-consent");
-
-                if (!hasConsent) {
-                    // Show cookie consent banner
-                    const cookieBanner =
-                        document.querySelector("#cookie-banner");
-                    if (cookieBanner) cookieBanner.classList.remove("hidden");
-                }
-            });
-        </script>
+        <!-- Cookie Consent Banner Logic -->
+        <CookieConsentHandler />
     </body>
 </html>

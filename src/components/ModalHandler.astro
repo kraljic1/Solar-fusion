@@ -1,0 +1,96 @@
+---
+// ModalHandler.astro - Component for handling modals
+---
+
+<!-- Deferred script loading -->
+<script>
+    // Add any non-critical scripts here
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialize components after page is fully loaded
+        // @ts-ignore - Allow access to the global function
+        if (typeof window.initializeModals === "function") {
+            // @ts-ignore
+            window.initializeModals();
+        }
+    });
+</script>
+
+<!-- Simplified modal handling script -->
+<script is:inline>
+    // Define the global modal function
+    window.initializeModals = function () {
+        // Mobile-optimized modal initialization
+        const isMobile =
+            document.documentElement.classList.contains("is-mobile");
+
+        // Simple modal handling with fewer animations for mobile
+        document.querySelectorAll(".modal").forEach((modal) => {
+            const modalId = modal.id;
+
+            // Handle modal opening
+            document
+                .querySelectorAll(`[data-open-modal="${modalId}"]`)
+                .forEach((trigger) => {
+                    trigger.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        // Simple display without animations for mobile
+                        modal.style.display = "block";
+                        document.body.style.overflow = "hidden";
+
+                        // Add visible class (for desktop animations)
+                        if (!isMobile) {
+                            setTimeout(
+                                () => modal.classList.add("modal-visible"),
+                                10
+                            );
+                        } else {
+                            modal.classList.add("modal-visible");
+                        }
+                    });
+                });
+
+            // Handle modal closing
+            const closeModal = () => {
+                if (!isMobile) {
+                    modal.classList.remove("modal-visible");
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                        document.body.style.overflow = "";
+                    }, 200);
+                } else {
+                    modal.classList.remove("modal-visible");
+                    modal.style.display = "none";
+                    document.body.style.overflow = "";
+                }
+            };
+
+            // Close on button click
+            modal.querySelectorAll("[data-close-modal]").forEach((btn) => {
+                btn.addEventListener("click", closeModal);
+            });
+
+            // Close on backdrop click if it exists
+            const backdrop = modal.querySelector(".modal-backdrop");
+            if (backdrop) {
+                backdrop.addEventListener("click", (e) => {
+                    if (e.target === backdrop) closeModal();
+                });
+            }
+
+            // Close on ESC key
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && modal.style.display === "block") {
+                    closeModal();
+                }
+            });
+        });
+    };
+
+    // Initialize on page load for non-Astro use cases
+    document.addEventListener("DOMContentLoaded", window.initializeModals);
+
+    // Initialize after Astro page transitions
+    document.addEventListener("astro:page-load", window.initializeModals);
+</script>
+

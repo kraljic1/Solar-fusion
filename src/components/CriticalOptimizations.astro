@@ -1,0 +1,147 @@
+---
+// CriticalOptimizations.astro - Component for critical path optimizations
+const { mobileImageUrl, criticalImageUrl } = Astro.props;
+---
+
+<!-- Critical rendering path optimization -->
+<script is:inline define:vars={{ mobileImageUrl, criticalImageUrl }}>
+    // Mobile detection
+    const isMobile =
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+        window.innerWidth <= 768;
+
+    // Immediately set a base dark background color to avoid flash
+    document.documentElement.style.backgroundColor = "#1a202c";
+
+    // Critical font preloading for the hero subtitle
+    const fontLink = document.createElement("link");
+    fontLink.rel = "preload";
+    fontLink.href =
+        "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap";
+    fontLink.as = "style";
+    document.head.appendChild(fontLink);
+
+    // LCP optimization - initiate early fetch for critical image
+    if (isMobile) {
+        const preloadLink = document.createElement("link");
+        preloadLink.rel = "preload";
+        preloadLink.as = "image";
+        preloadLink.href = `${mobileImageUrl}`;
+        preloadLink.fetchPriority = "high";
+        document.head.appendChild(preloadLink);
+    }
+
+    // Prevent layout shifts by setting initial dimensions
+    document.documentElement.style.setProperty("--hero-height", "100vh");
+
+    // Set content-visibility auto for below-the-fold content on mobile
+    if (isMobile) {
+        document.addEventListener("DOMContentLoaded", () => {
+            const belowFoldElements = document.querySelectorAll(
+                "section:not(.hero-section)"
+            );
+            belowFoldElements.forEach((el, index) => {
+                if (index > 0) {
+                    // Skip the first section after hero
+                    el.style.contentVisibility = "auto";
+                    el.style.containIntrinsicSize = "0 500px"; // Estimated size
+                }
+            });
+        });
+    }
+</script>
+
+<!-- Inline critical CSS for mobile -->
+<style is:inline>
+    /* Mobile-specific optimizations */
+    @media (max-width: 768px) {
+        /* Optimize font rendering for mobile */
+        body {
+            text-rendering: optimizeSpeed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Reduce animation complexity on mobile */
+        * {
+            transition-duration: 0.1s !important;
+            animation-duration: 0.1s !important;
+        }
+
+        /* Improve touch response */
+        a,
+        button {
+            touch-action: manipulation;
+        }
+    }
+</style>
+
+<!-- Simplified critical CSS -->
+<style is:inline>
+    /* Core styles only */
+    @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local("Inter Regular"), local("Inter-Regular");
+    }
+
+    :root {
+        --primary-color: #0f172a;
+        --secondary-color: #f59e0b;
+        --text-color: #1f2937;
+        --text-light: #e5e7eb;
+        --hero-font-size: 3.75rem;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--text-color);
+        background-color: #f9fafb;
+    }
+
+    /* Mobile optimizations */
+    .is-mobile {
+        font-size: 14px;
+    }
+
+    /* Optimize images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Optimize hero content */
+    .hero-title,
+    .hero-subtitle {
+        font-size: var(--hero-font-size);
+    }
+
+    /* Reduce layout shifts */
+    [data-astro-cid] {
+        contain: layout;
+    }
+
+    /* Basic modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+

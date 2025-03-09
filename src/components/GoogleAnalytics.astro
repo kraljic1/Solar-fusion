@@ -1,0 +1,165 @@
+---
+// GoogleAnalytics.astro - Component for Google Analytics integration
+const { measurementId = "G-XXXXXXXX" } = Astro.props;
+---
+
+<!-- Google Analytics -->
+<script
+    async
+    src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+></script>
+<script is:inline define:vars={{ measurementId }}>
+    // Google Analytics 4 setup with comprehensive data collection
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        window.dataLayer.push(arguments);
+    }
+
+    // Initialize GA4 immediately without waiting for consent
+    // This is the most data-collection-friendly approach
+    gtag("js", new Date());
+    gtag("config", measurementId, {
+        send_page_view: true,
+        user_id: getOrCreateUserId(), // Track users across sessions
+        cookie_domain: "solarfusion.hr",
+        cookie_expires: 63072000, // 2 years in seconds
+        custom_map: {
+            dimension1: "user_id",
+            dimension2: "page_language",
+            dimension3: "user_type",
+        },
+    });
+
+    // Set the current language as a custom dimension
+    gtag("set", "page_language", document.documentElement.lang || "hr");
+
+    // Set user type (new vs returning)
+    const userType = localStorage.getItem("sf_user_visited")
+        ? "returning"
+        : "new";
+    localStorage.setItem("sf_user_visited", "true");
+    gtag("set", "user_type", userType);
+
+    // Enhanced link tracking
+    gtag("set", "link_attribution", {
+        cookie_name: "_gaela",
+        cookie_expires: 63072000,
+    });
+
+    // Enhanced measurement - automatically track:
+    // - Scrolls
+    // - Outbound clicks
+    // - File downloads
+    // - Video engagement
+    // - Form interactions
+    // No need to add code for these as they're automatically tracked in GA4 if enabled in the GA admin
+
+    // Track form submissions
+    document.addEventListener("DOMContentLoaded", function () {
+        const forms = document.querySelectorAll("form");
+        forms.forEach((form) => {
+            form.addEventListener("submit", function (e) {
+                const formId = this.id || "unknown_form";
+                gtag("event", "form_submit", {
+                    form_id: formId,
+                    page_location: window.location.href,
+                });
+            });
+        });
+    });
+
+    // Track clicks on CTA buttons
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctaButtons = document.querySelectorAll(
+            ".cta-button, .btn-primary"
+        );
+        ctaButtons.forEach((button) => {
+            button.addEventListener("click", function (e) {
+                const buttonText = this.textContent.trim();
+                gtag("event", "cta_click", {
+                    button_text: buttonText,
+                    page_location: window.location.href,
+                });
+            });
+        });
+    });
+
+    // Helper function to get or create a user ID
+    function getOrCreateUserId() {
+        let userId = localStorage.getItem("sf_user_id");
+        if (!userId) {
+            userId =
+                "user_" +
+                Math.random().toString(36).substring(2, 15) +
+                Math.random().toString(36).substring(2, 15);
+            localStorage.setItem("sf_user_id", userId);
+        }
+        return userId;
+    }
+
+    // Track time on site when user leaves
+    let startTime = new Date();
+    window.addEventListener("beforeunload", function () {
+        const timeSpent = Math.round((new Date() - startTime) / 1000);
+        gtag("event", "time_on_page", {
+            time_seconds: timeSpent,
+            page_location: window.location.href,
+        });
+    });
+
+    // Track scroll depth
+    let scrollDepthTracked = {
+        "25": false,
+        "50": false,
+        "75": false,
+        "90": false,
+    };
+
+    window.addEventListener("scroll", function () {
+        const scrollPercentage = getScrollPercentage();
+
+        if (scrollPercentage >= 25 && !scrollDepthTracked["25"]) {
+            gtag("event", "scroll_depth", { depth: "25%" });
+            scrollDepthTracked["25"] = true;
+        }
+
+        if (scrollPercentage >= 50 && !scrollDepthTracked["50"]) {
+            gtag("event", "scroll_depth", { depth: "50%" });
+            scrollDepthTracked["50"] = true;
+        }
+
+        if (scrollPercentage >= 75 && !scrollDepthTracked["75"]) {
+            gtag("event", "scroll_depth", { depth: "75%" });
+            scrollDepthTracked["75"] = true;
+        }
+
+        if (scrollPercentage >= 90 && !scrollDepthTracked["90"]) {
+            gtag("event", "scroll_depth", { depth: "90%" });
+            scrollDepthTracked["90"] = true;
+        }
+    });
+
+    function getScrollPercentage() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        );
+        const scrollTop =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
+
+        if (windowHeight >= documentHeight) {
+            return 100;
+        }
+
+        return Math.round((scrollTop / (documentHeight - windowHeight)) * 100);
+    }
+</script>
+
